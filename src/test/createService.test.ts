@@ -1,58 +1,67 @@
-import createService, { Operation } from 'lib/createService';
+import createService, { CreateContext, UpdateContext, DeleteContext } from 'lib/createService';
 
-const entity = { id: 2, name: 'john' };
+interface PersonAttributes {
+    id: number;
+    name: string;
+}
+const entity: PersonAttributes = { id: 2, name: 'john' };
 const fetchEntity = (data: any) => Promise.resolve({ ...entity, id: data.id });
-const context = { user: 'Crudella de Vile' };
+const context = { user: 'Crudella de Vile', q: 'dalmatins' };
 const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
-let get = jest.fn(fetchEntity);
+const createMethods = () => ({
+    get: jest.fn(fetchEntity),
+    create: jest.fn((ctx: CreateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.data, id: 5 })),
+    update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
+    delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
+    list: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
+});
+let methods = createMethods();
+
 describe('createService', () => {
     test('Returns an object', () => {
         expect(typeof createService({})).toBe('object');
     });
     describe('Basic handlers', () => {
         beforeEach(() => {
-            get = jest.fn(fetchEntity);
+            methods = createMethods();
         });
         test('Detail called once, when triggered, with correct attributes', async () => {
-            const service = createService({ get });
+            const service = createService({ get: methods.get });
             const getHandler = service.getHandler(options);
-            expect(get).toHaveBeenCalledTimes(0);
+            expect(methods.get).toHaveBeenCalledTimes(0);
             await expect(getHandler(id, context)).resolves.toHaveProperty('id', id);
-            expect(get).toHaveBeenCalledTimes(1);
-            expect(get.mock.calls[0][0]).toMatchSnapshot();
+            expect(methods.get).toHaveBeenCalledTimes(1);
+            expect(methods.get.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Create', async () => {
-            const create = jest.fn((ctx: any) => fetchEntity(ctx.data));
-            const service = createService({ create });
+            const service = createService({ create: methods.create });
             await expect(service.createHandler(options)({ id }, context)).resolves.toHaveProperty('id', id);
-            expect(create).toHaveBeenCalledTimes(1);
-            expect(create.mock.calls[0][0]).toMatchSnapshot();
+            expect(methods.create).toHaveBeenCalledTimes(1);
+            expect(methods.create.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Update', async () => {
-            const update = jest.fn((ctx: any) => fetchEntity(ctx.data));
             const service = createService({
-                update,
-                get,
+                get: methods.get,
+                update: methods.update,
             });
             await expect(service.updateHandler(options)(id, { id }, context)).resolves.toHaveProperty('id', id);
             // detail was called for context
-            expect(get).toHaveBeenCalledTimes(1);
-            expect(update).toHaveBeenCalledTimes(1);
-            expect(update.mock.calls[0][0]).toMatchSnapshot();
+            expect(methods.get).toHaveBeenCalledTimes(1);
+            expect(methods.update).toHaveBeenCalledTimes(1);
+            expect(methods.update.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Delete', async () => {
-            const del = jest.fn().mockReturnValue(true);
             const service = createService({
-                get,
-                delete: del,
+                get: methods.get,
+                delete: methods.delete,
             });
             await expect(service.deleteHandler(options)(id, context)).resolves.toBe(true);
             // detail was called for context
-            expect(get).toHaveBeenCalledTimes(1);
-            expect(del).toHaveBeenCalledTimes(1);
-            expect(del.mock.calls[0][0]).toMatchSnapshot();
+            expect(methods.get).toHaveBeenCalledTimes(1);
+            expect(methods.delete).toHaveBeenCalledTimes(1);
+            expect(methods.delete.mock.calls[0][0]).toMatchSnapshot();
         });
         test('List', async () => {
             const list = jest.fn().mockResolvedValue([]);

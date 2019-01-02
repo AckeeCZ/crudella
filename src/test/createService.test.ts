@@ -1,4 +1,4 @@
-import createService, { CreateContext, UpdateContext, DeleteContext } from 'lib/createService';
+import createService, { CreateContext, UpdateContext, DeleteContext, CrudContext } from 'lib/createService';
 
 interface PersonAttributes {
     id: number;
@@ -16,6 +16,7 @@ const createMethods = () => ({
     update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
     delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
     list: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
+    authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
 });
 let methods = createMethods();
 
@@ -67,6 +68,43 @@ describe('createService', () => {
             const service = createService({ list: methods.list });
             await expect(service.listHandler(options)(filters, context)).resolves.toMatchSnapshot();
             expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
+        });
+    });
+    beforeEach(() => {
+        methods = createMethods();
+    });
+    describe('Authorization', () => {
+        test('Called for every access with correct contexts', async () => {
+            const service = createService(methods);
+            await service.getHandler()(id, context);
+            expect(methods.authorize).toHaveBeenCalledTimes(1);
+            await service.createHandler()(entity, context);
+            expect(methods.authorize).toHaveBeenCalledTimes(2);
+            await service.updateHandler()(id, entity, context);
+            expect(methods.authorize).toHaveBeenCalledTimes(3);
+            await service.deleteHandler()(id, context);
+            expect(methods.authorize).toHaveBeenCalledTimes(4);
+            await service.listHandler()(filters, context);
+            expect(methods.authorize).toHaveBeenCalledTimes(5);
+            expect(methods.authorize.mock.calls.map(x => x[0].type)).toMatchSnapshot();
+        });
+        test('Protected methods not called', async () => {
+            const service = createService({
+                ...methods,
+                authorize: () => Promise.reject(new Error()),
+            });
+            await expect(service.getHandler()(id, context)).rejects.toBeInstanceOf(Error);
+            await expect(service.createHandler()(entity, context)).rejects.toBeInstanceOf(Error);
+            await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
+            await expect(service.deleteHandler()(id, context)).rejects.toBeInstanceOf(Error);
+            await expect(service.listHandler()(filters, context)).rejects.toBeInstanceOf(Error);
+            // get, update, delete (contexts)
+            expect(methods.get).toHaveBeenCalledTimes(3);
+            // skipped
+            expect(methods.create).toHaveBeenCalledTimes(0);
+            expect(methods.update).toHaveBeenCalledTimes(0);
+            expect(methods.delete).toHaveBeenCalledTimes(0);
+            expect(methods.list).toHaveBeenCalledTimes(0);
         });
     });
 });

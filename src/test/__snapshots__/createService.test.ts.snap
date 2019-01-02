@@ -1,5 +1,15 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`createService Authorization Called for every access with correct contexts 1`] = `
+Array [
+  "DETAIL",
+  "CREATE",
+  "UPDATE",
+  "DELETE",
+  "LIST",
+]
+`;
+
 exports[`createService Basic handlers Create 1`] = `
 Object {
   "id": 5,

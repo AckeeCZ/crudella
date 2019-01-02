@@ -12,9 +12,7 @@
     "url": "https://github.com/AckeeCZ/crudella"
   },
   "license": "MIT",
-  "keywords": [
-
-  ],
+  "keywords": [],
   "scripts": {
     "build": "tsc",
     "test": "NODE_PATH=src jest",
@@ -25,8 +23,7 @@
     "docs": "typedoc --options typedoc.json src/lib/*.ts",
     "check": "npm-check -i app -i errors -i config -i index & exit 0"
   },
-  "dependencies": {
-  },
+  "dependencies": {},
   "devDependencies": {
     "@types/jest": "^23.3.5",
     "coveralls": "^3.0.2",
@@ -34,6 +31,7 @@
     "npm-check": "^5.8.0",
     "ts-jest": "^23.10.4",
     "tslint-config-ackee": "^0.2.1",
+    "tslint-consistent-codestyle": "^1.14.1",
     "typedoc": "^0.13.0",
     "typescript": "^3.1.2"
   }

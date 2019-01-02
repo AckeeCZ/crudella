@@ -1,9 +1,13 @@
 {
     "defaultSeverity": "error",
     "extends": [
-        "tslint-config-ackee"
+        "tslint-config-ackee",
+        "tslint-consistent-codestyle"
     ],
     "jsRules": {},
-    "rules": {},
+    "rules": {
+        "object-literal-sort-keys": false,
+        "object-shorthand-properties-first": true
+    },
     "rulesDirectory": []
 }

@@ -1,7 +1,7 @@
 {
   "name": "crudella",
   "description": "crudella",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Jaroslav Šmolík <grissius@gmail.com>",
   "main": "./dist/main.js",
   "engines": {

@@ -1,1 +1,1 @@
-export default (options: any) => ({})
+export default (options: any) => ({});

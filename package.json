@@ -1,7 +1,7 @@
 {
   "name": "crudella",
   "description": "crudella",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "author": "Jaroslav Šmolík <grissius@gmail.com>",
   "main": "./dist/main.js",
   "engines": {
@@ -12,7 +12,9 @@
     "url": "https://github.com/AckeeCZ/crudella"
   },
   "license": "MIT",
-  "keywords": [],
+  "keywords": [
+
+  ],
   "scripts": {
     "build": "tsc",
     "test": "NODE_PATH=src jest",
@@ -23,7 +25,8 @@
     "docs": "typedoc --options typedoc.json src/lib/*.ts",
     "check": "npm-check -i app -i errors -i config -i index & exit 0"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/jest": "^23.3.5",
     "coveralls": "^3.0.2",

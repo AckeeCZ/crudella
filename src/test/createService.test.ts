@@ -1,4 +1,4 @@
-import createService, { CreateContext, UpdateContext, DeleteContext, CrudContext } from 'lib/createService';
+import createService, { CreateContext, CrudContext, DeleteContext, UpdateContext } from 'lib/createService';
 
 interface PersonAttributes {
     id: number;

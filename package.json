@@ -1,0 +1,37 @@
+{
+  "name": "crudella",
+  "description": "crudella",
+  "version": "0.0.0",
+  "author": "Jaroslav Šmolík <grissius@gmail.com>",
+  "main": "./dist/main.js",
+  "engines": {
+    "node": "^10.14.0"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/AckeeCZ/crudella"
+  },
+  "license": "MIT",
+  "keywords": [],
+  "scripts": {
+    "build": "tsc",
+    "test": "NODE_PATH=src jest",
+    "test:coverage": "npm run test -- --collectCoverage",
+    "test:coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
+    "lint": "tslint -t codeFrame -p .",
+    "prepare": "npm run build",
+    "docs": "typedoc --options typedoc.json src/lib/*.ts",
+    "check": "npm-check -i app -i errors -i config -i index & exit 0"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^23.3.5",
+    "coveralls": "^3.0.2",
+    "jest": "^23.6.0",
+    "npm-check": "^5.8.0",
+    "ts-jest": "^23.10.4",
+    "tslint-config-ackee": "^0.2.1",
+    "typedoc": "^0.13.0",
+    "typescript": "^3.1.2"
+  }
+}

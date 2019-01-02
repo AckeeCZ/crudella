@@ -31,13 +31,13 @@ describe('createService', () => {
             const service = createService({ get: methods.get });
             const getHandler = service.getHandler(options);
             expect(methods.get).toHaveBeenCalledTimes(0);
-            await expect(getHandler(id, context)).resolves.toHaveProperty('id', id);
+            await expect(getHandler(id, context)).resolves.toMatchSnapshot();
             expect(methods.get).toHaveBeenCalledTimes(1);
             expect(methods.get.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Create', async () => {
             const service = createService({ create: methods.create });
-            await expect(service.createHandler(options)({ id }, context)).resolves.toHaveProperty('id', id);
+            await expect(service.createHandler(options)({ id }, context)).resolves.toMatchSnapshot();
             expect(methods.create).toHaveBeenCalledTimes(1);
             expect(methods.create.mock.calls[0][0]).toMatchSnapshot();
         });
@@ -46,7 +46,7 @@ describe('createService', () => {
                 get: methods.get,
                 update: methods.update,
             });
-            await expect(service.updateHandler(options)(id, { id }, context)).resolves.toHaveProperty('id', id);
+            await expect(service.updateHandler(options)(id, { id }, context)).resolves.toMatchSnapshot();
             // detail was called for context
             expect(methods.get).toHaveBeenCalledTimes(1);
             expect(methods.update).toHaveBeenCalledTimes(1);
@@ -64,10 +64,9 @@ describe('createService', () => {
             expect(methods.delete.mock.calls[0][0]).toMatchSnapshot();
         });
         test('List', async () => {
-            const list = jest.fn().mockResolvedValue([]);
-            const service = createService({ list });
-            await expect(service.listHandler(options)(filters, context)).resolves.toEqual([]);
-            expect(list.mock.calls[0][0]).toMatchSnapshot();
+            const service = createService({ list: methods.list });
+            await expect(service.listHandler(options)(filters, context)).resolves.toMatchSnapshot();
+            expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
         });
     });
 });

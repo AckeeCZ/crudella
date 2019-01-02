@@ -2,6 +2,12 @@
 
 exports[`createService Basic handlers Create 1`] = `
 Object {
+  "id": 5,
+}
+`;
+
+exports[`createService Basic handlers Create 2`] = `
+Object {
   "context": Object {
     "q": "dalmatins",
     "user": "Crudella de Vile",
@@ -48,6 +54,13 @@ Object {
 
 exports[`createService Basic handlers Detail called once, when triggered, with correct attributes 1`] = `
 Object {
+  "id": 5,
+  "name": "john",
+}
+`;
+
+exports[`createService Basic handlers Detail called once, when triggered, with correct attributes 2`] = `
+Object {
   "context": Object {
     "q": "dalmatins",
     "user": "Crudella de Vile",
@@ -67,6 +80,23 @@ Object {
 `;
 
 exports[`createService Basic handlers List 1`] = `
+Array [
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+]
+`;
+
+exports[`createService Basic handlers List 2`] = `
 Object {
   "context": Object {
     "q": "dalmatins",
@@ -89,6 +119,13 @@ Object {
 `;
 
 exports[`createService Basic handlers Update 1`] = `
+Object {
+  "id": 5,
+  "name": "john",
+}
+`;
+
+exports[`createService Basic handlers Update 2`] = `
 Object {
   "bareData": Object {
     "id": 5,

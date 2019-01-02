@@ -1,7 +1,0 @@
-{
-    "includeDeclarations": true,
-    "excludeExternals": true,
-    "name": "Crudella",
-    "mode": "file",
-    "out": "docs"
-}

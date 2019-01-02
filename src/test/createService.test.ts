@@ -6,7 +6,7 @@ interface PersonAttributes {
 }
 const entity: PersonAttributes = { id: 2, name: 'john' };
 const fetchEntity = (data: any) => Promise.resolve({ ...entity, id: data.id });
-const context = { user: 'Crudella de Vile', q: 'dalmatins' };
+const context = { user: 'Crudella de Vile', q: 'dalmatians' };
 const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;

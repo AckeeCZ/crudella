@@ -19,14 +19,14 @@ Object {
 exports[`createService Basic handlers Create 2`] = `
 Object {
   "context": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
   },
   "data": Object {
     "id": 5,
   },
   "options": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
     "withRelated": Array [
       "dummy",
@@ -41,7 +41,7 @@ Object {
 exports[`createService Basic handlers Delete 1`] = `
 Object {
   "context": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
   },
   "entity": Object {
@@ -50,7 +50,7 @@ Object {
   },
   "id": 5,
   "options": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
     "withRelated": Array [
       "dummy",
@@ -72,12 +72,12 @@ Object {
 exports[`createService Basic handlers Detail called once, when triggered, with correct attributes 2`] = `
 Object {
   "context": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
   },
   "id": 5,
   "options": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
     "withRelated": Array [
       "dummy",
@@ -109,14 +109,14 @@ Array [
 exports[`createService Basic handlers List 2`] = `
 Object {
   "context": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
   },
   "filters": Object {
     "nice": true,
   },
   "options": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
     "withRelated": Array [
       "dummy",
@@ -141,7 +141,7 @@ Object {
     "id": 5,
   },
   "context": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
   },
   "data": Object {
@@ -154,7 +154,7 @@ Object {
   },
   "id": 5,
   "options": Object {
-    "q": "dalmatins",
+    "q": "dalmatians",
     "user": "Crudella de Vile",
     "withRelated": Array [
       "dummy",

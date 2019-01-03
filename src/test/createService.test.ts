@@ -159,7 +159,7 @@ describe('createService', () => {
             const service = createService({
                 get: methods.get,
                 update: methods.update,
-                getOptions: (op) => ({
+                getOptions: op => ({
                     dynamicOption: op,
                 }),
             });

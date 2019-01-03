@@ -72,8 +72,16 @@ export interface ListContext<T, C> extends BaseCrudContext<T, C> {
     write: false;
     safe: true;
 }
-export type CrudContext<T, C> = DetailContext<T, C> | UpdateContext<T, C> | CreateContext<T, C> | DeleteContext<T, C> | ListContext<T, C>;
-export type DataContext<T, C> = Pick<CreateContext<T, C> | UpdateContext<T, C>, 'data' | 'context' | 'options' | 'type'>;
+export type CrudContext<T, C> =
+    | DetailContext<T, C>
+    | UpdateContext<T, C>
+    | CreateContext<T, C>
+    | DeleteContext<T, C>
+    | ListContext<T, C>;
+export type DataContext<T, C> = Pick<
+    CreateContext<T, C> | UpdateContext<T, C>,
+    'data' | 'context' | 'options' | 'type'
+>;
 export interface CrudRepository<T> {
     detailById: (id: number, options: any) => Promise<T>;
     create: (data: any, options: any) => Promise<T>;
@@ -129,30 +137,35 @@ export interface Definitions<T, C = any> {
 }
 const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
     const defaultImplementation: Omit<Required<Definitions<T>>, 'repository'> = {
-        get: (() => Promise.reject(new Error('"get" not implemented'))),
-        create: (() => Promise.reject(new Error('"create" not implemented'))),
-        update: (() => Promise.reject(new Error('"update" not implemented'))),
-        delete: (() => Promise.reject(new Error('"delete" not implemented'))),
-        list: (() => Promise.reject(new Error('"list" not implemented'))),
-        authorize: (() => Promise.resolve(true)),
-        processData: (({ data }: DataContext<T, C>) => data),
-        createNotFoundError: (() => new Error('Requested resource not found')),
-        getOptions: (() => ({})),
+        get: () => Promise.reject(new Error('"get" not implemented')),
+        create: () => Promise.reject(new Error('"create" not implemented')),
+        update: () => Promise.reject(new Error('"update" not implemented')),
+        delete: () => Promise.reject(new Error('"delete" not implemented')),
+        list: () => Promise.reject(new Error('"list" not implemented')),
+        authorize: () => Promise.resolve(true),
+        processData: ({ data }: DataContext<T, C>) => data,
+        createNotFoundError: () => new Error('Requested resource not found'),
+        getOptions: () => ({}),
     };
-    const repoImplementation: Pick<Required<Definitions<T>>, 'get' | 'create' | 'update' | 'delete' | 'list'> | {} = defs.repository ? {
-        get: ctx => defs.repository!.detailById(ctx.id, ctx.options),
-        create: ctx => defs.repository!.create(ctx.data, ctx.options),
-        update: ctx => defs.repository!.updateById(ctx.entity.id, ctx.data, ctx.options),
-        delete: ctx => defs.repository!.deleteById(ctx.entity.id, ctx.options),
-        list: ctx => defs.repository!.list(ctx.filters, ctx.options),
-    } : {};
+    const repoImplementation:
+        | Pick<Required<Definitions<T>>, 'get' | 'create' | 'update' | 'delete' | 'list'>
+        | {} = defs.repository
+        ? {
+              get: ctx => defs.repository!.detailById(ctx.id, ctx.options),
+              create: ctx => defs.repository!.create(ctx.data, ctx.options),
+              update: ctx => defs.repository!.updateById(ctx.entity.id, ctx.data, ctx.options),
+              delete: ctx => defs.repository!.deleteById(ctx.entity.id, ctx.options),
+              list: ctx => defs.repository!.list(ctx.filters, ctx.options),
+          }
+        : {};
     const implementation = Object.assign({}, defaultImplementation, repoImplementation, defs);
     /**
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)
      */
     const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): Promise<T> =>
-        implementation.get({ ...context, type: Operation.DETAIL, write: false, safe: true })
+        implementation
+            .get({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(notFoundOnNull(implementation.createNotFoundError()));
 
     const getHandler = (options: any = {}) => async (id: number, context: C) => {
@@ -173,15 +186,16 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
     const createHandler = (options: any = {}) => async (data: any, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.CREATE);
         options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: CreateContext<T, C> = await Promise.resolve(implementation.processData({ data, context, options, type: Operation.CREATE }))
-            .then(processedData => ({
-                context,
-                options,
-                data: processedData,
-                type: Operation.CREATE as Operation.CREATE,
-                write: true as true,
-                safe: false as false,
-            }));
+        const ctx: CreateContext<T, C> = await Promise.resolve(
+            implementation.processData({ data, context, options, type: Operation.CREATE })
+        ).then(processedData => ({
+            context,
+            options,
+            data: processedData,
+            type: Operation.CREATE as Operation.CREATE,
+            write: true as true,
+            safe: false as false,
+        }));
         await implementation.authorize(ctx);
         return implementation.create(ctx);
     };
@@ -252,7 +266,10 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
 };
 
 export default createService;
-export const buildService = <T extends { id: any }, C>(buildingDefs: Definitions<T, C>, prevDefs?: Definitions<T, C>) => {
+export const buildService = <T extends { id: any }, C>(
+    buildingDefs: Definitions<T, C>,
+    prevDefs?: Definitions<T, C>
+) => {
     const mergedDefs = Object.assign({}, prevDefs, buildingDefs);
     return {
         createService: (defs: Definitions<T, C>) => createService(Object.assign({}, defs, mergedDefs)),

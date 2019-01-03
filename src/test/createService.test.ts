@@ -18,7 +18,18 @@ const createMethods = () => ({
     list: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
     authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
 });
+const createRepository = () => {
+    const impl = createMethods();
+    return {
+        create: impl.create,
+        deleteById: impl.delete,
+        detailById: impl.get,
+        list: impl.list,
+        updateById: impl.update,
+    };
+};
 let methods = createMethods();
+let repository = createRepository();
 
 describe('createService', () => {
     test('Returns an object', () => {
@@ -26,6 +37,7 @@ describe('createService', () => {
     });
     beforeEach(() => {
         methods = createMethods();
+        repository = createRepository();
     });
     describe('Basic handlers', () => {
         beforeEach(() => {
@@ -71,6 +83,14 @@ describe('createService', () => {
             const service = createService({ list: methods.list });
             await expect(service.listHandler(options)(filters, context)).resolves.toMatchSnapshot();
             expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
+        });
+        test('Repository implementation', async () => {
+            const service = createService({ repository });
+            await expect(service.getHandler()(id, context)).resolves;
+            await expect(service.createHandler()(entity, context)).resolves;
+            await expect(service.listHandler()(filters, context)).resolves;
+            await expect(service.updateHandler()(id, entity, context)).resolves;
+            await expect(service.deleteHandler()(id, context)).resolves;
         });
     });
     describe('Authorization', () => {

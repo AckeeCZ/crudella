@@ -20,7 +20,7 @@
     "test:coveralls": "cat ./coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js",
     "lint": "tslint -t codeFrame -p .",
     "prepare": "npm run build",
-    "docs": "typedoc --options typedoc.json src/lib/*.ts",
+    "docs": "typedoc --options typedoc.json src/lib",
     "check": "npm-check -i app -i errors -i config -i index & exit 0"
   },
   "dependencies": {},

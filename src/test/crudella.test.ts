@@ -1,4 +1,4 @@
-import createService, { CreateContext, CrudContext, DeleteContext, UpdateContext } from 'lib/createService';
+import { CreateContext, createService, CrudContext, DeleteContext, ListContext, UpdateContext } from 'main';
 
 interface PersonAttributes {
     id: number;
@@ -11,11 +11,11 @@ const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
 const createMethods = () => ({
-    get: jest.fn(fetchEntity),
+    detail: jest.fn(fetchEntity),
     create: jest.fn((ctx: CreateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.data, id: 5 })),
     update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
     delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
-    list: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
+    list: jest.fn((ctx: ListContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
     authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
 });
 const createRepository = () => {
@@ -23,7 +23,7 @@ const createRepository = () => {
     return {
         create: impl.create,
         deleteById: impl.delete,
-        detailById: impl.get,
+        detailById: impl.detail,
         list: impl.list,
         updateById: impl.update,
     };
@@ -44,12 +44,12 @@ describe('createService', () => {
             methods = createMethods();
         });
         test('Detail called once, when triggered, with correct attributes', async () => {
-            const service = createService({ get: methods.get });
-            const getHandler = service.getHandler(options);
-            expect(methods.get).toHaveBeenCalledTimes(0);
-            await expect(getHandler(id, context)).resolves.toMatchSnapshot();
-            expect(methods.get).toHaveBeenCalledTimes(1);
-            expect(methods.get.mock.calls[0][0]).toMatchSnapshot();
+            const service = createService({ detail: methods.detail });
+            const detailHandler = service.detailHandler(options);
+            expect(methods.detail).toHaveBeenCalledTimes(0);
+            await expect(detailHandler(id, context)).resolves.toMatchSnapshot();
+            expect(methods.detail).toHaveBeenCalledTimes(1);
+            expect(methods.detail.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Create', async () => {
             const service = createService({ create: methods.create });
@@ -59,23 +59,23 @@ describe('createService', () => {
         });
         test('Update', async () => {
             const service = createService({
-                get: methods.get,
+                detail: methods.detail,
                 update: methods.update,
             });
             await expect(service.updateHandler(options)(id, { id }, context)).resolves.toMatchSnapshot();
             // detail was called for context
-            expect(methods.get).toHaveBeenCalledTimes(1);
+            expect(methods.detail).toHaveBeenCalledTimes(1);
             expect(methods.update).toHaveBeenCalledTimes(1);
             expect(methods.update.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Delete', async () => {
             const service = createService({
-                get: methods.get,
+                detail: methods.detail,
                 delete: methods.delete,
             });
             await expect(service.deleteHandler(options)(id, context)).resolves.toBe(true);
             // detail was called for context
-            expect(methods.get).toHaveBeenCalledTimes(1);
+            expect(methods.detail).toHaveBeenCalledTimes(1);
             expect(methods.delete).toHaveBeenCalledTimes(1);
             expect(methods.delete.mock.calls[0][0]).toMatchSnapshot();
         });
@@ -86,7 +86,7 @@ describe('createService', () => {
         });
         test('Repository implementation', async () => {
             const service = createService({ repository });
-            await expect(service.getHandler()(id, context)).resolves;
+            await expect(service.detailHandler()(id, context)).resolves;
             await expect(service.createHandler()(entity, context)).resolves;
             await expect(service.listHandler()(filters, context)).resolves;
             await expect(service.updateHandler()(id, entity, context)).resolves;
@@ -96,7 +96,7 @@ describe('createService', () => {
     describe('Authorization', () => {
         test('Called for every access with correct contexts', async () => {
             const service = createService(methods);
-            await service.getHandler()(id, context);
+            await service.detailHandler()(id, context);
             expect(methods.authorize).toHaveBeenCalledTimes(1);
             await service.createHandler()(entity, context);
             expect(methods.authorize).toHaveBeenCalledTimes(2);
@@ -113,13 +113,13 @@ describe('createService', () => {
                 ...methods,
                 authorize: () => Promise.reject(new Error()),
             });
-            await expect(service.getHandler()(id, context)).rejects.toBeInstanceOf(Error);
+            await expect(service.detailHandler()(id, context)).rejects.toBeInstanceOf(Error);
             await expect(service.createHandler()(entity, context)).rejects.toBeInstanceOf(Error);
             await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
             await expect(service.deleteHandler()(id, context)).rejects.toBeInstanceOf(Error);
             await expect(service.listHandler()(filters, context)).rejects.toBeInstanceOf(Error);
             // get, update, delete (contexts)
-            expect(methods.get).toHaveBeenCalledTimes(3);
+            expect(methods.detail).toHaveBeenCalledTimes(3);
             // skipped
             expect(methods.create).toHaveBeenCalledTimes(0);
             expect(methods.update).toHaveBeenCalledTimes(0);
@@ -130,47 +130,47 @@ describe('createService', () => {
     describe('Unimplemented handlers error', () => {
         test('Direct implementation', async () => {
             const service = createService({});
-            await expect(service.getHandler()(id, context)).rejects.toThrow(/not implemented/);
+            await expect(service.detailHandler()(id, context)).rejects.toThrow(/not implemented/);
             await expect(service.createHandler()(entity, context)).rejects.toThrow(/not implemented/);
             await expect(service.listHandler()(filters, context)).rejects.toThrow(/not implemented/);
             // Update and delete call get, test if fail even when get implemented
-            const service2 = createService({ get: methods.get });
+            const service2 = createService({ detail: methods.detail });
             await expect(service2.updateHandler()(id, entity, context)).rejects.toThrow(/not implemented/);
             await expect(service2.deleteHandler()(id, context)).rejects.toThrow(/not implemented/);
         });
     });
     describe('Not found', () => {
         test('Default error', async () => {
-            const service = createService({ get: jest.fn().mockResolvedValue(null) });
-            await expect(service.getHandler()(id, context)).rejects.toThrow(/not found/);
+            const service = createService({ detail: jest.fn().mockResolvedValue(null) });
+            await expect(service.detailHandler()(id, context)).rejects.toThrow(/not found/);
         });
         test('Custom error', async () => {
             const customError = new RangeError('Foo');
             const service = createService({
                 repository,
-                get: jest.fn().mockResolvedValue(null),
+                detail: jest.fn().mockResolvedValue(null),
                 createNotFoundError: jest.fn().mockReturnValue(customError),
             });
-            await expect(service.getHandler()(id, context)).rejects.toBe(customError);
+            await expect(service.detailHandler()(id, context)).rejects.toBe(customError);
         });
     });
     describe('Options', () => {
         test('Dynamic options can react to operation', async () => {
             const service = createService({
-                get: methods.get,
+                detail: methods.detail,
                 update: methods.update,
                 getOptions: op => ({
                     dynamicOption: op,
                 }),
             });
-            await service.getHandler()(id, context);
-            expect(methods.get.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+            await service.detailHandler()(id, context);
+            expect(methods.detail.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"DETAIL"`);
             await service.updateHandler()(id, {}, context);
-            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"UPDATE"`);
         });
         test('Options cascade correctly', async () => {
             const service = createService({
-                get: methods.get,
+                detail: methods.detail,
                 getOptions: () => ({
                     dynamicOption: true,
                     dynamicAndContext: 'dynamic',
@@ -187,8 +187,8 @@ describe('createService', () => {
                 directAndContext: 'direct',
                 directOption: true,
             };
-            await service.getHandler(directOptions)(id, httpContext);
-            expect(methods.get.mock.calls[0][0].options).toMatchSnapshot();
+            await service.detailHandler(directOptions)(id, httpContext);
+            expect(methods.detail.mock.calls[0][0].options).toMatchSnapshot();
         });
     });
 });

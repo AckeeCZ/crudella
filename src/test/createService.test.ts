@@ -127,7 +127,7 @@ describe('createService', () => {
             expect(methods.list).toHaveBeenCalledTimes(0);
         });
     });
-    describe('Unimplemented handlers error', async () => {
+    describe('Unimplemented handlers error', () => {
         test('Direct implementation', async () => {
             const service = createService({});
             await expect(service.getHandler()(id, context)).rejects.toThrow(/not implemented/);
@@ -139,7 +139,7 @@ describe('createService', () => {
             await expect(service2.deleteHandler()(id, context)).rejects.toThrow(/not implemented/);
         });
     });
-    describe('Not found', async () => {
+    describe('Not found', () => {
         test('Default error', async () => {
             const service = createService({ get: jest.fn().mockResolvedValue(null) });
             await expect(service.getHandler()(id, context)).rejects.toThrow(/not found/);

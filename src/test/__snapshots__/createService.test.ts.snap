@@ -166,10 +166,6 @@ Object {
 }
 `;
 
-exports[`createService Options Dynamic options can react to operation 1`] = `"DETAIL"`;
-
-exports[`createService Options Dynamic options can react to operation 2`] = `"UPDATE"`;
-
 exports[`createService Options Options cascade correctly 1`] = `
 Object {
   "contextOption": true,

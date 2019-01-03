@@ -164,9 +164,9 @@ describe('createService', () => {
                 }),
             });
             await service.getHandler()(id, context);
-            expect(methods.get.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+            expect(methods.get.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"DETAIL"`);
             await service.updateHandler()(id, {}, context);
-            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"UPDATE"`);
         });
         test('Options cascade correctly', async () => {
             const service = createService({

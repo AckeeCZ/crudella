@@ -1,4 +1,21 @@
+<p align="center">
+  <img src="https://www.publicdomainpictures.net/pictures/270000/velka/dog-paint-splatter-illustration.jpg" height="170" width="170"/>
+</p>
+
 # Crudella
+
+[![Build Status](https://img.shields.io/travis/com/AckeeCZ/crudella/master.svg?style=flat-square)](https://travis-ci.com/AckeeCZ/crudella)
+[![Coverage Status](https://img.shields.io/coveralls/github/AckeeCZ/crudella.svg?style=flat-square)](https://coveralls.io/github/AckeeCZ/crudella?branch=master)
+[![Dependency Status](https://img.shields.io/david/AckeeCZ/crudella.svg?style=flat-square)](https://david-dm.org/AckeeCZ/crudella)
+[![Npm](https://img.shields.io/npm/v/crudella.svg?style=flat-square)](https://www.npmjs.com/package/crudella)
+[![Types](https://img.shields.io/npm/types/crudella.svg?style=flat-square)](https://www.npmjs.com/package/crudella)
+[![Prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+[![Docs](https://img.shields.io/badge/docs-typedoc-lightgrey.svg?style=flat-square)](https://ackeecz.github.io/crudella)
+[![License](https://img.shields.io/github/license/AckeeCZ/crudella.svg?style=flat-square)](https://github.com/AckeeCZ/crudella/blob/master/LICENSE)
+
+Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application.
+
+## Why Crudella
 
 Assume we have an entity repository (or any other interface for REST resource, allowing us to implement CRUD operations), we cannot just bind it to express routes.
 Here are several random problems we might face:

@@ -139,4 +139,19 @@ describe('createService', () => {
             await expect(service2.deleteHandler()(id, context)).rejects.toThrow(/not implemented/);
         });
     });
+    describe('Not found', async () => {
+        test('Default error', async () => {
+            const service = createService({ get: jest.fn().mockResolvedValue(null) });
+            await expect(service.getHandler()(id, context)).rejects.toThrow(/not found/);
+        });
+        test('Custom error', async () => {
+            const customError = new RangeError('Foo');
+            const service = createService({
+                repository,
+                get: jest.fn().mockResolvedValue(null),
+                createNotFoundError: jest.fn().mockReturnValue(customError),
+            });
+            await expect(service.getHandler()(id, context)).rejects.toBe(customError);
+        });
+    });
 });

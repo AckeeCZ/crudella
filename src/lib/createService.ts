@@ -1,11 +1,4 @@
-import { Omit } from './internal';
-
-const notFoundOnNull = (err: Error) => (res: any) => {
-    if (!res) {
-        throw err;
-    }
-    return res;
-};
+import { errorOrEmpty, Omit } from './helpers';
 
 export enum Operation {
     DETAIL = 'DETAIL',
@@ -166,7 +159,7 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
     const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): Promise<T> =>
         implementation
             .get({ ...context, type: Operation.DETAIL, write: false, safe: true })
-            .then(notFoundOnNull(implementation.createNotFoundError()));
+            .then(errorOrEmpty(implementation.createNotFoundError()));
 
     const getHandler = (options: any = {}) => async (id: number, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.DETAIL);

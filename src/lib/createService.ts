@@ -1,157 +1,18 @@
 import { errorOrEmpty, Omit } from './helpers';
+import { Operation } from './context/operation';
+import {
+    DataContext,
+    ListContext,
+    DeleteContext,
+    UpdateContext,
+    CreateContext,
+    DetailContext,
+} from './context/crudContext';
+import { Definitions } from './settings/definitions';
+import { bootstrapConfiguration } from './service/bootstrap';
 
-export const enum Operation {
-    DETAIL = 'DETAIL',
-    UPDATE = 'UPDATE',
-    DELETE = 'DELETE',
-    CREATE = 'CREATE',
-    LIST = 'LIST',
-}
-
-export interface BaseCrudContext<T, C> {
-    /** Http context */
-    context: C;
-    options: any;
-    type: Operation;
-    /** True for create or update */
-    write: boolean;
-    /** True for detail, list */
-    safe: boolean;
-
-    // Only in some operations:
-
-    /** Existing resource */
-    entity?: T;
-    /**
-     * Data to update, create
-     * This contains `entity`, with overwritten data sent by client.
-     * To get _only_ data sent by client, see `bareData`
-     */
-    data?: any;
-    /** Data sent by client */
-    bareData?: any;
-}
-export interface DetailContext<T, C> extends BaseCrudContext<T, C> {
-    id: number;
-    entity: T;
-    type: Operation.DETAIL;
-    write: false;
-    safe: true;
-}
-export interface UpdateContext<T, C> extends BaseCrudContext<T, C> {
-    data: any;
-    entity: T;
-    type: Operation.UPDATE;
-    write: true;
-    bareData: any;
-    safe: false;
-}
-export interface CreateContext<T, C> extends BaseCrudContext<T, C> {
-    type: Operation.CREATE;
-    data: any;
-    write: true;
-    safe: false;
-}
-export interface DeleteContext<T, C> extends BaseCrudContext<T, C> {
-    entity: T;
-    type: Operation.DELETE;
-    id: number;
-    write: false;
-    safe: false;
-}
-export interface ListContext<T, C> extends BaseCrudContext<T, C> {
-    filters: any;
-    type: Operation.LIST;
-    write: false;
-    safe: true;
-}
-export type CrudContext<T, C> =
-    | DetailContext<T, C>
-    | UpdateContext<T, C>
-    | CreateContext<T, C>
-    | DeleteContext<T, C>
-    | ListContext<T, C>;
-export type DataContext<T, C> = Pick<
-    CreateContext<T, C> | UpdateContext<T, C>,
-    'data' | 'context' | 'options' | 'type'
->;
-export interface CrudRepository<T> {
-    detailById: (id: number, options: any) => Promise<T>;
-    create: (data: any, options: any) => Promise<T>;
-    updateById: (id: number, data: any, options: any) => Promise<T>;
-    deleteById: (id: number, options: any) => Promise<T>;
-    list: (filters: any, options: any) => Promise<T[]>;
-}
-export interface Definitions<T, C = any> {
-    /**
-     * Find entity by id (stored in ReadContext)
-     * Implement to use `detailHandler`
-     */
-    detail?: (context: Omit<DetailContext<T, C>, 'entity'>) => Promise<T>;
-    /**
-     * Create entity from data (stored in CreateContext)
-     * Implement to use `createHandler`
-     */
-    create?: (context: CreateContext<T, C>) => Promise<T>;
-    /**
-     * Update entity with new data (both in UpdateContext)
-     * Implement to use `updateHandler`
-     */
-    update?: (context: UpdateContext<T, C>) => Promise<T>;
-    /**
-     * Delete entity (fetched in DeleteContext)
-     * Implement to use `deleteHandler`
-     */
-    delete?: (context: DeleteContext<T, C>) => Promise<T>;
-    /**
-     * List entities, optionally filter (filters stored in ListContext)
-     * Implement to use `listHandler`
-     */
-    list?: (context: ListContext<T, C>) => Promise<T[]>;
-
-    repository?: CrudRepository<T>;
-    /**
-     * This method processes any incoming data coming from user.
-     * Data processing is called for Create and Update.
-     * Override the method for custom data transformation.
-     */
-    processData?: ({ data }: DataContext<T, C>) => Promise<any> | any;
-    /**
-     * Reject access to any given handler based on CrudContext.
-     * This method is called before each handler is finished. To reject access, throw Error.
-     * Override the method for custom ACL or validation.
-     */
-    authorize?: (context: CrudContext<T, C>) => Promise<any> | any;
-    /**
-     * Override to throw custom error when resource not found.
-     */
-    createNotFoundError?: () => Error;
-    getOptions?: (operation: Operation) => Promise<any> | any;
-}
 const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
-    const defaultImplementation: Omit<Required<Definitions<T>>, 'repository'> = {
-        detail: () => Promise.reject(new Error('"detail" not implemented')),
-        create: () => Promise.reject(new Error('"create" not implemented')),
-        update: () => Promise.reject(new Error('"update" not implemented')),
-        delete: () => Promise.reject(new Error('"delete" not implemented')),
-        list: () => Promise.reject(new Error('"list" not implemented')),
-        authorize: () => Promise.resolve(true),
-        processData: ({ data }: DataContext<T, C>) => data,
-        createNotFoundError: () => new Error('Requested resource not found'),
-        getOptions: () => ({}),
-    };
-    const repoImplementation:
-        | Pick<Required<Definitions<T>>, 'detail' | 'create' | 'update' | 'delete' | 'list'>
-        | {} = defs.repository
-        ? {
-              detail: ctx => defs.repository!.detailById(ctx.id, ctx.options),
-              create: ctx => defs.repository!.create(ctx.data, ctx.options),
-              update: ctx => defs.repository!.updateById(ctx.entity.id, ctx.data, ctx.options),
-              delete: ctx => defs.repository!.deleteById(ctx.entity.id, ctx.options),
-              list: ctx => defs.repository!.list(ctx.filters, ctx.options),
-          }
-        : {};
-    const implementation = Object.assign({}, defaultImplementation, repoImplementation, defs);
+    const implementation = bootstrapConfiguration<T, C>(defs);
     /**
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)

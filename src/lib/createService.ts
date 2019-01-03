@@ -129,14 +129,14 @@ export interface Definitions<T, C = any> {
 }
 const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
     const defaultImplementation: Omit<Required<Definitions<T>>, 'repository'> = {
-        get: (() => Promise.reject()),
-        create: (() => Promise.reject()),
-        update: (() => Promise.reject()),
-        delete: (() => Promise.reject()),
-        list: (() => Promise.reject()),
-        authorize: (() => new Error()),
+        get: (() => Promise.reject(new Error('"get" not implemented'))),
+        create: (() => Promise.reject(new Error('"create" not implemented'))),
+        update: (() => Promise.reject(new Error('"update" not implemented'))),
+        delete: (() => Promise.reject(new Error('"delete" not implemented'))),
+        list: (() => Promise.reject(new Error('"list" not implemented'))),
+        authorize: (() => Promise.resolve(true)),
         processData: (({ data }: DataContext<T, C>) => data),
-        createNotFoundError: (() => new Error()),
+        createNotFoundError: (() => new Error('Requested resource not found')),
         getOptions: (() => ({})),
     };
     const repoImplementation: Pick<Required<Definitions<T>>, 'get' | 'create' | 'update' | 'delete' | 'list'> | {} = defs.repository ? {

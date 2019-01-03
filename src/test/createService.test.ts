@@ -24,6 +24,9 @@ describe('createService', () => {
     test('Returns an object', () => {
         expect(typeof createService({})).toBe('object');
     });
+    beforeEach(() => {
+        methods = createMethods();
+    });
     describe('Basic handlers', () => {
         beforeEach(() => {
             methods = createMethods();
@@ -70,9 +73,6 @@ describe('createService', () => {
             expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
         });
     });
-    beforeEach(() => {
-        methods = createMethods();
-    });
     describe('Authorization', () => {
         test('Called for every access with correct contexts', async () => {
             const service = createService(methods);
@@ -105,6 +105,18 @@ describe('createService', () => {
             expect(methods.update).toHaveBeenCalledTimes(0);
             expect(methods.delete).toHaveBeenCalledTimes(0);
             expect(methods.list).toHaveBeenCalledTimes(0);
+        });
+    });
+    describe('Unimplemented handlers error', async () => {
+        test('Direct implementation', async () => {
+            const service = createService({});
+            await expect(service.getHandler()(id, context)).rejects.toThrow(/not implemented/);
+            await expect(service.createHandler()(entity, context)).rejects.toThrow(/not implemented/);
+            await expect(service.listHandler()(filters, context)).rejects.toThrow(/not implemented/);
+            // Update and delete call get, test if fail even when get implemented
+            const service2 = createService({ get: methods.get });
+            await expect(service2.updateHandler()(id, entity, context)).rejects.toThrow(/not implemented/);
+            await expect(service2.deleteHandler()(id, context)).rejects.toThrow(/not implemented/);
         });
     });
 });

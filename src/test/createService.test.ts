@@ -154,4 +154,41 @@ describe('createService', () => {
             await expect(service.getHandler()(id, context)).rejects.toBe(customError);
         });
     });
+    describe('Options', () => {
+        test('Dynamic options can react to operation', async () => {
+            const service = createService({
+                get: methods.get,
+                update: methods.update,
+                getOptions: (op) => ({
+                    dynamicOption: op,
+                }),
+            });
+            await service.getHandler()(id, context);
+            expect(methods.get.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+            await service.updateHandler()(id, {}, context);
+            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchSnapshot();
+        });
+        test('Options cascade correctly', async () => {
+            const service = createService({
+                get: methods.get,
+                getOptions: () => ({
+                    dynamicOption: true,
+                    dynamicAndContext: 'dynamic',
+                    dynamicAndDirect: 'dynamic',
+                }),
+            });
+            const httpContext = {
+                contextOption: true,
+                dynamicAndContext: 'context',
+                directAndContext: 'context',
+            };
+            const directOptions = {
+                dynamicAndDirect: 'direct',
+                directAndContext: 'direct',
+                directOption: true,
+            };
+            await service.getHandler(directOptions)(id, httpContext);
+            expect(methods.get.mock.calls[0][0].options).toMatchSnapshot();
+        });
+    });
 });

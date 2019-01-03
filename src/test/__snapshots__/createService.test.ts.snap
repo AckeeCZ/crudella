@@ -165,3 +165,18 @@ Object {
   "write": true,
 }
 `;
+
+exports[`createService Options Dynamic options can react to operation 1`] = `"DETAIL"`;
+
+exports[`createService Options Dynamic options can react to operation 2`] = `"UPDATE"`;
+
+exports[`createService Options Options cascade correctly 1`] = `
+Object {
+  "contextOption": true,
+  "directAndContext": "context",
+  "directOption": true,
+  "dynamicAndContext": "context",
+  "dynamicAndDirect": "direct",
+  "dynamicOption": true,
+}
+`;

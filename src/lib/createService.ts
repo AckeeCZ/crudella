@@ -1,6 +1,6 @@
 import { errorOrEmpty, Omit } from './helpers';
 
-export enum Operation {
+export const enum Operation {
     DETAIL = 'DETAIL',
     UPDATE = 'UPDATE',
     DELETE = 'DELETE',
@@ -15,7 +15,7 @@ export interface BaseCrudContext<T, C> {
     type: Operation;
     /** True for create or update */
     write: boolean;
-    /** True for get, list */
+    /** True for detail, list */
     safe: boolean;
 
     // Only in some operations:
@@ -85,9 +85,9 @@ export interface CrudRepository<T> {
 export interface Definitions<T, C = any> {
     /**
      * Find entity by id (stored in ReadContext)
-     * Implement to use `getHandler`
+     * Implement to use `detailHandler`
      */
-    get?: (context: Omit<DetailContext<T, C>, 'entity'>) => Promise<T>;
+    detail?: (context: Omit<DetailContext<T, C>, 'entity'>) => Promise<T>;
     /**
      * Create entity from data (stored in CreateContext)
      * Implement to use `createHandler`
@@ -130,7 +130,7 @@ export interface Definitions<T, C = any> {
 }
 const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
     const defaultImplementation: Omit<Required<Definitions<T>>, 'repository'> = {
-        get: () => Promise.reject(new Error('"get" not implemented')),
+        detail: () => Promise.reject(new Error('"detail" not implemented')),
         create: () => Promise.reject(new Error('"create" not implemented')),
         update: () => Promise.reject(new Error('"update" not implemented')),
         delete: () => Promise.reject(new Error('"delete" not implemented')),
@@ -141,10 +141,10 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
         getOptions: () => ({}),
     };
     const repoImplementation:
-        | Pick<Required<Definitions<T>>, 'get' | 'create' | 'update' | 'delete' | 'list'>
+        | Pick<Required<Definitions<T>>, 'detail' | 'create' | 'update' | 'delete' | 'list'>
         | {} = defs.repository
         ? {
-              get: ctx => defs.repository!.detailById(ctx.id, ctx.options),
+              detail: ctx => defs.repository!.detailById(ctx.id, ctx.options),
               create: ctx => defs.repository!.create(ctx.data, ctx.options),
               update: ctx => defs.repository!.updateById(ctx.entity.id, ctx.data, ctx.options),
               delete: ctx => defs.repository!.deleteById(ctx.entity.id, ctx.options),
@@ -158,10 +158,10 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
      */
     const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): Promise<T> =>
         implementation
-            .get({ ...context, type: Operation.DETAIL, write: false, safe: true })
+            .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));
 
-    const getHandler = (options: any = {}) => async (id: number, context: C) => {
+    const detailHandler = (options: any = {}) => async (id: number, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.DETAIL);
         options = { ...dynamicOptions, ...options, ...(context as object) };
         const ctx: DetailContext<T, C> = await getSafe({ id, context, options }).then(entity => ({
@@ -245,7 +245,7 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
     };
 
     const handlers = {
-        getHandler,
+        detailHandler,
         createHandler,
         updateHandler,
         deleteHandler,

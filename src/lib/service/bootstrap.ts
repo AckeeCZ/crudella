@@ -1,6 +1,6 @@
+import { DataContext } from 'lib/context/crudContext';
 import { Omit } from 'lib/helpers';
 import { Definitions } from 'lib/settings/definitions';
-import { DataContext } from 'lib/context/crudContext';
 import { CrudRepository } from 'lib/settings/repository';
 
 const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 'repository'> => ({

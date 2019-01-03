@@ -1,15 +1,15 @@
 import {
-    DetailContext,
     CreateContext,
-    UpdateContext,
-    DeleteContext,
-    ListContext,
-    DataContext,
     CrudContext,
+    DataContext,
+    DeleteContext,
+    DetailContext,
+    ListContext,
+    UpdateContext,
 } from 'lib/context/crudContext';
+import { Operation } from 'lib/context/operation';
 import { Omit } from 'lib/helpers';
 import { CrudRepository } from './repository';
-import { Operation } from 'lib/context/operation';
 
 export interface Definitions<T, C = any> {
     /**
@@ -57,3 +57,5 @@ export interface Definitions<T, C = any> {
     createNotFoundError?: () => Error;
     getOptions?: (operation: Operation) => Promise<any> | any;
 }
+
+export type ServiceImplementation<T, C> = Omit<Required<Definitions<T, C>>, 'repository'>;

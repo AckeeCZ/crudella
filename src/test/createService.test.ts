@@ -88,7 +88,7 @@ describe('createService', () => {
             expect(methods.authorize).toHaveBeenCalledTimes(5);
             expect(methods.authorize.mock.calls.map(x => x[0].type)).toMatchSnapshot();
         });
-        test('Protected methods not called', async () => {
+        test('Protected methods not called, handlers error', async () => {
             const service = createService({
                 ...methods,
                 authorize: () => Promise.reject(new Error()),

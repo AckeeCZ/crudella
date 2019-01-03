@@ -1,4 +1,4 @@
-import createService, { CreateContext, CrudContext, DeleteContext, UpdateContext } from 'lib/createService';
+import { createService, CreateContext, UpdateContext, DeleteContext, CrudContext, ListContext } from 'main';
 
 interface PersonAttributes {
     id: number;
@@ -15,7 +15,7 @@ const createMethods = () => ({
     create: jest.fn((ctx: CreateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.data, id: 5 })),
     update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
     delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
-    list: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
+    list: jest.fn((ctx: ListContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
     authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
 });
 const createRepository = () => {

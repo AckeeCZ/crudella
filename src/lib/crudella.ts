@@ -2,7 +2,7 @@ import { bootstrapConfiguration } from './service/bootstrap';
 import { createHandlers } from './service/handlers';
 import { Definitions } from './settings/definitions';
 
-const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
+export const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
     const implementation = bootstrapConfiguration<T, C>(defs);
     const handlers = createHandlers(implementation);
 
@@ -12,7 +12,6 @@ const createService = <T extends { id: any }, C extends object>(defs: Definition
     };
 };
 
-export default createService;
 export const buildService = <T extends { id: any }, C>(
     buildingDefs: Definitions<T, C>,
     prevDefs?: Definitions<T, C>

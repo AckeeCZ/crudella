@@ -1,4 +1,4 @@
-import { createService, CreateContext, UpdateContext, DeleteContext, CrudContext, ListContext } from 'main';
+import { CreateContext, createService, CrudContext, DeleteContext, ListContext, UpdateContext } from 'main';
 
 interface PersonAttributes {
     id: number;

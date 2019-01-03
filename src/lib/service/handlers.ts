@@ -1,7 +1,7 @@
 import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from 'lib/context/crudContext';
 import { Operation } from 'lib/context/operation';
 import { errorOrEmpty } from 'lib/helpers';
-import { Definitions, ServiceImplementation } from 'lib/settings/definitions';
+import { ServiceImplementation } from 'lib/settings/definitions';
 
 export const createHandlers = <T extends { id: any }, C extends object>(
     implementation: ServiceImplementation<T, C>

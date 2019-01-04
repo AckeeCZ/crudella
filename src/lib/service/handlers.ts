@@ -10,7 +10,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)
      */
-    const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): Promise<T> =>
+    const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
         implementation
             .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));

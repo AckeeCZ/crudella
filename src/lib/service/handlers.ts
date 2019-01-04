@@ -15,9 +15,15 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));
 
+    const bootstrapOption = (operation: Operation, options: any = {}, context: C) =>
+        Promise.resolve(implementation.getOptions(operation)).then(dynamicOptions => ({
+            ...dynamicOptions,
+            ...options,
+            ...(context as object),
+        }));
+
     const detailHandler = (options: any = {}) => async (id: number, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.DETAIL);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
+        options = await bootstrapOption(Operation.DETAIL, options, context);
         const entity = await getSafe({ id, context, options });
         const ctx: DetailContext<T, C> = {
             id,
@@ -32,8 +38,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         return ctx.entity;
     };
     const createHandler = (options: any = {}) => async (data: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.CREATE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
+        options = await bootstrapOption(Operation.CREATE, options, context);
         const processedData = implementation.processData({ data, context, options, type: Operation.CREATE });
         const ctx: CreateContext<T, C> = {
             context,
@@ -47,8 +52,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         return implementation.create(ctx);
     };
     const updateHandler = (options: any = {}) => async (id: number, data: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.UPDATE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
+        options = await bootstrapOption(Operation.UPDATE, options, context);
         const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
         const entity = await getSafe({ id, context, options });
         const ctx: UpdateContext<T, C> = {
@@ -66,8 +70,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     };
 
     const deleteHandler = (options: any = {}) => async (id: number, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.DELETE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
+        options = await bootstrapOption(Operation.DELETE, options, context);
         const entity = await getSafe({ id, context, options });
         const ctx: DeleteContext<T, C> = {
             id,
@@ -83,8 +86,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     };
 
     const listHandler = (options: any = {}) => async (filters: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.LIST);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
+        options = await bootstrapOption(Operation.LIST, options, context);
         const ctx: ListContext<T, C> = {
             context,
             options,

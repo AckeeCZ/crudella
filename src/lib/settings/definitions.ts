@@ -16,27 +16,27 @@ export interface Definitions<T, C = any> {
      * Find entity by id (stored in ReadContext)
      * Implement to use `detailHandler`
      */
-    detail?: (context: Omit<DetailContext<T, C>, 'entity'>) => Promise<T>;
+    detail?: (context: Omit<DetailContext<T, C>, 'entity'>) => PromiseLike<T>;
     /**
      * Create entity from data (stored in CreateContext)
      * Implement to use `createHandler`
      */
-    create?: (context: CreateContext<T, C>) => Promise<T>;
+    create?: (context: CreateContext<T, C>) => PromiseLike<T>;
     /**
      * Update entity with new data (both in UpdateContext)
      * Implement to use `updateHandler`
      */
-    update?: (context: UpdateContext<T, C>) => Promise<T>;
+    update?: (context: UpdateContext<T, C>) => PromiseLike<T>;
     /**
      * Delete entity (fetched in DeleteContext)
      * Implement to use `deleteHandler`
      */
-    delete?: (context: DeleteContext<T, C>) => Promise<T>;
+    delete?: (context: DeleteContext<T, C>) => PromiseLike<T>;
     /**
      * List entities, optionally filter (filters stored in ListContext)
      * Implement to use `listHandler`
      */
-    list?: (context: ListContext<T, C>) => Promise<T[]>;
+    list?: (context: ListContext<T, C>) => PromiseLike<T[]>;
 
     repository?: CrudRepository<T>;
     /**
@@ -44,18 +44,18 @@ export interface Definitions<T, C = any> {
      * Data processing is called for Create and Update.
      * Override the method for custom data transformation.
      */
-    processData?: ({ data }: DataContext<T, C>) => Promise<any> | any;
+    processData?: ({ data }: DataContext<T, C>) => PromiseLike<any> | any;
     /**
      * Reject access to any given handler based on CrudContext.
      * This method is called before each handler is finished. To reject access, throw Error.
      * Override the method for custom ACL or validation.
      */
-    authorize?: (context: CrudContext<T, C>) => Promise<any> | any;
+    authorize?: (context: CrudContext<T, C>) => PromiseLike<any> | any;
     /**
      * Override to throw custom error when resource not found.
      */
     createNotFoundError?: () => Error;
-    getOptions?: (operation: Operation) => Promise<any> | any;
+    getOptions?: (operation: Operation) => PromiseLike<any> | any;
 }
 
 export type ServiceImplementation<T, C> = Omit<Required<Definitions<T, C>>, 'repository'>;

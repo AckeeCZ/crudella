@@ -1,3 +1,10 @@
+import {
+    forgeCreateContext,
+    forgeDeleteContext,
+    forgeDetailContext,
+    forgeListContext,
+    forgeUpdateContext,
+} from 'lib/context/contextCreators';
 import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from 'lib/context/crudContext';
 import { Operation } from 'lib/context/operation';
 import { errorOrEmpty } from 'lib/helpers';
@@ -10,90 +17,76 @@ export const createHandlers = <T extends { id: any }, C extends object>(
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)
      */
-    const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): Promise<T> =>
+    const safeDetail = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
         implementation
             .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));
 
+    const bootstrapOption = (operation: Operation, options: any = {}, context: C) =>
+        Promise.resolve(implementation.getOptions(operation)).then(dynamicOptions => ({
+            ...dynamicOptions,
+            ...options,
+            ...(context as object),
+        }));
+
     const detailHandler = (options: any = {}) => async (id: number, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.DETAIL);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: DetailContext<T, C> = await getSafe({ id, context, options }).then(entity => ({
+        options = await bootstrapOption(Operation.DETAIL, options, context);
+        const entity = await safeDetail({ id, context, options });
+        const ctx: DetailContext<T, C> = forgeDetailContext({
             id,
             context,
             entity,
             options,
-            type: Operation.DETAIL as Operation.DETAIL,
-            write: false as false,
-            safe: true as true,
-        }));
+        });
         await implementation.authorize(ctx);
         return ctx.entity;
     };
     const createHandler = (options: any = {}) => async (data: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.CREATE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: CreateContext<T, C> = await Promise.resolve(
-            implementation.processData({ data, context, options, type: Operation.CREATE })
-        ).then(processedData => ({
+        options = await bootstrapOption(Operation.CREATE, options, context);
+        const processedData = implementation.processData({ data, context, options, type: Operation.CREATE });
+        const ctx: CreateContext<T, C> = forgeCreateContext({
             context,
             options,
             data: processedData,
-            type: Operation.CREATE as Operation.CREATE,
-            write: true as true,
-            safe: false as false,
-        }));
+        });
         await implementation.authorize(ctx);
         return implementation.create(ctx);
     };
     const updateHandler = (options: any = {}) => async (id: number, data: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.UPDATE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: UpdateContext<T, C> = await Promise.all([
-            implementation.processData({ data, context, options, type: Operation.UPDATE }),
-            getSafe({ id, context, options }),
-        ]).then(([processedData, entity]) => ({
-            id,
+        options = await bootstrapOption(Operation.UPDATE, options, context);
+        const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
+        const entity = await safeDetail({ id, context, options });
+        const ctx: UpdateContext<T, C> = forgeUpdateContext({
             context,
             entity,
             options,
-            data: Object.assign({}, entity, processedData),
-            type: Operation.UPDATE as Operation.UPDATE,
-            write: true as true,
+            data: processedData,
             bareData: data,
-            safe: false as false,
-        }));
+        });
         await implementation.authorize(ctx);
         return implementation.update(ctx);
     };
 
     const deleteHandler = (options: any = {}) => async (id: number, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.DELETE);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: DeleteContext<T, C> = await getSafe({ id, context, options }).then(entity => ({
+        options = await bootstrapOption(Operation.DELETE, options, context);
+        const entity = await safeDetail({ id, context, options });
+        const ctx: DeleteContext<T, C> = forgeDeleteContext({
             id,
             context,
             entity,
             options,
-            type: Operation.DELETE as Operation.DELETE,
-            write: false as false,
-            safe: false as false,
-        }));
+        });
         await implementation.authorize(ctx);
         return implementation.delete(ctx);
     };
 
     const listHandler = (options: any = {}) => async (filters: any, context: C) => {
-        const dynamicOptions = await implementation.getOptions(Operation.LIST);
-        options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: ListContext<T, C> = {
+        options = await bootstrapOption(Operation.LIST, options, context);
+        const ctx: ListContext<T, C> = forgeListContext({
             context,
             options,
             filters,
-            type: Operation.LIST,
-            write: false as false,
-            safe: true as true,
-        };
+        });
         await implementation.authorize(ctx);
         return implementation.list(ctx);
     };

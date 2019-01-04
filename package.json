@@ -1,7 +1,7 @@
 {
   "name": "crudella",
   "description": "Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application",
-  "version": "0.0.2",
+  "version": "0.1.0",
   "author": "Jaroslav Šmolík <grissius@gmail.com>",
   "main": "./dist/main.js",
   "engines": {
@@ -37,7 +37,8 @@
     "docs": "typedoc --options typedoc.json src/lib",
     "check": "npm-check -i app -i errors -i config -i index & exit 0"
   },
-  "dependencies": {},
+  "dependencies": {
+  },
   "devDependencies": {
     "@types/jest": "^23.3.5",
     "coveralls": "^3.0.2",

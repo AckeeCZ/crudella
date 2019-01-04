@@ -123,7 +123,7 @@ For full reference of the contexts, see [API docs](https://ackeecz.github.io/int
  - [Data transformation](./guide/data-transformation.md)
  - [Configuring crudella using repository](./guide/repository.md)
  - [Generating handlers](./guide/handlers.md)
- - :construction: Service builder and custom context
+ - [Service builder and custom context](./guide/builder.md)
  - :construction: Dynamic options
  - :construction: Custom 404 error
  - :construction: Customize controller flow

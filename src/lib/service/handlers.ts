@@ -10,7 +10,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)
      */
-    const getSafe = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
+    const safeDetail = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
         implementation
             .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));
@@ -24,7 +24,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
 
     const detailHandler = (options: any = {}) => async (id: number, context: C) => {
         options = await bootstrapOption(Operation.DETAIL, options, context);
-        const entity = await getSafe({ id, context, options });
+        const entity = await safeDetail({ id, context, options });
         const ctx: DetailContext<T, C> = {
             id,
             context,
@@ -54,7 +54,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     const updateHandler = (options: any = {}) => async (id: number, data: any, context: C) => {
         options = await bootstrapOption(Operation.UPDATE, options, context);
         const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
-        const entity = await getSafe({ id, context, options });
+        const entity = await safeDetail({ id, context, options });
         const ctx: UpdateContext<T, C> = {
             context,
             entity,
@@ -71,7 +71,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
 
     const deleteHandler = (options: any = {}) => async (id: number, context: C) => {
         options = await bootstrapOption(Operation.DELETE, options, context);
-        const entity = await getSafe({ id, context, options });
+        const entity = await safeDetail({ id, context, options });
         const ctx: DeleteContext<T, C> = {
             id,
             context,

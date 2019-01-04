@@ -18,7 +18,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     const detailHandler = (options: any = {}) => async (id: number, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.DETAIL);
         options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: DetailContext<T, C> = await getSafe({ id, context, options }).then(entity => ({
+        const entity = await getSafe({ id, context, options });
+        const ctx: DetailContext<T, C> = {
             id,
             context,
             entity,
@@ -26,34 +27,31 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             type: Operation.DETAIL as Operation.DETAIL,
             write: false as false,
             safe: true as true,
-        }));
+        };
         await implementation.authorize(ctx);
         return ctx.entity;
     };
     const createHandler = (options: any = {}) => async (data: any, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.CREATE);
         options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: CreateContext<T, C> = await Promise.resolve(
-            implementation.processData({ data, context, options, type: Operation.CREATE })
-        ).then(processedData => ({
+        const processedData = implementation.processData({ data, context, options, type: Operation.CREATE });
+        const ctx: CreateContext<T, C> = {
             context,
             options,
             data: processedData,
             type: Operation.CREATE as Operation.CREATE,
             write: true as true,
             safe: false as false,
-        }));
+        };
         await implementation.authorize(ctx);
         return implementation.create(ctx);
     };
     const updateHandler = (options: any = {}) => async (id: number, data: any, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.UPDATE);
         options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: UpdateContext<T, C> = await Promise.all([
-            implementation.processData({ data, context, options, type: Operation.UPDATE }),
-            getSafe({ id, context, options }),
-        ]).then(([processedData, entity]) => ({
-            id,
+        const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
+        const entity = await getSafe({ id, context, options });
+        const ctx: UpdateContext<T, C> = {
             context,
             entity,
             options,
@@ -62,7 +60,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             write: true as true,
             bareData: data,
             safe: false as false,
-        }));
+        };
         await implementation.authorize(ctx);
         return implementation.update(ctx);
     };
@@ -70,7 +68,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     const deleteHandler = (options: any = {}) => async (id: number, context: C) => {
         const dynamicOptions = await implementation.getOptions(Operation.DELETE);
         options = { ...dynamicOptions, ...options, ...(context as object) };
-        const ctx: DeleteContext<T, C> = await getSafe({ id, context, options }).then(entity => ({
+        const entity = await getSafe({ id, context, options });
+        const ctx: DeleteContext<T, C> = {
             id,
             context,
             entity,
@@ -78,7 +77,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             type: Operation.DELETE as Operation.DELETE,
             write: false as false,
             safe: false as false,
-        }));
+        };
         await implementation.authorize(ctx);
         return implementation.delete(ctx);
     };

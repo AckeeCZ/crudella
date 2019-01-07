@@ -1,10 +1,9 @@
 import { Router } from 'express';
-import { getDefaultController } from './controller';
+import { CrudController } from './controller';
 import { HandlerCreators } from './handlers';
 
-export const createMiddlewareFactory = <T, C>(handlers: HandlerCreators<T, C>) => {
+export const createMiddlewareFactory = <T, C>(handlers: HandlerCreators<T, C>, controller: CrudController<T, C>) => {
     const createMiddleware = (resourceName: string, idName: string = 'resourceId') => {
-        const controller = getDefaultController<T, C>();
         const router = Router();
         router
             .route(resourceName)

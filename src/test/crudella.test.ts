@@ -92,11 +92,11 @@ describe('createService', () => {
         });
         test('Repository implementation', async () => {
             const service = createService({ repository });
-            await expect(service.detailHandler()(id, context)).resolves;
-            await expect(service.createHandler()(entity, context)).resolves;
-            await expect(service.listHandler()(filters, context)).resolves;
-            await expect(service.updateHandler()(id, entity, context)).resolves;
-            await expect(service.deleteHandler()(id, context)).resolves;
+            await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
+            await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
+            await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
+            await expect(service.updateHandler()(id, entity, context)).resolves.toBeTruthy();
+            await expect(service.deleteHandler()(id, context)).resolves.toBeTruthy();
         });
     });
     describe('Authorization', () => {
@@ -248,8 +248,8 @@ describe('createService', () => {
                 .then(res => {
                     expect(res.body).toMatchSnapshot();
                 });
-            });
         });
+    });
     describe('Context', () => {
         test('Update context', async () => {
             const service = createService({

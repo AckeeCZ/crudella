@@ -128,12 +128,12 @@
 					<div class="tsd-signature tsd-kind-icon">bare<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L24">context/crudContext.ts:24</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L40">context/crudContext.ts:40</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Data sent by client</p>
+							<p>Data sent by client, only available on Update</p>
 						</div>
 					</div>
 				</section>
@@ -143,12 +143,12 @@
 					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L5">context/crudContext.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L5">context/crudContext.ts:5</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Http context</p>
+							<p>Http context you use in your application. Usually includes user, locale additional query parameters etc.</p>
 						</div>
 					</div>
 				</section>
@@ -158,15 +158,24 @@
 					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L22">context/crudContext.ts:22</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L38">context/crudContext.ts:38</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Data to update, create
-								This contains <code>entity</code>, with overwritten data sent by client.
-							To get <em>only</em> data sent by client, see <code>bareData</code></p>
+							<p>Data sent by client to update or create resource.
+								It represents the new, complete resource -- thusly when
+								updating a single attribute,data contains not just the new
+								attribute, but also all the attributes existing on the
+							resource before the update.</p>
 						</div>
+						<p>In other words, <code>data</code> is <code>entity</code> with overwritten data sent by client.
+						To get <em>only</em> data sent by client, see <code>bareData</code>.</p>
+						<p>Present in the following operations:</p>
+						<ul>
+							<li>Create (data client provides to create a resource)</li>
+							<li>Update (client&#39;s data for update with attributes defaulting to existing resource)</li>
+						</ul>
 					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
@@ -175,12 +184,18 @@
 					<div class="tsd-signature tsd-kind-icon">entity<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">T</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L16">context/crudContext.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L23">context/crudContext.ts:23</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
 						<div class="lead">
-							<p>Existing resource</p>
+							<p>Existing resource client is manipulating.
+							Present in the following operations:</p>
+							<ul>
+								<li>Detail (entity client is trying to fetch)</li>
+								<li>Update (existing entity before the update)</li>
+								<li>Delete (entity client is trying to destroy)</li>
+							</ul>
 						</div>
 					</div>
 				</section>
@@ -190,9 +205,14 @@
 					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L6">context/crudContext.ts:6</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L7">context/crudContext.ts:7</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options passed to your data manipulation logic. Contains data from (1) context, (2) dynamic options from <code>getOptions</code> and (3) direct options passed on when creating a handler.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="safe" class="tsd-anchor"></a>
@@ -200,7 +220,7 @@
 					<div class="tsd-signature tsd-kind-icon">safe<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L11">context/crudContext.ts:11</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L12">context/crudContext.ts:12</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">
@@ -215,7 +235,7 @@
 					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/operation.html" class="tsd-signature-type">Operation</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L7">context/crudContext.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L8">context/crudContext.ts:8</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -225,7 +245,7 @@
 					<div class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9369fa4/src/lib/context/crudContext.ts#L9">context/crudContext.ts:9</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/e11e5c4/src/lib/context/crudContext.ts#L10">context/crudContext.ts:10</a></li>
 						</ul>
 					</aside>
 					<div class="tsd-comment tsd-typography">

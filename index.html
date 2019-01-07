@@ -62,21 +62,122 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
+				<p align="center">
+					<img src="https://www.publicdomainpictures.net/pictures/270000/velka/dog-paint-splatter-illustration.jpg" height="170" width="170"/>
+				</p>
 				<h1 id="crudella">Crudella</h1>
+				<p><a href="https://travis-ci.com/AckeeCZ/crudella"><img src="https://img.shields.io/travis/com/AckeeCZ/crudella/master.svg?style=flat-square" alt="Build Status"></a>
+					<a href="https://coveralls.io/github/AckeeCZ/crudella?branch=master"><img src="https://img.shields.io/coveralls/github/AckeeCZ/crudella.svg?style=flat-square" alt="Coverage Status"></a>
+					<a href="https://david-dm.org/AckeeCZ/crudella"><img src="https://img.shields.io/david/AckeeCZ/crudella.svg?style=flat-square" alt="Dependency Status"></a>
+					<a href="https://www.npmjs.com/package/crudella"><img src="https://img.shields.io/npm/v/crudella.svg?style=flat-square" alt="Npm"></a>
+					<a href="https://www.npmjs.com/package/crudella"><img src="https://img.shields.io/npm/types/crudella.svg?style=flat-square" alt="Types"></a>
+					<a href="https://github.com/prettier/prettier"><img src="https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square" alt="Prettier"></a>
+					<a href="https://ackeecz.github.io/crudella"><img src="https://img.shields.io/badge/docs-typedoc-lightgrey.svg?style=flat-square" alt="Docs"></a>
+				<a href="https://github.com/AckeeCZ/crudella/blob/master/LICENSE"><img src="https://img.shields.io/github/license/AckeeCZ/crudella.svg?style=flat-square" alt="License"></a></p>
+				<p>Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application.</p>
+				<h2 id="why-crudella">Why Crudella</h2>
+				<p>Crudella is a service factory. It <em>creates</em> your service module based on the minimal required configuration you provide.
+					Assume you have an entity repository (or any other CRUD interface for resource) and to make it work, you cannot simply bind it to routes, skipping through controller and service layer.
+				Here are several random problems you face in the mentioned layers:</p>
+				<ul>
+					<li>User authorization</li>
+					<li>Request validation (this resource cannot be deleted, only some attributes can be updated etc.)</li>
+					<li>Data transformation (before creating or updating resource)</li>
+					<li>Verify that resource exists before update or delete</li>
+					<li>Pass custom HTTP context to the validation functions</li>
+				</ul>
+				<p>Crudella implements logic equivalent of the controller and the service layer.
+				It goes as far as possible to help you with menial repeated code, but hopefully not as much as to completely take over your application and magically orchestrate behind your back.</p>
+				<p>Crudella helps you in various ways:</p>
+				<ul>
+					<li>Remove lot of boilerplate code: This not only saves you work, but also gives you space to focus on the non-generic code.</li>
+					<li>Simplifies testing: Don&#39;t waste your time on running lengthy integration tests for boring CRUD over and over again. Test business logic, not boilerplate.</li>
+					<li>Separation of concerns: Do not mix your service logic with validation or authorization. Crudella encourages you to decouple your service logic from client validation and orchestrates the calls for you.</li>
+				</ul>
+				<h2 id="usage">Usage</h2>
+				<p>Install via npm:</p>
+				<pre><code>npm <span class="hljs-selector-tag">i</span> crudella</code></pre><p>Crudella is tested on several major Node.js <a href="https://travis-ci.com/AckeeCZ/crudella">versions</a> starting at 6.</p>
+				<h2 id="getting-started">Getting started</h2>
+				<pre><code class="language-typescript"><span class="hljs-comment">// dalmatianService.ts</span>
+<span class="hljs-keyword">import</span> { createService } <span class="hljs-keyword">from</span> <span class="hljs-string">'crudella'</span>;
+
+<span class="hljs-keyword">const</span> dalmatianService = createService&lt;DalmatianAttributes&gt;({
+    <span class="hljs-comment">// each method receives relevant CRUD context</span>
+    detail: <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> dalmatianRepository.find(ctx.id, ctx.options),
+    create: <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> dalmatianRepository.create(ctx.data, ctx.options),
+    update: <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> dalmatianRepository.updateById(ctx.entity.id, ctx.data, ctx.options),
+    <span class="hljs-keyword">delete</span>: <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> dalmatianRepository.deleteById(ctx.entity.id),
+    list: <span class="hljs-function"><span class="hljs-params">ctx</span> =&gt;</span> dalmatianRepository.list(ctx.filters, ctx.options),
+});
+
+<span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createPupperMiddleware = dalmatianService.createMiddleware;</code></pre>
+				<p>Based on that Crudella provides an express middleware you can use without further hassle:</p>
+				<pre><code class="language-typescript"><span class="hljs-comment">// routes.ts</span>
+<span class="hljs-keyword">import</span> { createPupperMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">'dalmatianService'</span>;
+
+<span class="hljs-keyword">const</span> router = createRouter();
+router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span>))</code></pre>
+				<p>That saved us some time. We don&#39;t have to bind the routes ourselves.
+				More importantly though, we can control the flow using rich contextual data. See <a href="#authorization">authorization</a>.</p>
+				<p>:information_source: Not using express? You can still use Crudella. See <a href="./guide/handlers.md">generating handlers</a>.</p>
+				<p>:information_source: This definition still feels too long and you have consistent repository API? See <a href="./guide/repository.md">configuring crudella using repository</a>.</p>
+				<h2 id="advanced-topics">Advanced topics</h2>
+				<h3 id="authorization">Authorization</h3>
+				<p>Crudella allows you to decouple pure data manipulation (persisting puppies) from request verification.
+				Use <code>authorize</code> option with rich contextual data to reject access due to validation / authorization and do not pollute logic of manipulating objects with unrelated code.</p>
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Access, createService } <span class="hljs-keyword">from</span> <span class="hljs-string">'crudella'</span>;
+
+<span class="hljs-keyword">const</span> dalmatianService = createService&lt;DalmatianAttributes&gt;({
+    <span class="hljs-comment">// ...all crud methods</span>
+    authorize: <span class="hljs-keyword">async</span> ctx =&gt; {
+        <span class="hljs-comment">// reject anonymous users for all actions (detail, create, update, delete, list)</span>
+        <span class="hljs-comment">// ctx.context is type of C, which you can set for your application</span>
+        <span class="hljs-keyword">if</span> (!ctx.context.user) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Anonymous cannot see, delete, update or create dalmatians'</span>)
+        }
+        <span class="hljs-comment">// reject for selected operations</span>
+        <span class="hljs-keyword">if</span> (ctx.type === Access.LIST &amp;&amp; <span class="hljs-string">'dots'</span> <span class="hljs-keyword">in</span> filters) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Is rude to filter using dots!'</span>)
+        }
+        <span class="hljs-keyword">if</span> (ctx.type === Access.CREATE &amp;&amp; !isValidPuppy(ctx.data)) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Your puppy is invalid, sorry.'</span>)
+        }
+        <span class="hljs-comment">// ctx contains all you need for validation and authorization</span>
+        <span class="hljs-keyword">if</span> (ctx.type === Access.UPDATE) {
+            <span class="hljs-keyword">if</span> (!age <span class="hljs-keyword">in</span> ctx.bareData) { <span class="hljs-comment">// only data sent by client</span>
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Age missing on update'</span>)
+            }
+            <span class="hljs-keyword">if</span> (!isValidPuppy(ctx.data)) { <span class="hljs-comment">// new data defaulted to existing entity</span>
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Validation failed'</span>)
+            }
+        }
+    },
+});</code></pre>
+				<p>For full reference of the contexts, see <a href="https://ackeecz.github.io/interfaces/basecrudcontext.html">API docs</a>.</p>
+				<h3 id="other-topics">Other topics</h3>
+				<ul>
+					<li><a href="./guide/data-transformation.md">Data transformation</a></li>
+					<li><a href="./guide/repository.md">Configuring crudella using repository</a></li>
+					<li><a href="./guide/handlers.md">Generating handlers</a></li>
+					<li><a href="./guide/builder.md">Service builder and custom context</a></li>
+					<li>:construction: Dynamic options</li>
+					<li><a href="./guide/notfound.md">Custom 404 error</a></li>
+					<li>:construction: Customize controller flow</li>
+				</ul>
 				<h2 id="development">Development</h2>
-				<h3 id="building">Building</h3>
-				<ul>
-					<li><code>npm run build</code></li>
-				</ul>
-				<h3 id="testing">Testing</h3>
-				<ul>
-					<li><code>npm run test</code></li>
-					<li><code>npm run test:coverage</code></li>
-				</ul>
-				<h3 id="lint">Lint</h3>
-				<ul>
-					<li><code>npm run lint</code></li>
-				</ul>
+				<h4 id="building">Building</h4>
+				<p>Run <code>npm run build</code> to compile Typescript into JavaScript.</p>
+				<h4 id="testing">Testing</h4>
+				<p>Project uses <a href="https://jestjs.io">Jest</a> testing framework and its snapshot testing.
+				Run <code>npm run test</code> to test or <code>npm run test:coverage</code> to collect coverage.</p>
+				<p><a href="https://travis-ci.com/AckeeCZ/crudella">Travis CI</a> tests PRs, <a href="https://coveralls.io/github/AckeeCZ/crudella?branch=master">Coveralls</a> collect coverage.</p>
+				<h4 id="coding-style">Coding style</h4>
+				<p>TS lint and prettier
+				<code>npm run lint</code></p>
+				<h4 id="docs">Docs</h4>
+				<p>To generate API docs using <a href="https://typedoc.org/">TypeDoc</a> and preview locally, run <code>npm run docs</code>.
+					Output is an ignored <code>docs</code> folder.
+				Current API documentation is deployed by Travis via <a href="https://pages.github.com/">GitHub Pages</a> :octocat:</p>
 				<h2 id="license">License</h2>
 				<p>This project is licensed under <a href="./LICENSE">MIT</a>.</p>
 			</div>

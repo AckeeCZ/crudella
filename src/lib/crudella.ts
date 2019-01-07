@@ -1,14 +1,17 @@
 import { bootstrapConfiguration } from './service/bootstrap';
 import { createHandlers } from './service/handlers';
+import { createMiddlewareFactory } from './service/middleware';
 import { Definitions } from './settings/definitions';
 
 export const createService = <T extends { id: any }, C extends object>(defs: Definitions<T>) => {
     const implementation = bootstrapConfiguration<T, C>(defs);
     const handlers = createHandlers(implementation);
+    const createMiddleware = createMiddlewareFactory(handlers);
 
     return {
         ...implementation,
         ...handlers,
+        createMiddleware,
     };
 };
 

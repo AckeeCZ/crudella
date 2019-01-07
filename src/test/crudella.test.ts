@@ -1,4 +1,7 @@
-import { CreateContext, createService, CrudContext, DeleteContext, ListContext, UpdateContext } from 'main';
+import * as bodyParser from 'body-parser';
+import * as express from 'express';
+import { createService, CrudRepository } from 'main';
+import * as request from 'supertest';
 
 interface PersonAttributes {
     id: number;
@@ -192,6 +195,59 @@ describe('createService', () => {
             };
             await service.detailHandler(directOptions)(id, httpContext);
             expect(methods.detail.mock.calls[0][0].options).toMatchSnapshot();
+        });
+    });
+    describe('Middleware', () => {
+        beforeEach(() => {
+            const service = createService({
+                repository,
+            });
+            const mdw = service.createMiddleware('/dalmatian/');
+            app = express();
+            app.use(bodyParser.json());
+            app.use(mdw);
+        });
+        test('List', async () => {
+            await request(app)
+                .get('/dalmatian')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Create', async () => {
+            await request(app)
+                .post('/dalmatian')
+                .send({ name: 'express dalmatian' })
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Detail', async () => {
+            await request(app)
+                .get('/dalmatian/5')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Update', async () => {
+            await request(app)
+                .put('/dalmatian/5')
+                .send({ name: 'express dalmatian' })
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Delete', async () => {
+            await request(app)
+                .delete('/dalmatian/5')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
         });
     });
 });

@@ -165,6 +165,46 @@ Object {
 }
 `;
 
+exports[`createService Middleware Create 1`] = `
+Object {
+  "id": 5,
+  "name": "express dalmatian",
+}
+`;
+
+exports[`createService Middleware Delete 1`] = `true`;
+
+exports[`createService Middleware Detail 1`] = `
+Object {
+  "id": "5",
+  "name": "john",
+}
+`;
+
+exports[`createService Middleware List 1`] = `
+Array [
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+]
+`;
+
+exports[`createService Middleware Update 1`] = `
+Object {
+  "id": "5",
+  "name": "express dalmatian",
+}
+`;
+
 exports[`createService Options Options cascade correctly 1`] = `
 Object {
   "contextOption": true,

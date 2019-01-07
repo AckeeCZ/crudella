@@ -220,4 +220,17 @@ describe('createService', () => {
             await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
         });
     });
+    describe('Context', () => {
+        test('Update context', async () => {
+            const service = createService({
+                detail: methods.detail,
+                update: methods.update,
+            });
+            const data = { name: 'Winston' };
+            await service.updateHandler()(entity.id, data, context);
+            expect(methods.update.mock.calls[0][0].entity).toEqual(entity);
+            expect(methods.update.mock.calls[0][0].data).toEqual({ ...entity, ...data });
+            expect(methods.update.mock.calls[0][0].bareData).toEqual(data);
+        });
+    });
 });

@@ -12,9 +12,7 @@
     "url": "https://github.com/AckeeCZ/crudella"
   },
   "license": "MIT",
-  "keywords": [
-
-  ],
+  "keywords": [],
   "scripts": {
     "build": "tsc",
     "test": "NODE_PATH=src jest",
@@ -26,6 +24,8 @@
     "check": "npm-check -i app -i errors -i config -i index & exit 0"
   },
   "dependencies": {
+    "@types/express": "^4.16.0",
+    "express": "^4.16.4"
   },
   "devDependencies": {
     "@types/jest": "^23.3.5",

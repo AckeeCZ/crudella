@@ -1,8 +1,9 @@
 import { Operation } from './operation';
 
 export interface BaseCrudContext<T, C> {
-    /** Http context */
+    /** Http context you use in your application. Usually includes user, locale additional query parameters etc. */
     context: C;
+    /** Options passed to your data manipulation logic. Contains data from (1) context, (2) dynamic options from `getOptions` and (3) direct options passed on when creating a handler. */
     options: any;
     type: Operation;
     /** True for create or update */
@@ -12,15 +13,30 @@ export interface BaseCrudContext<T, C> {
 
     // Only in some operations:
 
-    /** Existing resource */
+    /**
+     * Existing resource client is manipulating.
+     * Present in the following operations:
+     * - Detail (entity client is trying to fetch)
+     * - Update (existing entity before the update)
+     * - Delete (entity client is trying to destroy)
+     */
     entity?: T;
     /**
-     * Data to update, create
-     * This contains `entity`, with overwritten data sent by client.
-     * To get _only_ data sent by client, see `bareData`
+     * Data sent by client to update or create resource.
+     * It represents the new, complete resource -- thusly when
+     * updating a single attribute,data contains not just the new
+     * attribute, but also all the attributes existing on the
+     * resource before the update.
+     *
+     * In other words, `data` is `entity` with overwritten data sent by client.
+     * To get _only_ data sent by client, see `bareData`.
+     *
+     * Present in the following operations:
+     * - Create (data client provides to create a resource)
+     * - Update (client's data for update with attributes defaulting to existing resource)
      */
     data?: any;
-    /** Data sent by client */
+    /** Data sent by client, only available on Update */
     bareData?: any;
 }
 export interface DetailContext<T, C> extends BaseCrudContext<T, C> {

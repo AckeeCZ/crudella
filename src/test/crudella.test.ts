@@ -5,27 +5,30 @@ interface PersonAttributes {
     name: string;
 }
 const entity: PersonAttributes = { id: 2, name: 'john' };
-const fetchEntity = (data: any) => Promise.resolve({ ...entity, id: data.id });
 const context = { user: 'Crudella de Vile', q: 'dalmatians' };
 const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
-const createMethods = () => ({
-    detail: jest.fn(fetchEntity),
-    create: jest.fn((ctx: CreateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.data, id: 5 })),
-    update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
-    delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
-    list: jest.fn((ctx: ListContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
-    authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
-});
-const createRepository = () => {
-    const impl = createMethods();
+let app: any;
+
+const createRepository = (): CrudRepository<PersonAttributes> => {
     return {
-        create: impl.create,
-        deleteById: impl.delete,
-        detailById: impl.detail,
-        list: impl.list,
-        updateById: impl.update,
+        create: jest.fn((data, opts) => Promise.resolve({ ...data, id: 5 })),
+        deleteById: jest.fn((_id, opts) => Promise.resolve(true)),
+        detailById: jest.fn((_id, opts) => Promise.resolve({ ...entity, id: _id })),
+        list: jest.fn((_filters, opts) => Promise.resolve(Array(3).fill(entity))),
+        updateById: jest.fn((_id, data, opts) => Promise.resolve({ ...entity, ...data })),
+    };
+};
+const createMethods = () => {
+    const impl = createRepository();
+    return {
+        detail: jest.fn(ctx => impl.detailById(ctx.id, ctx.options)),
+        create: jest.fn(ctx => impl.create(ctx.data, ctx.options)),
+        update: jest.fn(ctx => impl.updateById(ctx.id, ctx.data, ctx.options)),
+        delete: jest.fn(ctx => impl.deleteById(ctx.id, ctx.options)),
+        list: jest.fn(ctx => impl.list(ctx.filters, ctx.options)),
+        authorize: jest.fn().mockResolvedValue(true),
     };
 };
 let methods = createMethods();

@@ -1,3 +1,4 @@
+import { buildService } from 'lib/crudella';
 import { CreateContext, createService, CrudContext, DeleteContext, ListContext, UpdateContext } from 'main';
 
 interface PersonAttributes {
@@ -189,6 +190,34 @@ describe('createService', () => {
             };
             await service.detailHandler(directOptions)(id, httpContext);
             expect(methods.detail.mock.calls[0][0].options).toMatchSnapshot();
+        });
+    });
+    describe('Builder', () => {
+        test('Setting http context via builder', async () => {
+            type DummyContext = [number, string];
+            const serviceFactory = buildService<PersonAttributes, DummyContext>({}).createService;
+            const service = serviceFactory({
+                detail: methods.detail,
+                authorize: ctx => {
+                    const tryAssignContext: DummyContext = ctx.context;
+                    return tryAssignContext;
+                },
+            });
+        });
+        test('Composition build', async () => {
+            const serviceFactory = buildService({})
+                .buildService({ create: methods.create })
+                .buildService({ detail: methods.detail })
+                .buildService({ delete: methods.delete })
+                .buildService({ list: methods.list }).createService;
+            const service = serviceFactory({});
+            // All implemented resolved
+            await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
+            await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
+            await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
+            await expect(service.deleteHandler()(id, context)).resolves.toBeTruthy();
+            // Missing is rejected
+            await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
         });
     });
     describe('Context', () => {

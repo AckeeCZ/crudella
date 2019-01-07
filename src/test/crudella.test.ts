@@ -208,15 +208,16 @@ describe('createService', () => {
             const serviceFactory = buildService({})
                 .buildService({ create: methods.create })
                 .buildService({ detail: methods.detail })
-                .buildService({ update: methods.update })
                 .buildService({ delete: methods.delete })
                 .buildService({ list: methods.list }).createService;
             const service = serviceFactory({});
-            await expect(service.detailHandler()(id, context)).resolves;
-            await expect(service.createHandler()(entity, context)).resolves;
-            await expect(service.listHandler()(filters, context)).resolves;
-            await expect(service.updateHandler()(id, entity, context)).resolves;
-            await expect(service.deleteHandler()(id, context)).resolves;
+            // All implemented resolved
+            await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
+            await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
+            await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
+            await expect(service.deleteHandler()(id, context)).resolves.toBeTruthy();
+            // Missing is rejected
+            await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
         });
     });
 });

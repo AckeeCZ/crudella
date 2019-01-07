@@ -1,6 +1,6 @@
 {
   "name": "crudella",
-  "description": "crudella",
+  "description": "Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application",
   "version": "0.1.0",
   "author": "Jaroslav Šmolík <grissius@gmail.com>",
   "main": "./dist/main.js",
@@ -13,7 +13,19 @@
   },
   "license": "MIT",
   "keywords": [
-
+    "crud",
+    "restful",
+    "api",
+    "crud-generator",
+    "express",
+    "backend",
+    "node",
+    "nodejs",
+    "service",
+    "abstraction"
+  ],
+  "contributors": [
+    "Jaroslav Šmolík <grissius@gmail.com>"
   ],
   "scripts": {
     "build": "tsc",

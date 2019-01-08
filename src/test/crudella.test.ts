@@ -1,6 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { createService, CrudRepository } from 'main';
+import { buildService, createService, CrudRepository } from 'main';
 import * as request from 'supertest';
 
 interface PersonAttributes {
@@ -248,6 +248,34 @@ describe('createService', () => {
                 .then(res => {
                     expect(res.body).toMatchSnapshot();
                 });
+        });
+    });
+    describe('Builder', () => {
+        test('Setting http context via builder', async () => {
+            type DummyContext = [number, string];
+            const serviceFactory = buildService<PersonAttributes, DummyContext>({}).createService;
+            const service = serviceFactory({
+                detail: methods.detail,
+                authorize: ctx => {
+                    const tryAssignContext: DummyContext = ctx.context;
+                    return tryAssignContext;
+                },
+            });
+        });
+        test('Composition build', async () => {
+            const serviceFactory = buildService({})
+                .buildService({ create: methods.create })
+                .buildService({ detail: methods.detail })
+                .buildService({ delete: methods.delete })
+                .buildService({ list: methods.list }).createService;
+            const service = serviceFactory({});
+            // All implemented resolved
+            await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
+            await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
+            await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
+            await expect(service.deleteHandler()(id, context)).resolves.toBeTruthy();
+            // Missing is rejected
+            await expect(service.updateHandler()(id, entity, context)).rejects.toBeInstanceOf(Error);
         });
     });
     describe('Context', () => {

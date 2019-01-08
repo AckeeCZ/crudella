@@ -126,7 +126,7 @@ For full reference of the contexts, see [API docs](https://ackeecz.github.io/int
  - [Service builder and custom context](./guide/builder.md)
  - :construction: Dynamic options
  - [Custom 404 error](./guide/notfound.md)
- - [Customize controller flow](./guide/controller-flow.md)
+ - [Customizing controller flow](./guide/controller-flow.md)
 
 ## Development
 

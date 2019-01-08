@@ -1,4 +1,4 @@
-# Customize controller flow
+# Customizing controller flow
 
 > I am writing a web app, where the hell are my request, response objects?
 

@@ -4,11 +4,11 @@ import {
     forgeDetailContext,
     forgeListContext,
     forgeUpdateContext,
-} from 'lib/context/contextCreators';
-import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from 'lib/context/crudContext';
-import { Operation } from 'lib/context/operation';
-import { errorOrEmpty } from 'lib/helpers';
-import { ServiceImplementation } from 'lib/settings/definitions';
+} from '../context/contextCreators';
+import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from '../context/crudContext';
+import { Operation } from '../context/operation';
+import { errorOrEmpty } from '../helpers';
+import { ServiceImplementation } from '../settings/definitions';
 
 export type DetailHandler<T, C> = (id: number, context: C) => Promise<T>;
 export type CreateHandler<T, C> = (data: any, context: C) => Promise<T>;

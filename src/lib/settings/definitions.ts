@@ -6,10 +6,10 @@ import {
     DetailContext,
     ListContext,
     UpdateContext,
-} from 'lib/context/crudContext';
-import { Operation } from 'lib/context/operation';
-import { Omit } from 'lib/helpers';
-import { CrudController } from 'lib/service/controller';
+} from '../context/crudContext';
+import { Operation } from '../context/operation';
+import { Omit } from '../helpers';
+import { CrudController } from '../service/controller';
 import { CrudRepository } from './repository';
 
 export interface Definitions<T, C = any> {

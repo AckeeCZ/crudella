@@ -1,4 +1,4 @@
-export { createService } from './lib/crudella';
+export { createService, buildService } from './lib/crudella';
 export {
     DetailContext,
     CreateContext,

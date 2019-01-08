@@ -35,10 +35,12 @@ interface MyHttpContext {
     headers: object;
 }
 
-export default <T extends {id: any}, C = MyHttpContext>(defs: Definitions<T, C>) => buildService<T, C>({
-    //                important part ^^^^^^^^^^^^^^^^^     use the same here ^             and here ^
-    // some default behaviour can go here
-}).createService(defs);
+export default <T extends { id: any }>(defs: Definitions<T, MyHttpContext>) =>
+  buildService<T, MyHttpContext>({ //        important part ^^^^^^^^^^^^^
+    //  and here  ^^^^^^^^^^^^^
+    // <-- some default behavior can go here, it is regular builder, just with a fixed template argument
+  }).createService(defs);
+
 ```
 
 

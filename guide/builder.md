@@ -45,5 +45,3 @@ export default <T extends { id: any }>(defs: Definitions<T, MyHttpContext>) =>
 
 That will do for the type.
 But to see how to create the context in the "controller" using Crudella, read [customizing controller flow](./controller-flow.md).
-
-

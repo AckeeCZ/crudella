@@ -12,7 +12,6 @@ const context = { user: 'Crudella de Vile', q: 'dalmatians' };
 const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
-let app: any;
 
 const createRepository = (): CrudRepository<PersonAttributes> => {
     return {
@@ -198,6 +197,7 @@ describe('createService', () => {
         });
     });
     describe('Middleware', () => {
+        let app: any;
         beforeEach(() => {
             const service = createService({
                 repository,

@@ -202,7 +202,7 @@ describe('createService', () => {
             const service = createService({
                 repository,
             });
-            const mdw = service.createMiddleware('/dalmatian/');
+            const mdw = service.createMiddleware('/dalmatian');
             app = express();
             app.use(bodyParser.json());
             app.use(mdw);

@@ -4,19 +4,18 @@ import { HandlerCreators } from './handlers';
 
 export const createMiddlewareFactory = <T, C>(handlers: HandlerCreators<T, C>, controller: CrudController<T, C>) => {
     const createMiddleware = (resourceName: string, idName: string = 'resourceId') => {
-        const router = Router();
-        router
-            .route(resourceName)
+        const [collectionRoutes, resourceRoutes] = [Router(), Router()];
+        collectionRoutes
+            .route('/')
             .get(controller.listAction(handlers.listHandler({})))
             .post(controller.createAction(handlers.createHandler({})));
-
-        // > /resource/:resourceId
-        router
-            .route(`${resourceName}:${idName}`)
+        resourceRoutes
+            .route(`/:${idName}`)
             .get(controller.detailAction(handlers.detailHandler({}), idName))
             .put(controller.updateAction(handlers.updateHandler({}), idName))
             .delete(controller.deleteAction(handlers.deleteHandler({}), idName));
-        return router;
+
+        return Router().use(resourceName, collectionRoutes, resourceRoutes);
     };
     return createMiddleware;
 };

@@ -1,32 +1,36 @@
-import { buildService } from 'lib/crudella';
-import { CreateContext, createService, CrudContext, DeleteContext, ListContext, UpdateContext } from 'main';
+import * as bodyParser from 'body-parser';
+import * as express from 'express';
+import { buildService, createService, CrudRepository } from 'main';
+import * as request from 'supertest';
 
 interface PersonAttributes {
     id: number;
     name: string;
 }
 const entity: PersonAttributes = { id: 2, name: 'john' };
-const fetchEntity = (data: any) => Promise.resolve({ ...entity, id: data.id });
 const context = { user: 'Crudella de Vile', q: 'dalmatians' };
 const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
-const createMethods = () => ({
-    detail: jest.fn(fetchEntity),
-    create: jest.fn((ctx: CreateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.data, id: 5 })),
-    update: jest.fn((ctx: UpdateContext<PersonAttributes, {}>) => Promise.resolve({ ...ctx.entity, ...ctx.bareData })),
-    delete: jest.fn((ctx: DeleteContext<PersonAttributes, {}>) => Promise.resolve(true)),
-    list: jest.fn((ctx: ListContext<PersonAttributes, {}>) => Promise.resolve(Array(3).fill(entity))),
-    authorize: jest.fn((ctx: CrudContext<PersonAttributes, {}>) => true),
-});
-const createRepository = () => {
-    const impl = createMethods();
+
+const createRepository = (): CrudRepository<PersonAttributes> => {
     return {
-        create: impl.create,
-        deleteById: impl.delete,
-        detailById: impl.detail,
-        list: impl.list,
-        updateById: impl.update,
+        create: jest.fn((data, opts) => Promise.resolve({ ...data, id: 5 })),
+        deleteById: jest.fn((_id, opts) => Promise.resolve(true)),
+        detailById: jest.fn((_id, opts) => Promise.resolve({ ...entity, id: _id })),
+        list: jest.fn((_filters, opts) => Promise.resolve(Array(3).fill(entity))),
+        updateById: jest.fn((_id, data, opts) => Promise.resolve({ ...entity, ...data })),
+    };
+};
+const createMethods = () => {
+    const impl = createRepository();
+    return {
+        detail: jest.fn(ctx => impl.detailById(ctx.id, ctx.options)),
+        create: jest.fn(ctx => impl.create(ctx.data, ctx.options)),
+        update: jest.fn(ctx => impl.updateById(ctx.id, ctx.data, ctx.options)),
+        delete: jest.fn(ctx => impl.deleteById(ctx.id, ctx.options)),
+        list: jest.fn(ctx => impl.list(ctx.filters, ctx.options)),
+        authorize: jest.fn().mockResolvedValue(true),
     };
 };
 let methods = createMethods();
@@ -87,11 +91,11 @@ describe('createService', () => {
         });
         test('Repository implementation', async () => {
             const service = createService({ repository });
-            await expect(service.detailHandler()(id, context)).resolves;
-            await expect(service.createHandler()(entity, context)).resolves;
-            await expect(service.listHandler()(filters, context)).resolves;
-            await expect(service.updateHandler()(id, entity, context)).resolves;
-            await expect(service.deleteHandler()(id, context)).resolves;
+            await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
+            await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
+            await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
+            await expect(service.updateHandler()(id, entity, context)).resolves.toBeTruthy();
+            await expect(service.deleteHandler()(id, context)).resolves.toBeTruthy();
         });
     });
     describe('Authorization', () => {
@@ -190,6 +194,60 @@ describe('createService', () => {
             };
             await service.detailHandler(directOptions)(id, httpContext);
             expect(methods.detail.mock.calls[0][0].options).toMatchSnapshot();
+        });
+    });
+    describe('Middleware', () => {
+        let app: any;
+        beforeEach(() => {
+            const service = createService({
+                repository,
+            });
+            const mdw = service.createMiddleware('/dalmatian');
+            app = express();
+            app.use(bodyParser.json());
+            app.use(mdw);
+        });
+        test('List', async () => {
+            await request(app)
+                .get('/dalmatian')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Create', async () => {
+            await request(app)
+                .post('/dalmatian')
+                .send({ name: 'express dalmatian' })
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Detail', async () => {
+            await request(app)
+                .get('/dalmatian/5')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Update', async () => {
+            await request(app)
+                .put('/dalmatian/5')
+                .send({ name: 'express dalmatian' })
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
+        });
+        test('Delete', async () => {
+            await request(app)
+                .delete('/dalmatian/5')
+                .expect(200)
+                .then(res => {
+                    expect(res.body).toMatchSnapshot();
+                });
         });
     });
     describe('Builder', () => {

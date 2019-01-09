@@ -1,4 +1,4 @@
-export { createService } from './lib/crudella';
+export { createService, buildService } from './lib/crudella';
 export {
     DetailContext,
     CreateContext,
@@ -7,6 +7,7 @@ export {
     CrudContext,
     ListContext,
 } from './lib/context/crudContext';
+export { CrudController } from './lib/service/controller';
 export { Operation } from './lib/context/operation';
 export { Definitions } from './lib/settings/definitions';
 export { CrudRepository } from './lib/settings/repository';

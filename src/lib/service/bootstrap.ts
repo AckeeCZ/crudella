@@ -2,6 +2,7 @@ import { DataContext } from 'lib/context/crudContext';
 import { Omit } from 'lib/helpers';
 import { Definitions } from 'lib/settings/definitions';
 import { CrudRepository } from 'lib/settings/repository';
+import { getDefaultController } from './controller';
 
 const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 'repository'> => ({
     detail: () => Promise.reject(new Error('"detail" not implemented')),
@@ -13,6 +14,7 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 're
     processData: ({ data }: DataContext<T, C>) => data,
     createNotFoundError: () => new Error('Requested resource not found'),
     getOptions: () => ({}),
+    controller: getDefaultController(),
 });
 
 const createRepoImplementation = <T extends { id: any }>(

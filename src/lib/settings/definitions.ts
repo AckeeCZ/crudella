@@ -6,9 +6,10 @@ import {
     DetailContext,
     ListContext,
     UpdateContext,
-} from 'lib/context/crudContext';
-import { Operation } from 'lib/context/operation';
-import { Omit } from 'lib/helpers';
+} from '../context/crudContext';
+import { Operation } from '../context/operation';
+import { Omit } from '../helpers';
+import { CrudController } from '../service/controller';
 import { CrudRepository } from './repository';
 
 export interface Definitions<T, C = any> {
@@ -56,6 +57,7 @@ export interface Definitions<T, C = any> {
      */
     createNotFoundError?: () => Error;
     getOptions?: (operation: Operation) => PromiseLike<any> | any;
+    controller?: CrudController<T, C>;
 }
 
 export type ServiceImplementation<T, C> = Omit<Required<Definitions<T, C>>, 'repository'>;

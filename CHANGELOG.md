@@ -6,9 +6,18 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 ### Added
+- Express middleware factory
+- Controller interface and configuration
 - User manual for controller flow
 
+### Changed
+- Use relative import paths (setting NODE_PATH is dirty for a library)
+- Upgrade TS
+
 ### Fixed
+- Incomplete assertions in some async tests
+- Broken repository implementation in tests
+- serviceBuilder export is now exported
 - User manual for setting context via builder
 
 ## [0.2.0] - 2019-01-08

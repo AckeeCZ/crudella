@@ -1,7 +1,7 @@
 {
   "name": "crudella",
   "description": "Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application",
-  "version": "0.2.0",
+  "version": "0.3.0",
   "author": "Jaroslav Šmolík <grissius@gmail.com>",
   "main": "./dist/main.js",
   "engines": {

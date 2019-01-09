@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>UpdateContext | Crudella</title>
+	<title>CrudController | Crudella</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
@@ -54,10 +54,10 @@
 					<a href="../globals.html">Globals</a>
 				</li>
 				<li>
-					<a href="updatecontext.html">UpdateContext</a>
+					<a href="crudcontroller.html">CrudController</a>
 				</li>
 			</ul>
-			<h1>Interface UpdateContext&lt;T, C&gt;</h1>
+			<h1>Interface CrudController&lt;T, C&gt;</h1>
 		</div>
 	</div>
 </header>
@@ -79,12 +79,7 @@
 				<h3>Hierarchy</h3>
 				<ul class="tsd-hierarchy">
 					<li>
-						<a href="basecrudcontext.html" class="tsd-signature-type">BaseCrudContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span>
-						<ul class="tsd-hierarchy">
-							<li>
-								<span class="target">UpdateContext</span>
-							</li>
-						</ul>
+						<span class="target">CrudController</span>
 					</li>
 				</ul>
 			</section>
@@ -95,14 +90,11 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#baredata" class="tsd-kind-icon">bare<wbr>Data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="updatecontext.html#context" class="tsd-kind-icon">context</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#data" class="tsd-kind-icon">data</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#entity" class="tsd-kind-icon">entity</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-inherited"><a href="updatecontext.html#options" class="tsd-kind-icon">options</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#safe" class="tsd-kind-icon">safe</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#type" class="tsd-kind-icon">type</a></li>
-								<li class="tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite"><a href="updatecontext.html#write" class="tsd-kind-icon">write</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crudcontroller.html#createaction" class="tsd-kind-icon">create<wbr>Action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crudcontroller.html#deleteaction" class="tsd-kind-icon">delete<wbr>Action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crudcontroller.html#detailaction" class="tsd-kind-icon">detail<wbr>Action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crudcontroller.html#listaction" class="tsd-kind-icon">list<wbr>Action</a></li>
+								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="crudcontroller.html#updateaction" class="tsd-kind-icon">update<wbr>Action</a></li>
 							</ul>
 						</section>
 					</div>
@@ -110,103 +102,169 @@
 			</section>
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="baredata" class="tsd-anchor"></a>
-					<h3>bare<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">bare<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="createaction" class="tsd-anchor"></a>
+					<h3>create<wbr>Action</h3>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#baredata">bareData</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L54">context/crudContext.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/service/controller.ts#L6">service/controller.ts:6</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="context" class="tsd-anchor"></a>
-					<h3>context</h3>
-					<div class="tsd-signature tsd-kind-icon">context<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">C</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#context">context</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L5">context/crudContext.ts:5</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#createhandler" class="tsd-signature-type">CreateHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestHandler</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>handler: <a href="../globals.html#createhandler" class="tsd-signature-type">CreateHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RequestHandler</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Http context you use in your application. Usually includes user, locale additional query parameters etc.</p>
-						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="deleteaction" class="tsd-anchor"></a>
+					<h3>delete<wbr>Action</h3>
+					<div class="tsd-signature tsd-kind-icon">delete<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L50">context/crudContext.ts:50</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/service/controller.ts#L8">service/controller.ts:8</a></li>
 						</ul>
 					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="entity" class="tsd-anchor"></a>
-					<h3>entity</h3>
-					<div class="tsd-signature tsd-kind-icon">entity<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
-					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#entity">entity</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L51">context/crudContext.ts:51</a></li>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#deletehandler" class="tsd-signature-type">DeleteHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span>, idName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestHandler</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>handler: <a href="../globals.html#deletehandler" class="tsd-signature-type">DeleteHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+											<li>
+												<h5>idName: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RequestHandler</span></h4>
+									</li>
+								</ul>
+							</li>
 						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-					<a name="options" class="tsd-anchor"></a>
-					<h3>options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
-					<aside class="tsd-sources">
-						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#options">options</a></p>
-						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L7">context/crudContext.ts:7</a></li>
-						</ul>
-					</aside>
-					<div class="tsd-comment tsd-typography">
-						<div class="lead">
-							<p>Options passed to your data manipulation logic. Contains data from (1) context, (2) dynamic options from <code>getOptions</code> and (3) direct options passed on when creating a handler.</p>
-						</div>
 					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="safe" class="tsd-anchor"></a>
-					<h3>safe</h3>
-					<div class="tsd-signature tsd-kind-icon">safe<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">false</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="detailaction" class="tsd-anchor"></a>
+					<h3>detail<wbr>Action</h3>
+					<div class="tsd-signature tsd-kind-icon">detail<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#safe">safe</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L55">context/crudContext.ts:55</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/service/controller.ts#L5">service/controller.ts:5</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#detailhandler" class="tsd-signature-type">DetailHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span>, idName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestHandler</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>handler: <a href="../globals.html#detailhandler" class="tsd-signature-type">DetailHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+											<li>
+												<h5>idName: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RequestHandler</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="type" class="tsd-anchor"></a>
-					<h3>type</h3>
-					<div class="tsd-signature tsd-kind-icon">type<span class="tsd-signature-symbol">:</span> <a href="../enums/operation.html#update" class="tsd-signature-type">UPDATE</a></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="listaction" class="tsd-anchor"></a>
+					<h3>list<wbr>Action</h3>
+					<div class="tsd-signature tsd-kind-icon">list<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L52">context/crudContext.ts:52</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/service/controller.ts#L9">service/controller.ts:9</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#listhandler" class="tsd-signature-type">ListHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestHandler</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>handler: <a href="../globals.html#listhandler" class="tsd-signature-type">ListHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RequestHandler</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-					<a name="write" class="tsd-anchor"></a>
-					<h3>write</h3>
-					<div class="tsd-signature tsd-kind-icon">write<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">true</span></div>
+				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
+					<a name="updateaction" class="tsd-anchor"></a>
+					<h3>update<wbr>Action</h3>
+					<div class="tsd-signature tsd-kind-icon">update<wbr>Action<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 					<aside class="tsd-sources">
-						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#write">write</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/context/crudContext.ts#L53">context/crudContext.ts:53</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/b170afc/src/lib/service/controller.ts#L7">service/controller.ts:7</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-type-declaration">
+						<h4>Type declaration</h4>
+						<ul class="tsd-parameters">
+							<li class="tsd-parameter-siganture">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><a href="../globals.html#updatehandler" class="tsd-signature-type">UpdateHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span>, idName<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">RequestHandler</span></li>
+								</ul>
+								<ul class="tsd-descriptions">
+									<li class="tsd-description">
+										<h4 class="tsd-parameters-title">Parameters</h4>
+										<ul class="tsd-parameters">
+											<li>
+												<h5>handler: <a href="../globals.html#updatehandler" class="tsd-signature-type">UpdateHandler</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></h5>
+											</li>
+											<li>
+												<h5>idName: <span class="tsd-signature-type">string</span></h5>
+											</li>
+										</ul>
+										<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">RequestHandler</span></h4>
+									</li>
+								</ul>
+							</li>
+						</ul>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -229,9 +287,30 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="createcontext.html" class="tsd-kind-icon">Create<wbr>Context</a>
 					</li>
-					<li class=" tsd-kind-interface tsd-has-type-parameter">
+				</ul>
+				<ul class="current">
+					<li class="current tsd-kind-interface tsd-has-type-parameter">
 						<a href="crudcontroller.html" class="tsd-kind-icon">Crud<wbr>Controller</a>
+						<ul>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crudcontroller.html#createaction" class="tsd-kind-icon">create<wbr>Action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crudcontroller.html#deleteaction" class="tsd-kind-icon">delete<wbr>Action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crudcontroller.html#detailaction" class="tsd-kind-icon">detail<wbr>Action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crudcontroller.html#listaction" class="tsd-kind-icon">list<wbr>Action</a>
+							</li>
+							<li class=" tsd-kind-property tsd-parent-kind-interface">
+								<a href="crudcontroller.html#updateaction" class="tsd-kind-icon">update<wbr>Action</a>
+							</li>
+						</ul>
 					</li>
+				</ul>
+				<ul class="after-current">
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="crudrepository.html" class="tsd-kind-icon">Crud<wbr>Repository</a>
 					</li>
@@ -250,39 +329,9 @@
 					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="listcontext.html" class="tsd-kind-icon">List<wbr>Context</a>
 					</li>
-				</ul>
-				<ul class="current">
-					<li class="current tsd-kind-interface tsd-has-type-parameter">
+					<li class=" tsd-kind-interface tsd-has-type-parameter">
 						<a href="updatecontext.html" class="tsd-kind-icon">Update<wbr>Context</a>
-						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#baredata" class="tsd-kind-icon">bare<wbr>Data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="updatecontext.html#context" class="tsd-kind-icon">context</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#data" class="tsd-kind-icon">data</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#entity" class="tsd-kind-icon">entity</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
-								<a href="updatecontext.html#options" class="tsd-kind-icon">options</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#safe" class="tsd-kind-icon">safe</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#type" class="tsd-kind-icon">type</a>
-							</li>
-							<li class=" tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
-								<a href="updatecontext.html#write" class="tsd-kind-icon">write</a>
-							</li>
-						</ul>
 					</li>
-				</ul>
-				<ul class="after-current">
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#createhandler" class="tsd-kind-icon">Create<wbr>Handler</a>
 					</li>

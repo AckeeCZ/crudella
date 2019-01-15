@@ -254,7 +254,7 @@ describe('createService', () => {
         test('Setting http context via builder', async () => {
             type DummyContext = [number, string];
             const serviceFactory = buildService<PersonAttributes, DummyContext>({}).createService;
-            const service = serviceFactory({
+            serviceFactory({
                 detail: methods.detail,
                 authorize: ctx => {
                     const tryAssignContext: DummyContext = ctx.context;

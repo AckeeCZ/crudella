@@ -116,7 +116,7 @@ const dalmatianService = createService<DalmatianAttributes>({
 });
 ```
 
-For full reference of the contexts, see [API docs](https://ackeecz.github.io/interfaces/basecrudcontext.html).
+For full reference of the contexts, see [API docs](https://ackeecz.github.io/crudella/interfaces/basecrudcontext.html).
 
 ### Other topics
 

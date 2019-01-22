@@ -1,9 +1,6 @@
-<p align="center">
-  <img src="https://www.publicdomainpictures.net/pictures/270000/velka/dog-paint-splatter-illustration.jpg" height="170" width="170"/>
-</p>
+<div align="center">
 
-# Crudella
-
+![Crudella](https://i.imgur.com/AgRQLRT.png)
 [![Build Status](https://img.shields.io/travis/com/AckeeCZ/crudella/master.svg?style=flat-square)](https://travis-ci.com/AckeeCZ/crudella)
 [![Coverage Status](https://img.shields.io/coveralls/github/AckeeCZ/crudella.svg?style=flat-square)](https://coveralls.io/github/AckeeCZ/crudella?branch=master)
 [![Dependency Status](https://img.shields.io/david/AckeeCZ/crudella.svg?style=flat-square)](https://david-dm.org/AckeeCZ/crudella)
@@ -15,6 +12,10 @@
 
 Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application.
 
+<img src="https://www.publicdomainpictures.net/pictures/270000/velka/dog-paint-splatter-illustration.jpg" height="170" width="170"/>
+</div>
+
+# Crudella
 ## Why Crudella
 
 Crudella is a service factory. It _creates_ your service module based on the minimal required configuration you provide.

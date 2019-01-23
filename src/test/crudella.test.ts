@@ -48,7 +48,7 @@ describe('createService', () => {
         beforeEach(() => {
             methods = createMethods();
         });
-        test('Detail called once, when triggered, with correct attributes', async () => {
+        test('Detail called once, when triggered, with correct attributes', async() => {
             const service = createService({ detail: methods.detail });
             const detailHandler = service.detailHandler(options);
             expect(methods.detail).toHaveBeenCalledTimes(0);
@@ -56,13 +56,13 @@ describe('createService', () => {
             expect(methods.detail).toHaveBeenCalledTimes(1);
             expect(methods.detail.mock.calls[0][0]).toMatchSnapshot();
         });
-        test('Create', async () => {
+        test('Create', async() => {
             const service = createService({ create: methods.create });
             await expect(service.createHandler(options)({ id }, context)).resolves.toMatchSnapshot();
             expect(methods.create).toHaveBeenCalledTimes(1);
             expect(methods.create.mock.calls[0][0]).toMatchSnapshot();
         });
-        test('Update', async () => {
+        test('Update', async() => {
             const service = createService({
                 detail: methods.detail,
                 update: methods.update,
@@ -73,7 +73,7 @@ describe('createService', () => {
             expect(methods.update).toHaveBeenCalledTimes(1);
             expect(methods.update.mock.calls[0][0]).toMatchSnapshot();
         });
-        test('Delete', async () => {
+        test('Delete', async() => {
             const service = createService({
                 detail: methods.detail,
                 delete: methods.delete,
@@ -84,12 +84,12 @@ describe('createService', () => {
             expect(methods.delete).toHaveBeenCalledTimes(1);
             expect(methods.delete.mock.calls[0][0]).toMatchSnapshot();
         });
-        test('List', async () => {
+        test('List', async() => {
             const service = createService({ list: methods.list });
             await expect(service.listHandler(options)(filters, context)).resolves.toMatchSnapshot();
             expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
         });
-        test('Repository implementation', async () => {
+        test('Repository implementation', async() => {
             const service = createService({ repository });
             await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
             await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
@@ -99,7 +99,7 @@ describe('createService', () => {
         });
     });
     describe('Authorization', () => {
-        test('Called for every access with correct contexts', async () => {
+        test('Called for every access with correct contexts', async() => {
             const service = createService(methods);
             await service.detailHandler()(id, context);
             expect(methods.authorize).toHaveBeenCalledTimes(1);
@@ -113,7 +113,7 @@ describe('createService', () => {
             expect(methods.authorize).toHaveBeenCalledTimes(5);
             expect(methods.authorize.mock.calls.map(x => x[0].type)).toMatchSnapshot();
         });
-        test('Protected methods not called, handlers error', async () => {
+        test('Protected methods not called, handlers error', async() => {
             const service = createService({
                 ...methods,
                 authorize: () => Promise.reject(new Error()),
@@ -133,7 +133,7 @@ describe('createService', () => {
         });
     });
     describe('Unimplemented handlers error', () => {
-        test('Direct implementation', async () => {
+        test('Direct implementation', async() => {
             const service = createService({});
             await expect(service.detailHandler()(id, context)).rejects.toThrow(/not implemented/);
             await expect(service.createHandler()(entity, context)).rejects.toThrow(/not implemented/);
@@ -145,11 +145,11 @@ describe('createService', () => {
         });
     });
     describe('Not found', () => {
-        test('Default error', async () => {
+        test('Default error', async() => {
             const service = createService({ detail: jest.fn().mockResolvedValue(null) });
             await expect(service.detailHandler()(id, context)).rejects.toThrow(/not found/);
         });
-        test('Custom error', async () => {
+        test('Custom error', async() => {
             const customError = new RangeError('Foo');
             const service = createService({
                 repository,
@@ -160,7 +160,7 @@ describe('createService', () => {
         });
     });
     describe('Options', () => {
-        test('Dynamic options can react to operation', async () => {
+        test('Dynamic options can react to operation', async() => {
             const service = createService({
                 detail: methods.detail,
                 update: methods.update,
@@ -169,11 +169,11 @@ describe('createService', () => {
                 }),
             });
             await service.detailHandler()(id, context);
-            expect(methods.detail.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"DETAIL"`);
+            expect(methods.detail.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot('"DETAIL"');
             await service.updateHandler()(id, {}, context);
-            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot(`"UPDATE"`);
+            expect(methods.update.mock.calls[0][0].options.dynamicOption).toMatchInlineSnapshot('"UPDATE"');
         });
-        test('Options cascade correctly', async () => {
+        test('Options cascade correctly', async() => {
             const service = createService({
                 detail: methods.detail,
                 getOptions: () => ({
@@ -207,7 +207,7 @@ describe('createService', () => {
             app.use(bodyParser.json());
             app.use(mdw);
         });
-        test('List', async () => {
+        test('List', async() => {
             await request(app)
                 .get('/dalmatian')
                 .expect(200)
@@ -215,7 +215,7 @@ describe('createService', () => {
                     expect(res.body).toMatchSnapshot();
                 });
         });
-        test('Create', async () => {
+        test('Create', async() => {
             await request(app)
                 .post('/dalmatian')
                 .send({ name: 'express dalmatian' })
@@ -224,7 +224,7 @@ describe('createService', () => {
                     expect(res.body).toMatchSnapshot();
                 });
         });
-        test('Detail', async () => {
+        test('Detail', async() => {
             await request(app)
                 .get('/dalmatian/5')
                 .expect(200)
@@ -232,7 +232,7 @@ describe('createService', () => {
                     expect(res.body).toMatchSnapshot();
                 });
         });
-        test('Update', async () => {
+        test('Update', async() => {
             await request(app)
                 .put('/dalmatian/5')
                 .send({ name: 'express dalmatian' })
@@ -241,7 +241,7 @@ describe('createService', () => {
                     expect(res.body).toMatchSnapshot();
                 });
         });
-        test('Delete', async () => {
+        test('Delete', async() => {
             await request(app)
                 .delete('/dalmatian/5')
                 .expect(200)
@@ -251,7 +251,7 @@ describe('createService', () => {
         });
     });
     describe('Builder', () => {
-        test('Setting http context via builder', async () => {
+        test('Setting http context via builder', async() => {
             type DummyContext = [number, string];
             const serviceFactory = buildService<PersonAttributes, DummyContext>({}).createService;
             serviceFactory({
@@ -262,7 +262,7 @@ describe('createService', () => {
                 },
             });
         });
-        test('Composition build', async () => {
+        test('Composition build', async() => {
             const serviceFactory = buildService({})
                 .buildService({ create: methods.create })
                 .buildService({ detail: methods.detail })
@@ -279,7 +279,7 @@ describe('createService', () => {
         });
     });
     describe('Context', () => {
-        test('Update context', async () => {
+        test('Update context', async() => {
             const service = createService({
                 detail: methods.detail,
                 update: methods.update,

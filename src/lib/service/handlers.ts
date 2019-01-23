@@ -43,7 +43,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             ...(context as object),
         }));
 
-    const detailHandler = (options: any = {}): DetailHandler<T, C> => async (id: number, context: C) => {
+    const detailHandler = (options: any = {}): DetailHandler<T, C> => async(id: number, context: C) => {
         options = await bootstrapOption(Operation.DETAIL, options, context);
         const entity = await safeDetail({ id, context, options });
         const ctx: DetailContext<T, C> = forgeDetailContext({
@@ -55,7 +55,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         await implementation.authorize(ctx);
         return ctx.entity;
     };
-    const createHandler = (options: any = {}): CreateHandler<T, C> => async (data: any, context: C) => {
+    const createHandler = (options: any = {}): CreateHandler<T, C> => async(data: any, context: C) => {
         options = await bootstrapOption(Operation.CREATE, options, context);
         const processedData = implementation.processData({ data, context, options, type: Operation.CREATE });
         const ctx: CreateContext<T, C> = forgeCreateContext({
@@ -66,7 +66,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         await implementation.authorize(ctx);
         return implementation.create(ctx);
     };
-    const updateHandler = (options: any = {}): UpdateHandler<T, C> => async (id: number, data: any, context: C) => {
+    const updateHandler = (options: any = {}): UpdateHandler<T, C> => async(id: number, data: any, context: C) => {
         options = await bootstrapOption(Operation.UPDATE, options, context);
         const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
         const entity = await safeDetail({ id, context, options });
@@ -81,7 +81,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         return implementation.update(ctx);
     };
 
-    const deleteHandler = (options: any = {}): DeleteHandler<T, C> => async (id: number, context: C) => {
+    const deleteHandler = (options: any = {}): DeleteHandler<T, C> => async(id: number, context: C) => {
         options = await bootstrapOption(Operation.DELETE, options, context);
         const entity = await safeDetail({ id, context, options });
         const ctx: DeleteContext<T, C> = forgeDeleteContext({
@@ -94,7 +94,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         return implementation.delete(ctx);
     };
 
-    const listHandler = (options: any = {}): ListHandler<T, C> => async (filters: any, context: C) => {
+    const listHandler = (options: any = {}): ListHandler<T, C> => async(filters: any, context: C) => {
         options = await bootstrapOption(Operation.LIST, options, context);
         const ctx: ListContext<T, C> = forgeListContext({
             context,

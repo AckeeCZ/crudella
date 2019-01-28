@@ -58,6 +58,9 @@ export interface Definitions<T, C = any> {
     createNotFoundError?: () => Error;
     getOptions?: (operation: Operation) => PromiseLike<any> | any;
     controller?: CrudController<T, C>;
+    options?: {
+        allowedOperations?: Operation[];
+    };
 }
 
 export type ServiceImplementation<T, C> = Omit<Required<Definitions<T, C>>, 'repository'>;

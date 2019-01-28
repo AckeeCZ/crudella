@@ -15,6 +15,7 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 're
     createNotFoundError: () => new Error('Requested resource not found'),
     getOptions: () => ({}),
     controller: getDefaultController(),
+    options: {},
 });
 
 const createRepoImplementation = <T extends { id: any }>(
@@ -22,12 +23,12 @@ const createRepoImplementation = <T extends { id: any }>(
 ): Pick<Required<Definitions<T>>, 'detail' | 'create' | 'update' | 'delete' | 'list'> | {} => {
     return repo
         ? {
-            detail: ctx => repo.detailById(ctx.id, ctx.options),
-            create: ctx => repo.create(ctx.data, ctx.options),
-            update: ctx => repo.updateById(ctx.entity.id, ctx.data, ctx.options),
-            delete: ctx => repo.deleteById(ctx.entity.id, ctx.options),
-            list: ctx => repo.list(ctx.filters, ctx.options),
-        }
+              detail: ctx => repo.detailById(ctx.id, ctx.options),
+              create: ctx => repo.create(ctx.data, ctx.options),
+              update: ctx => repo.updateById(ctx.entity.id, ctx.data, ctx.options),
+              delete: ctx => repo.deleteById(ctx.entity.id, ctx.options),
+              list: ctx => repo.list(ctx.filters, ctx.options),
+          }
         : {};
 };
 

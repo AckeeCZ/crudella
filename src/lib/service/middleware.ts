@@ -6,27 +6,30 @@ import { HandlerCreators } from './handlers';
 export const createMiddlewareFactory = <T, C>(
     handlers: HandlerCreators<T, C>,
     controller: CrudController<T, C>,
-    options: {
-        allowedOperations: Operation[];
-    } = {
-        allowedOperations: [Operation.LIST, Operation.CREATE, Operation.DETAIL, Operation.UPDATE, Operation.DELETE],
+    options?: {
+        allowedOperations?: Operation[];
     }
 ) => (resourceName: string, idName: string = 'resourceId') => {
+    options = Object.assign(
+        {},
+        { allowedOperations: [Operation.LIST, Operation.CREATE, Operation.DETAIL, Operation.UPDATE, Operation.DELETE] },
+        options
+    );
     const [collectionRoutes, resourceRoutes] = [Router(), Router()];
     const [mainCollectionRoute, mainResourceRoute] = [collectionRoutes.route('/'), resourceRoutes.route(`/:${idName}`)];
-    if (options.allowedOperations.includes(Operation.LIST)) {
+    if (options.allowedOperations!.includes(Operation.LIST)) {
         mainCollectionRoute.get(controller.listAction(handlers.listHandler({})));
     }
-    if (options.allowedOperations.includes(Operation.CREATE)) {
+    if (options.allowedOperations!.includes(Operation.CREATE)) {
         mainCollectionRoute.post(controller.createAction(handlers.createHandler({})));
     }
-    if (options.allowedOperations.includes(Operation.DETAIL)) {
+    if (options.allowedOperations!.includes(Operation.DETAIL)) {
         mainResourceRoute.get(controller.detailAction(handlers.detailHandler({}), idName));
     }
-    if (options.allowedOperations.includes(Operation.UPDATE)) {
+    if (options.allowedOperations!.includes(Operation.UPDATE)) {
         mainResourceRoute.put(controller.updateAction(handlers.updateHandler({}), idName));
     }
-    if (options.allowedOperations.includes(Operation.DELETE)) {
+    if (options.allowedOperations!.includes(Operation.DELETE)) {
         mainResourceRoute.delete(controller.deleteAction(handlers.deleteHandler({}), idName));
     }
 

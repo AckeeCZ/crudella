@@ -205,6 +205,23 @@ Object {
 }
 `;
 
+exports[`createService Middleware with options allowedOperations List 1`] = `
+Array [
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+  Object {
+    "id": 2,
+    "name": "john",
+  },
+]
+`;
+
 exports[`createService Options Options cascade correctly 1`] = `
 Object {
   "contextOption": true,

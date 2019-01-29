@@ -15,6 +15,7 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 're
     createNotFoundError: () => new Error('Requested resource not found'),
     getOptions: () => ({}),
     controller: getDefaultController(),
+    options: {},
 });
 
 const createRepoImplementation = <T extends { id: any }>(

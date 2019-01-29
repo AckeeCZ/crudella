@@ -1,5 +1,6 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
+import { Operation } from 'lib/context/operation';
 import { buildService, createService, CrudRepository } from 'main';
 import * as request from 'supertest';
 
@@ -248,6 +249,36 @@ describe('createService', () => {
                 .then(res => {
                     expect(res.body).toMatchSnapshot();
                 });
+        });
+    });
+    describe('Middleware with options', () => {
+        describe('allowedOperations', () => {
+            let app: any;
+            beforeEach(() => {
+                const service = createService({
+                    repository,
+                    options: {
+                        allowedOperations: [Operation.LIST],
+                    },
+                });
+                const mdw = service.createMiddleware('/dalmatian');
+                app = express();
+                app.use(bodyParser.json());
+                app.use(mdw);
+            });
+            test('List', async() => {
+                await request(app)
+                    .get('/dalmatian')
+                    .expect(200)
+                    .then(res => {
+                        expect(res.body).toMatchSnapshot();
+                    });
+            });
+            test('Detail', async() => {
+                await request(app)
+                    .get('/dalmatian/5')
+                    .expect(404);
+            });
         });
     });
     describe('Builder', () => {

@@ -11,7 +11,7 @@ export const forgeDetailContext = <T, C>(
 });
 
 export const forgeCreateContext = <T, C>(
-    vars: Pick<CreateContext<T, C>, 'data' | 'context' | 'options'>
+    vars: Pick<CreateContext<T, C>, 'data' | 'bareData' | 'context' | 'options'>
 ): CreateContext<T, C> => ({
     ...vars,
     type: Operation.CREATE as Operation.CREATE,

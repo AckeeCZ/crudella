@@ -18,6 +18,9 @@ Object {
 
 exports[`createService Basic handlers Create 2`] = `
 Object {
+  "bareData": Object {
+    "id": 5,
+  },
   "context": Object {
     "q": "dalmatians",
     "user": "Crudella de Vile",

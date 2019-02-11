@@ -57,6 +57,7 @@ export interface UpdateContext<T, C> extends BaseCrudContext<T, C> {
 export interface CreateContext<T, C> extends BaseCrudContext<T, C> {
     type: Operation.CREATE;
     data: any;
+    bareData: any;
     write: true;
     safe: false;
 }

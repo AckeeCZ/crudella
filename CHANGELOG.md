@@ -7,6 +7,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 ### Changed
 - Add `bareData` to create context
+- Fix prettier-husky-lint-staged config
 
 ### Fixed
 - Missing inlined transitive dependency for `express-serve-static-core`

@@ -62,6 +62,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             context,
             options,
             data: processedData,
+            bareData: data,
         });
         await implementation.authorize(ctx);
         return implementation.create(ctx);

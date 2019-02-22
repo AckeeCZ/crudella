@@ -13,7 +13,7 @@ import { ServiceImplementation } from '../settings/definitions';
 export type DetailHandler<T, C> = (id: number, context: C) => Promise<T>;
 export type CreateHandler<T, C> = (data: any, context: C) => Promise<T>;
 export type UpdateHandler<T, C> = (id: number, data: any, context: C) => Promise<T>;
-export type DeleteHandler<T, C> = (id: number, context: C) => Promise<T>;
+export type DeleteHandler<T, C> = (id: number, context: C) => void;
 export type ListHandler<T, C> = (filters: any, context: C) => Promise<T[]>;
 
 export interface HandlerCreators<T, C> {

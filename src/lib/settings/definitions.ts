@@ -32,7 +32,7 @@ export interface Definitions<T, C = any> {
      * Delete entity (fetched in DeleteContext)
      * Implement to use `deleteHandler`
      */
-    delete?: (context: DeleteContext<T, C>) => void;
+    delete?: (context: DeleteContext<T, C>) => PromiseLike<any>;
     /**
      * List entities, optionally filter (filters stored in ListContext)
      * Implement to use `listHandler`

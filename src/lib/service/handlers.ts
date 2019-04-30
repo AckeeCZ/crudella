@@ -57,7 +57,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     };
     const createHandler = (options: any = {}): CreateHandler<T, C> => async (data: any, context: C) => {
         options = await bootstrapOption(Operation.CREATE, options, context);
-        const processedData = implementation.processData({ data, context, options, type: Operation.CREATE });
+        const processedData = await implementation.processData({ data, context, options, type: Operation.CREATE });
         const ctx: CreateContext<T, C> = forgeCreateContext({
             context,
             options,

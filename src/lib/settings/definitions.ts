@@ -42,7 +42,7 @@ export interface Definitions<T, C = any> {
     repository?: CrudRepository<T>;
     /**
      * This method processes any incoming data coming from user.
-     * Data processing is called for Create and Update.
+     * Data processing is called for Create, Update and List (filters).
      * Override the method for custom data transformation.
      */
     processData?: (ctx: DataContext<T, C>) => PromiseLike<any> | any;

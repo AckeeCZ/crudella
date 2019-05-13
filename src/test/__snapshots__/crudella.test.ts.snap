@@ -115,6 +115,7 @@ Object {
     "q": "dalmatians",
     "user": "Crudella de Vile",
   },
+  "data": undefined,
   "filters": Object {
     "nice": true,
   },

@@ -57,27 +57,29 @@ export const createHandlers = <T extends { id: any }, C extends object>(
     };
     const createHandler = (options: any = {}): CreateHandler<T, C> => async (data: any, context: C) => {
         options = await bootstrapOption(Operation.CREATE, options, context);
-        const processedData = await implementation.processData({ data, context, options, type: Operation.CREATE });
         const ctx: CreateContext<T, C> = forgeCreateContext({
+            data,
             context,
             options,
-            data: processedData,
             bareData: data,
         });
+        const processedData = await implementation.processData(ctx);
+        ctx.data = processedData;
         await implementation.authorize(ctx);
         return implementation.create(ctx);
     };
     const updateHandler = (options: any = {}): UpdateHandler<T, C> => async (id: number, data: any, context: C) => {
         options = await bootstrapOption(Operation.UPDATE, options, context);
-        const processedData = await implementation.processData({ data, context, options, type: Operation.UPDATE });
         const entity = await safeDetail({ id, context, options });
         const ctx: UpdateContext<T, C> = forgeUpdateContext({
+            data,
             context,
             entity,
             options,
-            data: processedData,
             bareData: data,
         });
+        const processedData = await implementation.processData(ctx);
+        ctx.data = processedData;
         await implementation.authorize(ctx);
         return implementation.update(ctx);
     };
@@ -102,6 +104,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
             filters,
         });
+        const processedData = await implementation.processData(ctx);
+        ctx.data = processedData;
         await implementation.authorize(ctx);
         return implementation.list(ctx);
     };

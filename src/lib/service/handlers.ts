@@ -53,7 +53,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
         });
         await implementation.authorize(ctx);
-        return ctx.entity;
+        const result = ctx.entity;
+        return implementation.postprocessData(result, ctx);
     };
     const createHandler = (options: any = {}): CreateHandler<T, C> => async (data: any, context: C) => {
         options = await bootstrapOption(Operation.CREATE, options, context);
@@ -66,7 +67,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         const processedData = await implementation.processData(ctx);
         ctx.data = processedData;
         await implementation.authorize(ctx);
-        return implementation.create(ctx);
+        const result = implementation.create(ctx);
+        return implementation.postprocessData(result, ctx);
     };
     const updateHandler = (options: any = {}): UpdateHandler<T, C> => async (id: number, data: any, context: C) => {
         options = await bootstrapOption(Operation.UPDATE, options, context);
@@ -81,7 +83,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         const processedData = await implementation.processData(ctx);
         ctx.data = processedData;
         await implementation.authorize(ctx);
-        return implementation.update(ctx);
+        const result = implementation.update(ctx);
+        return implementation.postprocessData(result, ctx);
     };
 
     const deleteHandler = (options: any = {}): DeleteHandler<T, C> => async (id: number, context: C) => {
@@ -94,7 +97,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
         });
         await implementation.authorize(ctx);
-        return implementation.delete(ctx);
+        const result = implementation.delete(ctx);
+        return implementation.postprocessData(result, ctx);
     };
 
     const listHandler = (options: any = {}): ListHandler<T, C> => async (filters: any, context: C) => {
@@ -107,7 +111,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         const processedData = await implementation.processData(ctx);
         ctx.data = processedData;
         await implementation.authorize(ctx);
-        return implementation.list(ctx);
+        const result = implementation.list(ctx);
+        return implementation.postprocessData(result, ctx);
     };
 
     return {

@@ -46,6 +46,11 @@ export interface Definitions<T, C = any> {
      * Override the method for custom data transformation.
      */
     processData?: (ctx: DataContext<T, C>) => PromiseLike<any> | any;
+
+    /**
+     * Process data coming from the service.
+     */
+    postprocessData?: (returnValue: any, context: CrudContext<T, C>) => PromiseLike<any> | any;
     /**
      * Reject access to any given handler based on CrudContext.
      * This method is called before each handler is finished. To reject access, throw Error.

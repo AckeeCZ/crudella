@@ -12,6 +12,7 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 're
     list: () => Promise.reject(new Error('"list" not implemented')),
     authorize: () => Promise.resolve(true),
     processData: ({ data }: DataContext<T, C>) => data,
+    postprocessData: (returnValue: any) => returnValue,
     createNotFoundError: () => new Error('Requested resource not found'),
     getOptions: () => ({}),
     controller: getDefaultController(),

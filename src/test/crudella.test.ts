@@ -16,11 +16,11 @@ const id = 5;
 
 const createRepository = (): CrudRepository<PersonAttributes> => {
     return {
-        create: jest.fn((data, opts) => Promise.resolve({ ...data, id: 5 })),
-        deleteById: jest.fn((_id, opts) => Promise.resolve(true)),
-        detailById: jest.fn((_id, opts) => Promise.resolve({ ...entity, id: _id })),
-        list: jest.fn((_filters, opts) => Promise.resolve(Array(3).fill(entity))),
-        updateById: jest.fn((_id, data, opts) => Promise.resolve({ ...entity, ...data })),
+        create: jest.fn(data => Promise.resolve({ ...data, id: 5 })),
+        deleteById: jest.fn(_id => Promise.resolve(true)),
+        detailById: jest.fn(_id => Promise.resolve({ ...entity, id: _id })),
+        list: jest.fn(_filters => Promise.resolve(Array(3).fill(entity))),
+        updateById: jest.fn((_id, data) => Promise.resolve({ ...entity, ...data })),
     };
 };
 const createMethods = () => {

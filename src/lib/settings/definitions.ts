@@ -45,7 +45,7 @@ export interface Definitions<T, C = any> {
      * Data processing is called for Create and Update.
      * Override the method for custom data transformation.
      */
-    processData?: ({ data }: DataContext<T, C>) => PromiseLike<any> | any;
+    processData?: (ctx: DataContext<T, C>) => PromiseLike<any> | any;
     /**
      * Reject access to any given handler based on CrudContext.
      * This method is called before each handler is finished. To reject access, throw Error.

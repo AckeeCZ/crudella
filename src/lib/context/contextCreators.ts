@@ -1,48 +1,41 @@
 import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from 'lib/context/crudContext';
+import { Omit } from 'lodash';
 import { Operation } from './operation';
 
-export const forgeDetailContext = <T, C>(
-    vars: Pick<DetailContext<T, C>, 'id' | 'entity' | 'context' | 'options'>
-): DetailContext<T, C> => ({
+type StripConstants<T> = Omit<T, 'type' | 'write' | 'safe'>;
+
+export const forgeDetailContext = <T, C>(vars: StripConstants<DetailContext<T, C>>): DetailContext<T, C> => ({
     ...vars,
-    type: Operation.DETAIL as Operation.DETAIL,
-    write: false as false,
-    safe: true as true,
+    type: Operation.DETAIL,
+    write: false,
+    safe: true,
 });
 
-export const forgeCreateContext = <T, C>(
-    vars: Pick<CreateContext<T, C>, 'data' | 'bareData' | 'context' | 'options'>
-): CreateContext<T, C> => ({
+export const forgeCreateContext = <T, C>(vars: StripConstants<CreateContext<T, C>>): CreateContext<T, C> => ({
     ...vars,
-    type: Operation.CREATE as Operation.CREATE,
-    write: true as true,
-    safe: false as false,
+    type: Operation.CREATE,
+    write: true,
+    safe: false,
 });
 
-export const forgeUpdateContext = <T, C>(
-    vars: Pick<UpdateContext<T, C>, 'data' | 'bareData' | 'entity' | 'context' | 'options'>
-): UpdateContext<T, C> => ({
+export const forgeUpdateContext = <T, C>(vars: StripConstants<UpdateContext<T, C>>): UpdateContext<T, C> => ({
     ...vars,
     data: Object.assign({}, vars.entity, vars.data),
-    type: Operation.UPDATE as Operation.UPDATE,
-    write: true as true,
-    safe: false as false,
+    type: Operation.UPDATE,
+    write: true,
+    safe: false,
 });
 
-export const forgeDeleteContext = <T, C>(
-    vars: Pick<DeleteContext<T, C>, 'id' | 'entity' | 'context' | 'options'>
-): DeleteContext<T, C> => ({
+export const forgeDeleteContext = <T, C>(vars: StripConstants<DeleteContext<T, C>>): DeleteContext<T, C> => ({
     ...vars,
-    type: Operation.DELETE as Operation.DELETE,
-    write: false as false,
-    safe: false as false,
+    type: Operation.DELETE,
+    write: false,
+    safe: false,
 });
 
-export const forgeListContext = <T, C>(
-    vars: Pick<ListContext<T, C>, 'filters' | 'context' | 'options'>
-): ListContext<T, C> => ({
+export const forgeListContext = <T, C>(vars: StripConstants<ListContext<T, C>>): ListContext<T, C> => ({
     ...vars,
     type: Operation.LIST,
-    write: false as false,
-    safe: true as true,
+    write: false,
+    safe: true,
 });

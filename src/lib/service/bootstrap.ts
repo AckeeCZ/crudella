@@ -20,6 +20,7 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T>>, 're
 
 const createRepoImplementation = <T extends { id: any }>(
     repo?: CrudRepository<T>
+    // tslint:disable-next-line max-union-size
 ): Pick<Required<Definitions<T>>, 'detail' | 'create' | 'update' | 'delete' | 'list'> | {} => {
     return repo
         ? {

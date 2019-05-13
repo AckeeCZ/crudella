@@ -37,6 +37,9 @@ const createMethods = () => {
 let methods = createMethods();
 let repository = createRepository();
 
+// tslint:disable no-big-function
+// tslint:disable no-identical-functions
+// tslint:disable no-duplicate-string
 describe('createService', () => {
     test('Returns an object', () => {
         expect(typeof createService({})).toBe('object');
@@ -288,6 +291,7 @@ describe('createService', () => {
             serviceFactory({
                 detail: methods.detail,
                 authorize: ctx => {
+                    // tslint:disable-next-line prefer-immediate-return
                     const tryAssignContext: DummyContext = ctx.context;
                     return tryAssignContext;
                 },

@@ -58,6 +58,7 @@
     "ts-jest": "^24.0.2",
     "tslint-config-ackee": "^0.3.0",
     "tslint-consistent-codestyle": "^1.14.1",
+    "tslint-sonarts": "^1.9.0",
     "typedoc": "^0.14.2",
     "typescript": "^3.4.5"
   }

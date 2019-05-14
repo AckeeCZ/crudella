@@ -64,7 +64,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
             bareData: data,
         });
-        const processedData = await implementation.processData(ctx);
+        const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
         await implementation.authorize(ctx);
         const result = implementation.create(ctx);
@@ -80,7 +80,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
             bareData: data,
         });
-        const processedData = await implementation.processData(ctx);
+        const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
         await implementation.authorize(ctx);
         const result = implementation.update(ctx);
@@ -108,8 +108,8 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             options,
             filters,
         });
-        const processedData = await implementation.processData(ctx);
-        ctx.data = processedData;
+        const processedData = await implementation.processData(ctx.filters, ctx);
+        ctx.filters = processedData;
         await implementation.authorize(ctx);
         const result = implementation.list(ctx);
         return implementation.postprocessData(result, ctx);

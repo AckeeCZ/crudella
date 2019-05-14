@@ -45,7 +45,7 @@ export interface Definitions<T, C = any> {
      * Data processing is called for Create, Update and List (filters).
      * Override the method for custom data transformation.
      */
-    processData?: (ctx: DataContext<T, C>) => PromiseLike<any> | any;
+    processData?: (data: any, ctx: DataContext<T, C>) => PromiseLike<any> | any;
 
     /**
      * Process data coming from the service.

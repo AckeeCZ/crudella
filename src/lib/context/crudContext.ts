@@ -81,8 +81,4 @@ export type CrudContext<T, C> =
     | DeleteContext<T, C>
     | ListContext<T, C>;
 
-export type DataContext<T, C> = Pick<
-    CreateContext<T, C> | UpdateContext<T, C>,
-    // tslint:disable-next-line max-union-size
-    'data' | 'context' | 'options' | 'type'
->;
+export type DataContext<T, C> = UpdateContext<T, C> | CreateContext<T, C> | ListContext<T, C>;

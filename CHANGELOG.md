@@ -8,6 +8,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - `postprocessData` function to transform all possible return values
 
+### Fixed
+ - Make `Operation` enum non-const
+
 ### Changed
 - `processData` now called even on list
 

@@ -1,4 +1,4 @@
-export const enum Operation {
+export enum Operation {
     DETAIL = 'DETAIL',
     UPDATE = 'UPDATE',
     DELETE = 'DELETE',

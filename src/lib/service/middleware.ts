@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { Operation } from 'lib/context/operation';
+import { Operation } from '../context/operation';
 import { CrudController } from './controller';
 import { HandlerCreators } from './handlers';
 

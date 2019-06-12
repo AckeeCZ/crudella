@@ -1,6 +1,6 @@
-import { Omit } from 'lib/helpers';
-import { Definitions } from 'lib/settings/definitions';
-import { CrudRepository } from 'lib/settings/repository';
+import { Omit } from '../helpers';
+import { Definitions } from '../settings/definitions';
+import { CrudRepository } from '../settings/repository';
 import { getDefaultController } from './controller';
 
 const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T, C>>, 'repository'> => ({

@@ -1,8 +1,8 @@
 import * as bodyParser from 'body-parser';
 import * as express from 'express';
-import { Operation } from 'lib/context/operation';
-import { buildService, createService, CrudRepository } from 'main';
 import * as request from 'supertest';
+import { Operation } from '../lib/context/operation';
+import { buildService, createService, CrudRepository } from '../main';
 
 interface PersonAttributes {
     id: number;

@@ -1,5 +1,5 @@
-import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from 'lib/context/crudContext';
 import { Omit } from 'lodash';
+import { CreateContext, DeleteContext, DetailContext, ListContext, UpdateContext } from './crudContext';
 import { Operation } from './operation';
 
 type StripConstants<T> = Omit<T, 'type' | 'write' | 'safe'>;

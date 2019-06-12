@@ -5,6 +5,8 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ## [Unreleased]
+
+## [0.4.5] - 2019-06-12
 ### Fixed
  - Replace all absolute paths with relative
 
@@ -83,7 +85,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Added
 - Project template
 
-[Unreleased]: https://github.com/AckeeCZ/crudella/compare/v0.4.4...HEAD
+[Unreleased]: https://github.com/AckeeCZ/crudella/compare/v0.4.5...HEAD
+[0.4.5]: https://github.com/AckeeCZ/crudella/compare/v0.4.4...v0.4.5
 [0.4.4]: https://github.com/AckeeCZ/crudella/compare/v0.4.3...v0.4.4
 [0.4.3]: https://github.com/AckeeCZ/crudella/compare/v0.4.2...v0.4.3
 [0.4.2]: https://github.com/AckeeCZ/crudella/compare/v0.4.1...v0.4.2

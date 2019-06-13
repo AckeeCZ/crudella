@@ -18,7 +18,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
  - Make `Operation` enum non-const
 
 ### Changed
-- `processData` now called even on list
+- **[BREAKING]** `processData` now called even on list
+- **[BREAKING]** `processData` signature changed from `ctx => data` to `(data, ctx) => data`
 
 ## [0.4.3] - 2019-04-30
 ### Fixed

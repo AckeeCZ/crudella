@@ -14,7 +14,7 @@ const options = { withRelated: ['dummy'] };
 const filters = { nice: true };
 const id = 5;
 
-const createRepository = (): CrudRepository<PersonAttributes> => {
+const createRepository = (): CrudRepository<PersonAttributes, 'id'> => {
     return {
         create: jest.fn(data => Promise.resolve({ ...data, id: 5 })),
         deleteById: jest.fn(_id => Promise.resolve(true)),
@@ -94,7 +94,7 @@ describe('createService', () => {
             expect(methods.list.mock.calls[0][0]).toMatchSnapshot();
         });
         test('Repository implementation', async () => {
-            const service = createService({ repository });
+            const service = createService({ repository, idKey: 'id' });
             await expect(service.detailHandler()(id, context)).resolves.toBeTruthy();
             await expect(service.createHandler()(entity, context)).resolves.toBeTruthy();
             await expect(service.listHandler()(filters, context)).resolves.toBeTruthy();
@@ -138,7 +138,7 @@ describe('createService', () => {
     });
     describe('Unimplemented handlers error', () => {
         test('Direct implementation', async () => {
-            const service = createService({});
+            const service = createService<any, any, any>({});
             await expect(service.detailHandler()(id, context)).rejects.toThrow(/not implemented/);
             await expect(service.createHandler()(entity, context)).rejects.toThrow(/not implemented/);
             await expect(service.listHandler()(filters, context)).rejects.toThrow(/not implemented/);
@@ -150,8 +150,9 @@ describe('createService', () => {
     });
     describe('Not found', () => {
         test('Default error', async () => {
-            const service = createService({ detail: jest.fn().mockResolvedValue(null) });
-            await expect(service.detailHandler()(id, context)).rejects.toThrow(/not found/);
+            const service = createService({ detail: () => Promise.resolve(null) });
+            // calling the handler with a number is even type-illegal, since null has no keys
+            await expect(service.detailHandler()(id as never, context)).rejects.toThrow(/not found/);
         });
         test('Custom error', async () => {
             const customError = new RangeError('Foo');
@@ -205,6 +206,7 @@ describe('createService', () => {
         beforeEach(() => {
             const service = createService({
                 repository,
+                idKey: 'id',
             });
             const mdw = service.createMiddleware('/dalmatian');
             app = express();
@@ -260,6 +262,7 @@ describe('createService', () => {
             beforeEach(() => {
                 const service = createService({
                     repository,
+                    idKey: 'id',
                     options: {
                         allowedOperations: [Operation.LIST],
                     },
@@ -287,7 +290,7 @@ describe('createService', () => {
     describe('Builder', () => {
         test('Setting http context via builder', async () => {
             type DummyContext = [number, string];
-            const serviceFactory = buildService<PersonAttributes, DummyContext>({}).createService;
+            const serviceFactory = buildService<PersonAttributes, DummyContext, 'id'>({}).createService;
             serviceFactory({
                 detail: methods.detail,
                 authorize: ctx => {
@@ -298,7 +301,7 @@ describe('createService', () => {
             });
         });
         test('Composition build', async () => {
-            const serviceFactory = buildService({})
+            const serviceFactory = buildService<PersonAttributes, any, 'id'>({})
                 .buildService({ create: methods.create })
                 .buildService({ detail: methods.detail })
                 .buildService({ delete: methods.delete })

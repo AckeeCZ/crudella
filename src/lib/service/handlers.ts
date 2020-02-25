@@ -10,28 +10,28 @@ import { Operation } from '../context/operation';
 import { errorOrEmpty } from '../helpers';
 import { ServiceImplementation } from '../settings/definitions';
 
-export type DetailHandler<T, C> = (id: number, context: C) => Promise<T>;
+export type DetailHandler<T, C, K extends keyof T> = (id: T[K], context: C) => Promise<T>;
 export type CreateHandler<T, C> = (data: any, context: C) => Promise<T>;
-export type UpdateHandler<T, C> = (id: number, data: any, context: C) => Promise<T>;
-export type DeleteHandler<T, C> = (id: number, context: C) => Promise<T>;
+export type UpdateHandler<T, C, K extends keyof T> = (id: T[K], data: any, context: C) => Promise<T>;
+export type DeleteHandler<T, C, K extends keyof T> = (id: T[K], context: C) => Promise<T>;
 export type ListHandler<T, C> = (filters: any, context: C) => Promise<T[]>;
 
-export interface HandlerCreators<T, C> {
-    detailHandler: (options?: any) => DetailHandler<T, C>;
+export interface HandlerCreators<T, C, K extends keyof T> {
+    detailHandler: (options?: any) => DetailHandler<T, C, K>;
     createHandler: (options?: any) => CreateHandler<T, C>;
-    updateHandler: (options?: any) => UpdateHandler<T, C>;
-    deleteHandler: (options?: any) => DeleteHandler<T, C>;
+    updateHandler: (options?: any) => UpdateHandler<T, C, K>;
+    deleteHandler: (options?: any) => DeleteHandler<T, C, K>;
     listHandler: (options?: any) => ListHandler<T, C>;
 }
 
-export const createHandlers = <T extends { id: any }, C extends object>(
-    implementation: ServiceImplementation<T, C>
-): HandlerCreators<T, C> => {
+export const createHandlers = <T, C extends object, K extends keyof T>(
+    implementation: ServiceImplementation<T, C, K>
+): HandlerCreators<T, C, K> => {
     /**
      * Fetch resource, throw error when resource missing.
      * This method is used for handlers working with a single existing resource (get, update, delete)
      */
-    const safeDetail = (context: Pick<DetailContext<T, C>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
+    const safeDetail = (context: Pick<DetailContext<T, C, K>, 'id' | 'context' | 'options'>): PromiseLike<T> =>
         implementation
             .detail({ ...context, type: Operation.DETAIL, write: false, safe: true })
             .then(errorOrEmpty(implementation.createNotFoundError()));
@@ -43,10 +43,10 @@ export const createHandlers = <T extends { id: any }, C extends object>(
             ...(context as object),
         }));
 
-    const detailHandler = (options: any = {}): DetailHandler<T, C> => async (id: number, context: C) => {
+    const detailHandler = (options: any = {}): DetailHandler<T, C, K> => async (id: T[K], context: C) => {
         options = await bootstrapOption(Operation.DETAIL, options, context);
         const entity = await safeDetail({ id, context, options });
-        const ctx: DetailContext<T, C> = forgeDetailContext({
+        const ctx: DetailContext<T, C, K> = forgeDetailContext({
             id,
             context,
             entity,
@@ -70,7 +70,7 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         const result = implementation.create(ctx);
         return implementation.postprocessData(result, ctx);
     };
-    const updateHandler = (options: any = {}): UpdateHandler<T, C> => async (id: number, data: any, context: C) => {
+    const updateHandler = (options: any = {}): UpdateHandler<T, C, K> => async (id: T[K], data: any, context: C) => {
         options = await bootstrapOption(Operation.UPDATE, options, context);
         const entity = await safeDetail({ id, context, options });
         const ctx: UpdateContext<T, C> = forgeUpdateContext({
@@ -87,10 +87,10 @@ export const createHandlers = <T extends { id: any }, C extends object>(
         return implementation.postprocessData(result, ctx);
     };
 
-    const deleteHandler = (options: any = {}): DeleteHandler<T, C> => async (id: number, context: C) => {
+    const deleteHandler = (options: any = {}): DeleteHandler<T, C, K> => async (id: T[K], context: C) => {
         options = await bootstrapOption(Operation.DELETE, options, context);
         const entity = await safeDetail({ id, context, options });
-        const ctx: DeleteContext<T, C> = forgeDeleteContext({
+        const ctx: DeleteContext<T, C, K> = forgeDeleteContext({
             id,
             context,
             entity,

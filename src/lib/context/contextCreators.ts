@@ -4,7 +4,9 @@ import { Operation } from './operation';
 
 type StripConstants<T> = Omit<T, 'type' | 'write' | 'safe'>;
 
-export const forgeDetailContext = <T, C>(vars: StripConstants<DetailContext<T, C>>): DetailContext<T, C> => ({
+export const forgeDetailContext = <T, C, K extends keyof T>(
+    vars: StripConstants<DetailContext<T, C, K>>
+): DetailContext<T, C, K> => ({
     ...vars,
     type: Operation.DETAIL,
     write: false,
@@ -26,7 +28,9 @@ export const forgeUpdateContext = <T, C>(vars: StripConstants<UpdateContext<T, C
     safe: false,
 });
 
-export const forgeDeleteContext = <T, C>(vars: StripConstants<DeleteContext<T, C>>): DeleteContext<T, C> => ({
+export const forgeDeleteContext = <T, C, K extends keyof T>(
+    vars: StripConstants<DeleteContext<T, C, K>>
+): DeleteContext<T, C, K> => ({
     ...vars,
     type: Operation.DELETE,
     write: false,

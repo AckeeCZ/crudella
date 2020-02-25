@@ -12,12 +12,12 @@ import { Omit } from '../helpers';
 import { CrudController } from '../service/controller';
 import { CrudRepository } from './repository';
 
-export interface Definitions<T, C = any> {
+export interface Definitions<T, C, K extends keyof T> {
     /**
      * Find entity by id (stored in ReadContext)
      * Implement to use `detailHandler`
      */
-    detail?: (context: Omit<DetailContext<T, C>, 'entity'>) => PromiseLike<T>;
+    detail?: (context: Omit<DetailContext<T, C, K>, 'entity'>) => PromiseLike<T>;
     /**
      * Create entity from data (stored in CreateContext)
      * Implement to use `createHandler`
@@ -32,14 +32,15 @@ export interface Definitions<T, C = any> {
      * Delete entity (fetched in DeleteContext)
      * Implement to use `deleteHandler`
      */
-    delete?: (context: DeleteContext<T, C>) => PromiseLike<any>;
+    delete?: (context: DeleteContext<T, C, K>) => PromiseLike<any>;
     /**
      * List entities, optionally filter (filters stored in ListContext)
      * Implement to use `listHandler`
      */
     list?: (context: ListContext<T, C>) => PromiseLike<T[]>;
 
-    repository?: CrudRepository<T>;
+    repository?: CrudRepository<T, K>;
+    idKey?: K;
     /**
      * This method processes any incoming data coming from user.
      * Data processing is called for Create, Update and List (filters).
@@ -50,22 +51,22 @@ export interface Definitions<T, C = any> {
     /**
      * Process data coming from the service.
      */
-    postprocessData?: (returnValue: any, context: CrudContext<T, C>) => PromiseLike<any> | any;
+    postprocessData?: (returnValue: any, context: CrudContext<T, C, K>) => PromiseLike<any> | any;
     /**
      * Reject access to any given handler based on CrudContext.
      * This method is called before each handler is finished. To reject access, throw Error.
      * Override the method for custom ACL or validation.
      */
-    authorize?: (context: CrudContext<T, C>) => PromiseLike<any> | any;
+    authorize?: (context: CrudContext<T, C, K>) => PromiseLike<any> | any;
     /**
      * Override to throw custom error when resource not found.
      */
     createNotFoundError?: () => Error;
     getOptions?: (operation: Operation) => PromiseLike<any> | any;
-    controller?: CrudController<T, C>;
+    controller?: CrudController<T, C, K>;
     options?: {
         allowedOperations?: Operation[];
     };
 }
 
-export type ServiceImplementation<T, C> = Omit<Required<Definitions<T, C>>, 'repository'>;
+export type ServiceImplementation<T, C, K extends keyof T> = Omit<Required<Definitions<T, C, K>>, 'repository'>;

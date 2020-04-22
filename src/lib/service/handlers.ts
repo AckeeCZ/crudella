@@ -64,9 +64,9 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             bareData: data,
         });
+        await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
-        await implementation.authorize(ctx);
         const result = implementation.create(ctx);
         return implementation.postprocessData(result, ctx);
     };
@@ -80,9 +80,9 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             bareData: data,
         });
+        await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
-        await implementation.authorize(ctx);
         const result = implementation.update(ctx);
         return implementation.postprocessData(result, ctx);
     };
@@ -108,9 +108,9 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             filters,
         });
+        await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.filters, ctx);
         ctx.filters = processedData;
-        await implementation.authorize(ctx);
         const result = implementation.list(ctx);
         return implementation.postprocessData(result, ctx);
     };

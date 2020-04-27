@@ -3,8 +3,8 @@ import { createHandlers } from './service/handlers';
 import { createMiddlewareFactory } from './service/middleware';
 import { Definitions } from './settings/definitions';
 
-export const createService = <T extends { id: any }, C extends object = {}>(defs: Definitions<T>) => {
-    const implementation = bootstrapConfiguration<T, C>(defs);
+export const createService = <T, C extends object, K extends keyof T>(defs: Definitions<T, C, K>) => {
+    const implementation = bootstrapConfiguration<T, C, K>(defs);
     const handlers = createHandlers(implementation);
     const createMiddleware = createMiddlewareFactory(handlers, implementation.controller, defs.options);
 
@@ -15,13 +15,13 @@ export const createService = <T extends { id: any }, C extends object = {}>(defs
     };
 };
 
-export const buildService = <T extends { id: any }, C = {}>(
-    buildingDefs: Definitions<T, C>,
-    prevDefs?: Definitions<T, C>
+export const buildService = <T, C extends object, K extends keyof T>(
+    buildingDefs: Definitions<T, C, K>,
+    prevDefs?: Definitions<T, C, K>
 ) => {
     const mergedDefs = Object.assign({}, prevDefs, buildingDefs);
     return {
-        createService: (defs: Definitions<T, C>) => createService(Object.assign({}, defs, mergedDefs)),
-        buildService: (defs: Definitions<T, C>) => buildService(defs, mergedDefs),
+        createService: (defs: Definitions<T, C, K>) => createService(Object.assign({}, defs, mergedDefs)),
+        buildService: (defs: Definitions<T, C, K>) => buildService(defs, mergedDefs),
     };
 };

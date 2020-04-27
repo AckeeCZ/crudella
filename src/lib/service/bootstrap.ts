@@ -3,7 +3,10 @@ import { Definitions } from '../settings/definitions';
 import { CrudRepository } from '../settings/repository';
 import { getDefaultController } from './controller';
 
-const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T, C>>, 'repository'> => ({
+const createDefaultImplementation = <T, C, K extends keyof T>(): Omit<
+    Required<Definitions<T, C, K>>,
+    'repository'
+> => ({
     detail: () => Promise.reject(new Error('"detail" not implemented')),
     create: () => Promise.reject(new Error('"create" not implemented')),
     update: () => Promise.reject(new Error('"update" not implemented')),
@@ -16,22 +19,29 @@ const createDefaultImplementation = <T, C>(): Omit<Required<Definitions<T, C>>, 
     getOptions: () => ({}),
     controller: getDefaultController(),
     options: {},
+    idKey: 'id' as any,
 });
 
-const createRepoImplementation = <T extends { id: any }, C>(
-    repo?: CrudRepository<T>
+const createRepoImplementation = <T, C, K extends keyof T>(
+    repo?: CrudRepository<T, K>,
+    idKey?: K
     // tslint:disable-next-line max-union-size
-): Pick<Required<Definitions<T, C>>, 'detail' | 'create' | 'update' | 'delete' | 'list'> | {} => {
-    return repo
+): Pick<Required<Definitions<T, C, K>>, 'detail' | 'create' | 'update' | 'delete' | 'list'> | {} => {
+    return repo && idKey
         ? {
             detail: ctx => repo.detailById(ctx.id, ctx.options),
             create: ctx => repo.create(ctx.data, ctx.options),
-            update: ctx => repo.updateById(ctx.entity.id, ctx.data, ctx.options),
-            delete: ctx => repo.deleteById(ctx.entity.id, ctx.options),
+            update: ctx => repo.updateById(ctx.entity[idKey], ctx.data, ctx.options),
+            delete: ctx => repo.deleteById(ctx.entity[idKey], ctx.options),
             list: ctx => repo.list(ctx.filters, ctx.options),
         }
         : {};
 };
 
-export const bootstrapConfiguration = <T extends { id: any }, C extends object>(defs: Definitions<T>) =>
-    Object.assign({}, createDefaultImplementation<T, C>(), createRepoImplementation<T, C>(defs.repository), defs);
+export const bootstrapConfiguration = <T, C extends object, K extends keyof T>(defs: Definitions<T, C, K>) =>
+    Object.assign(
+        {},
+        createDefaultImplementation<T, C, K>(),
+        createRepoImplementation<T, C, K>(defs.repository, defs.idKey),
+        defs
+    );

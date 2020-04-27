@@ -39,8 +39,8 @@ export interface BaseCrudContext<T, C> {
     /** Data sent by client, only available on Update */
     bareData?: any;
 }
-export interface DetailContext<T, C> extends BaseCrudContext<T, C> {
-    id: number;
+export interface DetailContext<T, C, K extends keyof T> extends BaseCrudContext<T, C> {
+    id: T[K];
     entity: T;
     type: Operation.DETAIL;
     write: false;
@@ -61,10 +61,10 @@ export interface CreateContext<T, C> extends BaseCrudContext<T, C> {
     write: true;
     safe: false;
 }
-export interface DeleteContext<T, C> extends BaseCrudContext<T, C> {
+export interface DeleteContext<T, C, K extends keyof T> extends BaseCrudContext<T, C> {
     entity: T;
     type: Operation.DELETE;
-    id: number;
+    id: T[K];
     write: false;
     safe: false;
 }
@@ -74,11 +74,11 @@ export interface ListContext<T, C> extends BaseCrudContext<T, C> {
     write: false;
     safe: true;
 }
-export type CrudContext<T, C> =
-    | DetailContext<T, C>
+export type CrudContext<T, C, K extends keyof T> =
+    | DetailContext<T, C, K>
     | UpdateContext<T, C>
     | CreateContext<T, C>
-    | DeleteContext<T, C>
+    | DeleteContext<T, C, K>
     | ListContext<T, C>;
 
 export type DataContext<T, C> = UpdateContext<T, C> | CreateContext<T, C> | ListContext<T, C>;

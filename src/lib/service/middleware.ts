@@ -3,9 +3,9 @@ import { Operation } from '../context/operation';
 import { CrudController } from './controller';
 import { HandlerCreators } from './handlers';
 
-export const createMiddlewareFactory = <T, C>(
-    handlers: HandlerCreators<T, C>,
-    controller: CrudController<T, C>,
+export const createMiddlewareFactory = <T, C, K extends keyof T>(
+    handlers: HandlerCreators<T, C, K>,
+    controller: CrudController<T, C, K>,
     options?: {
         allowedOperations?: Operation[];
     }

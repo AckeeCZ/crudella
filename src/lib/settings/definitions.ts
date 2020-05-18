@@ -47,6 +47,11 @@ export interface Definitions<T, C, K extends keyof T> {
      * Override the method for custom data transformation.
      */
     processData?: (data: any, ctx: DataContext<T, C>) => PromiseLike<any> | any;
+    /**
+     * This method sets the defaults for data or filters coming from user.
+     * Method is called for Create, Update and List.
+     */
+    setDefaults?: (data: any, ctx: DataContext<T, C>) => PromiseLike<any> | any;
 
     /**
      * Process data coming from the service.

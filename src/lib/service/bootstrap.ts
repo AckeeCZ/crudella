@@ -14,6 +14,7 @@ const createDefaultImplementation = <T, C, K extends keyof T>(): Omit<
     list: () => Promise.reject(new Error('"list" not implemented')),
     authorize: () => Promise.resolve(true),
     processData: data => data,
+    setDefaults: data => data,
     postprocessData: returnValue => returnValue,
     createNotFoundError: () => new Error('Requested resource not found'),
     getOptions: () => ({}),

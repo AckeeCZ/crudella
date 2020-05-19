@@ -64,6 +64,8 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             bareData: data,
         });
+        const defaultData = await implementation.setDefaults(ctx.data, ctx);
+        ctx.data = defaultData;
         await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
@@ -80,6 +82,8 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             bareData: data,
         });
+        const defaultData = await implementation.setDefaults(ctx.data, ctx);
+        ctx.data = defaultData;
         await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.data, ctx);
         ctx.data = processedData;
@@ -108,6 +112,8 @@ export const createHandlers = <T, C extends object, K extends keyof T>(
             options,
             filters,
         });
+        const defaultData = await implementation.setDefaults(ctx.filters, ctx);
+        ctx.filters = defaultData;
         await implementation.authorize(ctx);
         const processedData = await implementation.processData(ctx.filters, ctx);
         ctx.filters = processedData;

@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Definitions | Crudella</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for Crudella">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -74,7 +74,7 @@
 						<h4>C</h4>
 					</li>
 					<li>
-						<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+						<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -118,12 +118,19 @@
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="authorize" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> authorize</h3>
-					<div class="tsd-signature tsd-kind-icon">authorize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">authorize<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="../globals.html#crudcontext" class="tsd-signature-type">CrudContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L65">settings/definitions.ts:65</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L65">lib/settings/definitions.ts:65</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Reject access to any given handler based on CrudContext.
+								This method is called before each handler is finished. To reject access, throw Error.
+							Override the method for custom ACL or validation.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="controller" class="tsd-anchor"></a>
@@ -131,57 +138,80 @@
 					<div class="tsd-signature tsd-kind-icon">controller<span class="tsd-signature-symbol">:</span> <a href="crudcontroller.html" class="tsd-signature-type">CrudController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L71">settings/definitions.ts:71</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L71">lib/settings/definitions.ts:71</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="create" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> create</h3>
-					<div class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">create<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="createcontext.html" class="tsd-signature-type">CreateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L25">settings/definitions.ts:25</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L25">lib/settings/definitions.ts:25</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Create entity from data (stored in CreateContext)
+							Implement to use <code>createHandler</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="createnotfounderror" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> create<wbr>Not<wbr>Found<wbr>Error</h3>
-					<div class="tsd-signature tsd-kind-icon">create<wbr>Not<wbr>Found<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">create<wbr>Not<wbr>Found<wbr>Error<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Error</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L69">settings/definitions.ts:69</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L69">lib/settings/definitions.ts:69</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Override to throw custom error when resource not found.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="delete" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> delete</h3>
-					<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="deletecontext.html" class="tsd-signature-type">DeleteContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L35">settings/definitions.ts:35</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L35">lib/settings/definitions.ts:35</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Delete entity (fetched in DeleteContext)
+							Implement to use <code>deleteHandler</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="detail" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> detail</h3>
-					<div class="tsd-signature tsd-kind-icon">detail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">detail<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="../globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><a href="detailcontext.html" class="tsd-signature-type">DetailContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"entity"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L20">settings/definitions.ts:20</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L20">lib/settings/definitions.ts:20</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Find entity by id (stored in ReadContext)
+							Implement to use <code>detailHandler</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="getoptions" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> get<wbr>Options</h3>
-					<div class="tsd-signature tsd-kind-icon">get<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">get<wbr>Options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>operation<span class="tsd-signature-symbol">: </span><a href="../enums/operation.html" class="tsd-signature-type">Operation</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L70">settings/definitions.ts:70</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L70">lib/settings/definitions.ts:70</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -191,49 +221,67 @@
 					<div class="tsd-signature tsd-kind-icon">id<wbr>Key<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">K</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L43">settings/definitions.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L43">lib/settings/definitions.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="list" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> list</h3>
-					<div class="tsd-signature tsd-kind-icon">list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">list<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="listcontext.html" class="tsd-signature-type">ListContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L40">settings/definitions.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L40">lib/settings/definitions.ts:40</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>List entities, optionally filter (filters stored in ListContext)
+							Implement to use <code>listHandler</code></p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="options" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> options</h3>
-					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></div>
+					<div class="tsd-signature tsd-kind-icon">options<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>allowedOperations<span class="tsd-signature-symbol">?: </span><a href="../enums/operation.html" class="tsd-signature-type">Operation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L72">settings/definitions.ts:72</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L72">lib/settings/definitions.ts:72</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="postprocessdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> postprocess<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">postprocess<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">postprocess<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>returnValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><a href="../globals.html#crudcontext" class="tsd-signature-type">CrudContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L59">settings/definitions.ts:59</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L59">lib/settings/definitions.ts:59</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Process data coming from the service.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="processdata" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> process<wbr>Data</h3>
-					<div class="tsd-signature tsd-kind-icon">process<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">process<wbr>Data<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, ctx<span class="tsd-signature-symbol">: </span><a href="../globals.html#datacontext" class="tsd-signature-type">DataContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L49">settings/definitions.ts:49</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L49">lib/settings/definitions.ts:49</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This method processes any incoming data coming from user.
+								Data processing is called for Create, Update and List (filters).
+							Override the method for custom data transformation.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="repository" class="tsd-anchor"></a>
@@ -241,29 +289,41 @@
 					<div class="tsd-signature tsd-kind-icon">repository<span class="tsd-signature-symbol">:</span> <a href="crudrepository.html" class="tsd-signature-type">CrudRepository</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L42">settings/definitions.ts:42</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L42">lib/settings/definitions.ts:42</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="setdefaults" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> set<wbr>Defaults</h3>
-					<div class="tsd-signature tsd-kind-icon">set<wbr>Defaults<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">set<wbr>Defaults<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, ctx<span class="tsd-signature-symbol">: </span><a href="../globals.html#datacontext" class="tsd-signature-type">DataContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L54">settings/definitions.ts:54</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L54">lib/settings/definitions.ts:54</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>This method sets the defaults for data or filters coming from user.
+							Method is called for Create, Update and List.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="update" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagOptional">Optional</span> update</h3>
-					<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">update<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">(</span>context<span class="tsd-signature-symbol">: </span><a href="updatecontext.html" class="tsd-signature-type">UpdateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">PromiseLike</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L30">settings/definitions.ts:30</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L30">lib/settings/definitions.ts:30</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Update entity with new data (both in UpdateContext)
+							Implement to use <code>updateHandler</code></p>
+						</div>
+					</div>
 				</section>
 			</section>
 		</div>
@@ -385,7 +445,7 @@
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#serviceimplementation" class="tsd-kind-icon">Service<wbr>Implementation</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -397,7 +457,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#buildservice" class="tsd-kind-icon">build<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -406,7 +466,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createmiddlewarefactory" class="tsd-kind-icon">create<wbr>Middleware<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -443,65 +503,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

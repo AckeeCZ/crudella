@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Crudella</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for Crudella">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> Crudella</h1>
+			<h1>Crudella</h1>
 		</div>
 	</div>
 </header>
@@ -75,8 +75,12 @@
 					<p>Tool for developing generic service layer for RESTful CRUD API in your Node.js backend application.</p>
 					<img src="https://www.publicdomainpictures.net/pictures/270000/velka/dog-paint-splatter-illustration.jpg" height="170" width="170"/>
 				</div>
-				<h1 id="crudella">Crudella</h1>
-				<h2 id="why-crudella">Why Crudella</h2>
+				<a href="#crudella" id="crudella" style="color: inherit; text-decoration: none;">
+					<h1>Crudella</h1>
+				</a>
+				<a href="#why-crudella" id="why-crudella" style="color: inherit; text-decoration: none;">
+					<h2>Why Crudella</h2>
+				</a>
 				<p>Crudella is a service factory. It <em>creates</em> your service module based on the minimal required configuration you provide.
 					Assume you have an entity repository (or any other CRUD interface for resource) and to make it work, you cannot simply bind it to routes, skipping through controller and service layer.
 				Here are several random problems you face in the mentioned layers:</p>
@@ -95,12 +99,17 @@
 					<li>Simplifies testing: Don&#39;t waste your time on running lengthy integration tests for boring CRUD over and over again. Test business logic, not boilerplate.</li>
 					<li>Separation of concerns: Do not mix your service logic with validation or authorization. Crudella encourages you to decouple your service logic from client validation and orchestrates the calls for you.</li>
 				</ul>
-				<h2 id="usage">Usage</h2>
+				<a href="#usage" id="usage" style="color: inherit; text-decoration: none;">
+					<h2>Usage</h2>
+				</a>
 				<p>Install via npm:</p>
-				<pre><code><span class="hljs-built_in">npm</span> i crudella</code></pre><p>Crudella is tested on several major Node.js <a href="https://travis-ci.com/AckeeCZ/crudella">versions</a> starting at 6.</p>
-				<h2 id="getting-started">Getting started</h2>
+				<pre><code><span class="hljs-built_in">npm</span> i crudella</code></pre>
+				<p>Crudella is tested on several major Node.js <a href="https://travis-ci.com/AckeeCZ/crudella">versions</a> starting at 6.</p>
+				<a href="#getting-started" id="getting-started" style="color: inherit; text-decoration: none;">
+					<h2>Getting started</h2>
+				</a>
 				<pre><code class="language-typescript"><span class="hljs-comment">// dalmatianService.ts</span>
-<span class="hljs-keyword">import</span> { createService } <span class="hljs-keyword">from</span> <span class="hljs-string">'crudella'</span>;
+<span class="hljs-keyword">import</span> { createService } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;crudella&#x27;</span>;
 
 <span class="hljs-keyword">const</span> dalmatianService = createService&lt;DalmatianAttributes&gt;({
     <span class="hljs-comment">// each method receives relevant CRUD context</span>
@@ -114,19 +123,23 @@
 <span class="hljs-keyword">export</span> <span class="hljs-keyword">const</span> createPupperMiddleware = dalmatianService.createMiddleware;</code></pre>
 				<p>Based on that Crudella provides an express middleware you can use without further hassle:</p>
 				<pre><code class="language-typescript"><span class="hljs-comment">// routes.ts</span>
-<span class="hljs-keyword">import</span> { createPupperMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">'dalmatianService'</span>;
+<span class="hljs-keyword">import</span> { createPupperMiddleware } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;dalmatianService&#x27;</span>;
 
 <span class="hljs-keyword">const</span> router = createRouter();
-router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span>))</code></pre>
+router.use(createPupperMiddleware(<span class="hljs-string">&#x27;/api/puppies&#x27;</span>))</code></pre>
 				<p>That saved us some time. We don&#39;t have to bind the routes ourselves.
 				More importantly though, we can control the flow using rich contextual data. See <a href="#authorization">authorization</a>.</p>
 				<p>:information_source: Not using express? You can still use Crudella. See <a href="./guide/handlers.md">generating handlers</a>.</p>
 				<p>:information_source: This definition still feels too long and you have consistent repository API? See <a href="./guide/repository.md">configuring crudella using repository</a>.</p>
-				<h2 id="advanced-topics">Advanced topics</h2>
-				<h3 id="authorization">Authorization</h3>
+				<a href="#advanced-topics" id="advanced-topics" style="color: inherit; text-decoration: none;">
+					<h2>Advanced topics</h2>
+				</a>
+				<a href="#authorization" id="authorization" style="color: inherit; text-decoration: none;">
+					<h3>Authorization</h3>
+				</a>
 				<p>Crudella allows you to decouple pure data manipulation (persisting puppies) from request verification.
 				Use <code>authorize</code> option with rich contextual data to reject access due to validation / authorization and do not pollute logic of manipulating objects with unrelated code.</p>
-				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Access, createService } <span class="hljs-keyword">from</span> <span class="hljs-string">'crudella'</span>;
+				<pre><code class="language-typescript"><span class="hljs-keyword">import</span> { Access, createService } <span class="hljs-keyword">from</span> <span class="hljs-string">&#x27;crudella&#x27;</span>;
 
 <span class="hljs-keyword">const</span> dalmatianService = createService&lt;DalmatianAttributes&gt;({
     <span class="hljs-comment">// ...all crud methods</span>
@@ -134,28 +147,30 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
         <span class="hljs-comment">// reject anonymous users for all actions (detail, create, update, delete, list)</span>
         <span class="hljs-comment">// ctx.context is type of C, which you can set for your application</span>
         <span class="hljs-keyword">if</span> (!ctx.context.user) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Anonymous cannot see, delete, update or create dalmatians'</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Anonymous cannot see, delete, update or create dalmatians&#x27;</span>)
         }
         <span class="hljs-comment">// reject for selected operations</span>
-        <span class="hljs-keyword">if</span> (ctx.type === Access.LIST &amp;&amp; <span class="hljs-string">'dots'</span> <span class="hljs-keyword">in</span> filters) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Is rude to filter using dots!'</span>)
+        <span class="hljs-keyword">if</span> (ctx.type === Access.LIST &amp;&amp; <span class="hljs-string">&#x27;dots&#x27;</span> <span class="hljs-keyword">in</span> filters) {
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Is rude to filter using dots!&#x27;</span>)
         }
         <span class="hljs-keyword">if</span> (ctx.type === Access.CREATE &amp;&amp; !isValidPuppy(ctx.data)) {
-            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Your puppy is invalid, sorry.'</span>)
+            <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Your puppy is invalid, sorry.&#x27;</span>)
         }
         <span class="hljs-comment">// ctx contains all you need for validation and authorization</span>
         <span class="hljs-keyword">if</span> (ctx.type === Access.UPDATE) {
             <span class="hljs-keyword">if</span> (!age <span class="hljs-keyword">in</span> ctx.bareData) { <span class="hljs-comment">// only data sent by client</span>
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Age missing on update'</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Age missing on update&#x27;</span>)
             }
             <span class="hljs-keyword">if</span> (!isValidPuppy(ctx.data)) { <span class="hljs-comment">// new data defaulted to existing entity</span>
-                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">'Validation failed'</span>)
+                <span class="hljs-keyword">throw</span> <span class="hljs-keyword">new</span> <span class="hljs-built_in">Error</span>(<span class="hljs-string">&#x27;Validation failed&#x27;</span>)
             }
         }
     },
 });</code></pre>
 				<p>For full reference of the contexts, see <a href="https://ackeecz.github.io/crudella/interfaces/basecrudcontext.html">API docs</a>.</p>
-				<h3 id="other-topics">Other topics</h3>
+				<a href="#other-topics" id="other-topics" style="color: inherit; text-decoration: none;">
+					<h3>Other topics</h3>
+				</a>
 				<ul>
 					<li><a href="./guide/data-transformation.md">Data transformation</a></li>
 					<li><a href="./guide/repository.md">Configuring crudella using repository</a></li>
@@ -165,21 +180,33 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
 					<li><a href="./guide/notfound.md">Custom 404 error</a></li>
 					<li><a href="./guide/controller-flow.md">Customizing controller flow</a></li>
 				</ul>
-				<h2 id="development">Development</h2>
-				<h4 id="building">Building</h4>
+				<a href="#development" id="development" style="color: inherit; text-decoration: none;">
+					<h2>Development</h2>
+				</a>
+				<a href="#building" id="building" style="color: inherit; text-decoration: none;">
+					<h4>Building</h4>
+				</a>
 				<p>Run <code>npm run build</code> to compile Typescript into JavaScript.</p>
-				<h4 id="testing">Testing</h4>
+				<a href="#testing" id="testing" style="color: inherit; text-decoration: none;">
+					<h4>Testing</h4>
+				</a>
 				<p>Project uses <a href="https://jestjs.io">Jest</a> testing framework and its snapshot testing.
 				Run <code>npm run test</code> to test or <code>npm run test:coverage</code> to collect coverage.</p>
 				<p><a href="https://travis-ci.com/AckeeCZ/crudella">Travis CI</a> tests PRs, <a href="https://coveralls.io/github/AckeeCZ/crudella?branch=master">Coveralls</a> collect coverage.</p>
-				<h4 id="coding-style">Coding style</h4>
+				<a href="#coding-style" id="coding-style" style="color: inherit; text-decoration: none;">
+					<h4>Coding style</h4>
+				</a>
 				<p>TS lint and prettier
 				<code>npm run lint</code></p>
-				<h4 id="docs">Docs</h4>
+				<a href="#docs" id="docs" style="color: inherit; text-decoration: none;">
+					<h4>Docs</h4>
+				</a>
 				<p>To generate API docs using <a href="https://typedoc.org/">TypeDoc</a> and preview locally, run <code>npm run docs</code>.
 					Output is an ignored <code>docs</code> folder.
 				Current API documentation is deployed by Travis via <a href="https://pages.github.com/">GitHub Pages</a> :octocat:</p>
-				<h2 id="license">License</h2>
+				<a href="#license" id="license" style="color: inherit; text-decoration: none;">
+					<h2>License</h2>
+				</a>
 				<p>This project is licensed under <a href="./LICENSE">MIT</a>.</p>
 			</div>
 		</div>
@@ -250,7 +277,7 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#serviceimplementation" class="tsd-kind-icon">Service<wbr>Implementation</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -262,7 +289,7 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#buildservice" class="tsd-kind-icon">build<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -271,7 +298,7 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createmiddlewarefactory" class="tsd-kind-icon">create<wbr>Middleware<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -308,65 +335,15 @@ router.use(createPupperMiddleware(<span class="hljs-string">'/api/puppies'</span
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

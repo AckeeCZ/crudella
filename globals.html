@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>Crudella</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for Crudella">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="assets/js/search.js" data-base=".">
+				<div class="table-cell" id="tsd-search" data-index="assets/js/search.json" data-base=".">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -54,7 +54,7 @@
 					<a href="globals.html">Globals</a>
 				</li>
 			</ul>
-			<h1> Crudella</h1>
+			<h1>Crudella</h1>
 		</div>
 	</div>
 </header>
@@ -97,7 +97,7 @@
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#listhandler" class="tsd-kind-icon">List<wbr>Handler</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#omit" class="tsd-kind-icon">Omit</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#serviceimplementation" class="tsd-kind-icon">Service<wbr>Implementation</a></li>
-								<li class="tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a></li>
+								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a></li>
 								<li class="tsd-kind-type-alias tsd-has-type-parameter"><a href="globals.html#updatehandler" class="tsd-kind-icon">Update<wbr>Handler</a></li>
 							</ul>
 						</section>
@@ -106,10 +106,10 @@
 							<ul class="tsd-index-list">
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#bootstrapconfiguration" class="tsd-kind-icon">bootstrap<wbr>Configuration</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#buildservice" class="tsd-kind-icon">build<wbr>Service</a></li>
-								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#createhandlers" class="tsd-kind-icon">create<wbr>Handlers</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#createmiddlewarefactory" class="tsd-kind-icon">create<wbr>Middleware<wbr>Factory</a></li>
-								<li class="tsd-kind-function tsd-has-type-parameter tsd-is-not-exported"><a href="globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a></li>
+								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#createservice" class="tsd-kind-icon">create<wbr>Service</a></li>
 								<li class="tsd-kind-function"><a href="globals.html#errororempty" class="tsd-kind-icon">error<wbr>OrEmpty</a></li>
 								<li class="tsd-kind-function tsd-has-type-parameter"><a href="globals.html#forgecreatecontext" class="tsd-kind-icon">forge<wbr>Create<wbr>Context</a></li>
@@ -128,17 +128,26 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="createhandler" class="tsd-anchor"></a>
 					<h3>Create<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Create<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Create<wbr>Handler&lt;T, C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L14">service/handlers.ts:14</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L14">lib/service/handlers.ts:14</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -162,45 +171,78 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="crudcontext" class="tsd-anchor"></a>
 					<h3>Crud<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">Crud<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/detailcontext.html" class="tsd-signature-type">DetailContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/updatecontext.html" class="tsd-signature-type">UpdateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/createcontext.html" class="tsd-signature-type">CreateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/deletecontext.html" class="tsd-signature-type">DeleteContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/listcontext.html" class="tsd-signature-type">ListContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Crud<wbr>Context&lt;T, C, K&gt;<span class="tsd-signature-symbol">:</span> <a href="interfaces/detailcontext.html" class="tsd-signature-type">DetailContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/updatecontext.html" class="tsd-signature-type">UpdateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/createcontext.html" class="tsd-signature-type">CreateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/deletecontext.html" class="tsd-signature-type">DeleteContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/listcontext.html" class="tsd-signature-type">ListContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L77">context/crudContext.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L77">lib/context/crudContext.ts:77</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="datacontext" class="tsd-anchor"></a>
 					<h3>Data<wbr>Context</h3>
-					<div class="tsd-signature tsd-kind-icon">Data<wbr>Context<span class="tsd-signature-symbol">:</span> <a href="interfaces/updatecontext.html" class="tsd-signature-type">UpdateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/createcontext.html" class="tsd-signature-type">CreateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/listcontext.html" class="tsd-signature-type">ListContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Data<wbr>Context&lt;T, C&gt;<span class="tsd-signature-symbol">:</span> <a href="interfaces/updatecontext.html" class="tsd-signature-type">UpdateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/createcontext.html" class="tsd-signature-type">CreateContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><a href="interfaces/listcontext.html" class="tsd-signature-type">ListContext</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L84">context/crudContext.ts:84</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L84">lib/context/crudContext.ts:84</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="deletehandler" class="tsd-anchor"></a>
 					<h3>Delete<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Delete<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Delete<wbr>Handler&lt;T, C, K&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L16">service/handlers.ts:16</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L16">lib/service/handlers.ts:16</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T[K]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>id: <span class="tsd-signature-type">T[K]</span></h5>
+												<h5>id: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></h5>
 											</li>
 											<li>
 												<h5>context: <span class="tsd-signature-type">C</span></h5>
@@ -216,25 +258,37 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="detailhandler" class="tsd-anchor"></a>
 					<h3>Detail<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Detail<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Detail<wbr>Handler&lt;T, C, K&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L13">service/handlers.ts:13</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L13">lib/service/handlers.ts:13</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T[K]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>id: <span class="tsd-signature-type">T[K]</span></h5>
+												<h5>id: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></h5>
 											</li>
 											<li>
 												<h5>context: <span class="tsd-signature-type">C</span></h5>
@@ -250,17 +304,26 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="listhandler" class="tsd-anchor"></a>
 					<h3>List<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">List<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">List<wbr>Handler&lt;T, C&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>filters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L17">service/handlers.ts:17</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L17">lib/service/handlers.ts:17</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
 									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>filters<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
@@ -284,55 +347,94 @@
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="omit" class="tsd-anchor"></a>
 					<h3>Omit</h3>
-					<div class="tsd-signature tsd-kind-icon">Omit<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">keyof T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Omit&lt;T, K&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">Exclude</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/helpers.ts#L1">helpers.ts:1</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/helpers.ts#L1">lib/helpers.ts:1</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="serviceimplementation" class="tsd-anchor"></a>
 					<h3>Service<wbr>Implementation</h3>
-					<div class="tsd-signature tsd-kind-icon">Service<wbr>Implementation<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"repository"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Service<wbr>Implementation&lt;T, C, K&gt;<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"repository"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/settings/definitions.ts#L77">settings/definitions.ts:77</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/settings/definitions.ts#L77">lib/settings/definitions.ts:77</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="stripconstants" class="tsd-anchor"></a>
 					<h3>Strip<wbr>Constants</h3>
-					<div class="tsd-signature tsd-kind-icon">Strip<wbr>Constants<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"type"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"write"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"safe"</span><span class="tsd-signature-symbol">&gt;</span></div>
+					<div class="tsd-signature tsd-kind-icon">Strip<wbr>Constants&lt;T&gt;<span class="tsd-signature-symbol">:</span> <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"type"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"write"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"safe"</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L5">context/contextCreators.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L5">lib/context/contextCreators.ts:5</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+					</ul>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-type-alias tsd-has-type-parameter">
 					<a name="updatehandler" class="tsd-anchor"></a>
 					<h3>Update<wbr>Handler</h3>
-					<div class="tsd-signature tsd-kind-icon">Update<wbr>Handler<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+					<div class="tsd-signature tsd-kind-icon">Update<wbr>Handler&lt;T, C, K&gt;<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> =&gt; </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L15">service/handlers.ts:15</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L15">lib/service/handlers.ts:15</a></li>
 						</ul>
 					</aside>
+					<h4 class="tsd-type-parameters-title">Type parameters</h4>
+					<ul class="tsd-type-parameters">
+						<li>
+							<h4>T</h4>
+						</li>
+						<li>
+							<h4>C</h4>
+						</li>
+						<li>
+							<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
+						</li>
+					</ul>
 					<div class="tsd-type-declaration">
 						<h4>Type declaration</h4>
 						<ul class="tsd-parameters">
-							<li class="tsd-parameter-siganture">
-								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias tsd-is-not-exported">
-									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T[K]</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
+							<li class="tsd-parameter-signature">
+								<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-type-alias">
+									<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span>, data<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span>, context<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 								</ul>
 								<ul class="tsd-descriptions">
 									<li class="tsd-description">
 										<h4 class="tsd-parameters-title">Parameters</h4>
 										<ul class="tsd-parameters">
 											<li>
-												<h5>id: <span class="tsd-signature-type">T[K]</span></h5>
+												<h5>id: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></h5>
 											</li>
 											<li>
 												<h5>data: <span class="tsd-signature-type">any</span></h5>
@@ -355,13 +457,13 @@
 					<a name="bootstrapconfiguration" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> bootstrap<wbr>Configuration</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">bootstrap<wbr>Configuration&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></li>
+						<li class="tsd-signature tsd-kind-icon">bootstrap<wbr>Configuration&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"options"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"idKey"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"processData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setDefaults"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"postprocessData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"authorize"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"createNotFoundError"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"getOptions"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"controller"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"options"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"idKey"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"processData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setDefaults"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"postprocessData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"authorize"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"createNotFoundError"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"getOptions"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"controller"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/bootstrap.ts#L42">service/bootstrap.ts:42</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/bootstrap.ts#L42">lib/service/bootstrap.ts:42</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -373,7 +475,7 @@
 									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -382,16 +484,7 @@
 									<h5>defs: <a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span>
-								<span class="tsd-signature-symbol"> &amp; </span>
-								<a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">object</span>
-								<span class="tsd-signature-symbol"> &amp; </span>
-								<span class="tsd-signature-type">object</span>
-								<span class="tsd-signature-symbol"> &amp; </span>
-								<a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"options"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"idKey"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"processData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setDefaults"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"postprocessData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"authorize"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"createNotFoundError"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"getOptions"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"controller"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">(</span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"options"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"idKey"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"processData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"setDefaults"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"postprocessData"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"authorize"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"createNotFoundError"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"getOptions"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"controller"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> &amp; </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -399,13 +492,13 @@
 					<a name="buildservice" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> build<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">build<wbr>Service&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>buildingDefs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, prevDefs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">build<wbr>Service&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>buildingDefs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, prevDefs<span class="tsd-signature-symbol">?: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>buildService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>createService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/crudella.ts#L18">crudella.ts:18</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/crudella.ts#L18">lib/crudella.ts:18</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -417,7 +510,7 @@
 									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -429,18 +522,18 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> prevDefs: <a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>buildService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">; </span>createService<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol"> }</span></h4>
 							<ul class="tsd-parameters">
 								<li class="tsd-parameter">
 									<h5>build<wbr>Service<span class="tsd-signature-symbol">: </span>function</h5>
-									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
+									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
 										<li class="tsd-signature tsd-kind-icon">build<wbr>Service<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/crudella.ts#L25">crudella.ts:25</a></li>
+													<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/crudella.ts#L25">lib/crudella.ts:25</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -450,17 +543,18 @@
 												</li>
 											</ul>
 										</li>
-								</ul>        </li>
+									</ul>
+								</li>
 								<li class="tsd-parameter">
 									<h5>create<wbr>Service<span class="tsd-signature-symbol">: </span>function</h5>
-									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal tsd-is-not-exported">
-										<li class="tsd-signature tsd-kind-icon">create<wbr>Service<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></li>
+									<ul class="tsd-signatures tsd-kind-function tsd-parent-kind-type-literal">
+										<li class="tsd-signature tsd-kind-icon">create<wbr>Service<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span></li>
 									</ul>
 									<ul class="tsd-descriptions">
 										<li class="tsd-description">
 											<aside class="tsd-sources">
 												<ul>
-													<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/crudella.ts#L24">crudella.ts:24</a></li>
+													<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/crudella.ts#L24">lib/crudella.ts:24</a></li>
 												</ul>
 											</aside>
 											<h4 class="tsd-parameters-title">Parameters</h4>
@@ -469,29 +563,30 @@
 													<h5>defs: <a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 												</li>
 											</ul>
-											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span></h4>
+											<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span></h4>
 											<ul class="tsd-parameters">
 												<li class="tsd-parameter">
 													<h5>create<wbr>Middleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></h5>
 												</li>
 											</ul>
 										</li>
-								</ul>        </li>
+									</ul>
+								</li>
 							</ul>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 					<a name="createdefaultimplementation" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Default<wbr>Implementation</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
 						<li class="tsd-signature tsd-kind-icon">create<wbr>Default<wbr>Implementation&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"repository"</span><span class="tsd-signature-symbol">&gt;</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/bootstrap.ts#L6">service/bootstrap.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/bootstrap.ts#L6">lib/service/bootstrap.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -503,7 +598,7 @@
 									<h4>C</h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="globals.html#omit" class="tsd-signature-type">Omit</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"repository"</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -520,7 +615,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/handlers.ts#L27">service/handlers.ts:27</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/handlers.ts#L27">lib/service/handlers.ts:27</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -532,7 +627,7 @@
 									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -549,13 +644,13 @@
 					<a name="createmiddlewarefactory" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Middleware<wbr>Factory</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Middleware<wbr>Factory&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>handlers<span class="tsd-signature-symbol">: </span><a href="interfaces/handlercreators.html" class="tsd-signature-type">HandlerCreators</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, controller<span class="tsd-signature-symbol">: </span><a href="interfaces/crudcontroller.html" class="tsd-signature-type">CrudController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Middleware<wbr>Factory&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>handlers<span class="tsd-signature-symbol">: </span><a href="interfaces/handlercreators.html" class="tsd-signature-type">HandlerCreators</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, controller<span class="tsd-signature-symbol">: </span><a href="interfaces/crudcontroller.html" class="tsd-signature-type">CrudController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, options<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>allowedOperations<span class="tsd-signature-symbol">?: </span><a href="enums/operation.html" class="tsd-signature-type">Operation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/middleware.ts#L6">service/middleware.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/middleware.ts#L6">lib/service/middleware.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -567,7 +662,7 @@
 									<h4>C</h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -579,24 +674,24 @@
 									<h5>controller: <a href="interfaces/crudcontroller.html" class="tsd-signature-type">CrudController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 								<li>
-									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></h5>
+									<h5><span class="tsd-flag ts-flagOptional">Optional</span> options: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>allowedOperations<span class="tsd-signature-symbol">?: </span><a href="enums/operation.html" class="tsd-signature-type">Operation</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> }</span></h5>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">(Anonymous function)</span></h4>
 						</li>
 					</ul>
 				</section>
-				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+				<section class="tsd-panel tsd-member tsd-kind-function tsd-has-type-parameter">
 					<a name="createrepoimplementation" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Repo<wbr>Implementation</h3>
-					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Repo<wbr>Implementation&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>repo<span class="tsd-signature-symbol">: </span><a href="interfaces/crudrepository.html" class="tsd-signature-type">CrudRepository</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, idKey<span class="tsd-signature-symbol">: </span><a href="" class="tsd-signature-type">K</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">__type</span></li>
+					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Repo<wbr>Implementation&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>repo<span class="tsd-signature-symbol">?: </span><a href="interfaces/crudrepository.html" class="tsd-signature-type">CrudRepository</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span>, idKey<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">K</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/bootstrap.ts#L26">service/bootstrap.ts:26</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/bootstrap.ts#L26">lib/service/bootstrap.ts:26</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -608,7 +703,7 @@
 									<h4>C</h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -620,10 +715,7 @@
 									<h5><span class="tsd-flag ts-flagOptional">Optional</span> idKey: <a href="" class="tsd-signature-type">K</a></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">__type</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Pick</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">Required</span><span class="tsd-signature-symbol">&lt;</span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">"detail"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"create"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"update"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"delete"</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">"list"</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{}</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -631,13 +723,13 @@
 					<a name="createservice" class="tsd-anchor"></a>
 					<h3><span class="tsd-flag ts-flagConst">Const</span> create<wbr>Service</h3>
 					<ul class="tsd-signatures tsd-kind-function tsd-has-type-parameter">
-						<li class="tsd-signature tsd-kind-icon">create<wbr>Service&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">object</span></li>
+						<li class="tsd-signature tsd-kind-icon">create<wbr>Service&lt;T, C, K&gt;<span class="tsd-signature-symbol">(</span>defs<span class="tsd-signature-symbol">: </span><a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span></li>
 					</ul>
 					<ul class="tsd-descriptions">
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/crudella.ts#L6">crudella.ts:6</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/crudella.ts#L6">lib/crudella.ts:6</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -649,7 +741,7 @@
 									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">object</span></h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -658,10 +750,7 @@
 									<h5>defs: <a href="interfaces/definitions.html" class="tsd-signature-type">Definitions</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								</li>
 							</ul>
-							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">object</span>
-								<span class="tsd-signature-symbol"> | </span>
-								<span class="tsd-signature-type">object</span>
-							</h4>
+							<h4 class="tsd-returns-title">Returns <span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-symbol">{ </span>createMiddleware<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">(Anonymous function)</span><span class="tsd-signature-symbol"> }</span></h4>
 						</li>
 					</ul>
 				</section>
@@ -675,7 +764,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/helpers.ts#L3">helpers.ts:3</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/helpers.ts#L3">lib/helpers.ts:3</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -698,7 +787,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L16">context/contextCreators.ts:16</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L16">lib/context/contextCreators.ts:16</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -730,7 +819,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L31">context/contextCreators.ts:31</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L31">lib/context/contextCreators.ts:31</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -742,7 +831,7 @@
 									<h4>C</h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -765,7 +854,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L7">context/contextCreators.ts:7</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L7">lib/context/contextCreators.ts:7</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -777,7 +866,7 @@
 									<h4>C</h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-parameters-title">Parameters</h4>
@@ -800,7 +889,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L40">context/contextCreators.ts:40</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L40">lib/context/contextCreators.ts:40</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -832,7 +921,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/contextCreators.ts#L23">context/contextCreators.ts:23</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/contextCreators.ts#L23">lib/context/contextCreators.ts:23</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -864,7 +953,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/service/controller.ts#L12">service/controller.ts:12</a></li>
+									<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/service/controller.ts#L12">lib/service/controller.ts:12</a></li>
 								</ul>
 							</aside>
 							<h4 class="tsd-type-parameters-title">Type parameters</h4>
@@ -873,10 +962,10 @@
 									<h4>T</h4>
 								</li>
 								<li>
-									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">__type</span></h4>
+									<h4>C<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">{}</span></h4>
 								</li>
 								<li>
-									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+									<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 								</li>
 							</ul>
 							<h4 class="tsd-returns-title">Returns <a href="interfaces/crudcontroller.html" class="tsd-signature-type">CrudController</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">C</span><span class="tsd-signature-symbol">, </span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">&gt;</span></h4>
@@ -952,7 +1041,7 @@
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#serviceimplementation" class="tsd-kind-icon">Service<wbr>Implementation</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -964,7 +1053,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#buildservice" class="tsd-kind-icon">build<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -973,7 +1062,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createmiddlewarefactory" class="tsd-kind-icon">create<wbr>Middleware<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -1010,65 +1099,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>

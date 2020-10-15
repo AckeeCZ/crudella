@@ -4,7 +4,7 @@
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<title>DetailContext | Crudella</title>
-	<meta name="description" content="">
+	<meta name="description" content="Documentation for Crudella">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" href="../assets/css/main.css">
 </head>
@@ -13,7 +13,7 @@
 	<div class="tsd-page-toolbar">
 		<div class="container">
 			<div class="table-wrap">
-				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.js" data-base="..">
+				<div class="table-cell" id="tsd-search" data-index="../assets/js/search.json" data-base="..">
 					<div class="field">
 						<label for="tsd-search-field" class="tsd-widget search no-caption">Search</label>
 						<input id="tsd-search-field" type="text" />
@@ -74,7 +74,7 @@
 						<h4>C</h4>
 					</li>
 					<li>
-						<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">keyof T</span></h4>
+						<h4>K<span class="tsd-signature-symbol">: </span><span class="tsd-signature-symbol">keyof </span><span class="tsd-signature-type">T</span></h4>
 					</li>
 				</ul>
 			</section>
@@ -121,9 +121,14 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#baredata">bareData</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L40">context/crudContext.ts:40</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L40">lib/context/crudContext.ts:40</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Data sent by client, only available on Update</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="context" class="tsd-anchor"></a>
@@ -132,9 +137,14 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#context">context</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L5">context/crudContext.ts:5</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L5">lib/context/crudContext.ts:5</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Http context you use in your application. Usually includes user, locale additional query parameters etc.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-inherited">
 					<a name="data" class="tsd-anchor"></a>
@@ -143,9 +153,25 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#data">data</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L38">context/crudContext.ts:38</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L38">lib/context/crudContext.ts:38</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Data sent by client to update or create resource.
+								It represents the new, complete resource -- thusly when
+								updating a single attribute,data contains not just the new
+								attribute, but also all the attributes existing on the
+							resource before the update.</p>
+						</div>
+						<p>In other words, <code>data</code> is <code>entity</code> with overwritten data sent by client.
+						To get <em>only</em> data sent by client, see <code>bareData</code>.</p>
+						<p>Present in the following operations:</p>
+						<ul>
+							<li>Create (data client provides to create a resource)</li>
+							<li>Update (client&#39;s data for update with attributes defaulting to existing resource)</li>
+						</ul>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="entity" class="tsd-anchor"></a>
@@ -154,17 +180,17 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#entity">entity</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L44">context/crudContext.ts:44</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L44">lib/context/crudContext.ts:44</a></li>
 						</ul>
 					</aside>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="id" class="tsd-anchor"></a>
 					<h3>id</h3>
-					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T[K]</span></div>
+					<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">[</span><span class="tsd-signature-type">K</span><span class="tsd-signature-symbol">]</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L43">context/crudContext.ts:43</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L43">lib/context/crudContext.ts:43</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -175,9 +201,14 @@
 					<aside class="tsd-sources">
 						<p>Inherited from <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#options">options</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L7">context/crudContext.ts:7</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L7">lib/context/crudContext.ts:7</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Options passed to your data manipulation logic. Contains data from (1) context, (2) dynamic options from <code>getOptions</code> and (3) direct options passed on when creating a handler.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface tsd-is-overwrite">
 					<a name="safe" class="tsd-anchor"></a>
@@ -186,7 +217,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#safe">safe</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L47">context/crudContext.ts:47</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L47">lib/context/crudContext.ts:47</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -197,7 +228,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#type">type</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L45">context/crudContext.ts:45</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L45">lib/context/crudContext.ts:45</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -208,7 +239,7 @@
 					<aside class="tsd-sources">
 						<p>Overrides <a href="basecrudcontext.html">BaseCrudContext</a>.<a href="basecrudcontext.html#write">write</a></p>
 						<ul>
-							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/9be95b4/src/lib/context/crudContext.ts#L46">context/crudContext.ts:46</a></li>
+							<li>Defined in <a href="https://github.com/AckeeCZ/crudella/blob/d0e5d40/src/lib/context/crudContext.ts#L46">lib/context/crudContext.ts:46</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -314,7 +345,7 @@
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#serviceimplementation" class="tsd-kind-icon">Service<wbr>Implementation</a>
 					</li>
-					<li class=" tsd-kind-type-alias tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 						<a href="../globals.html#stripconstants" class="tsd-kind-icon">Strip<wbr>Constants</a>
 					</li>
 					<li class=" tsd-kind-type-alias tsd-has-type-parameter">
@@ -326,7 +357,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#buildservice" class="tsd-kind-icon">build<wbr>Service</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createdefaultimplementation" class="tsd-kind-icon">create<wbr>Default<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -335,7 +366,7 @@
 					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createmiddlewarefactory" class="tsd-kind-icon">create<wbr>Middleware<wbr>Factory</a>
 					</li>
-					<li class=" tsd-kind-function tsd-has-type-parameter tsd-is-not-exported">
+					<li class=" tsd-kind-function tsd-has-type-parameter">
 						<a href="../globals.html#createrepoimplementation" class="tsd-kind-icon">create<wbr>Repo<wbr>Implementation</a>
 					</li>
 					<li class=" tsd-kind-function tsd-has-type-parameter">
@@ -372,65 +403,15 @@
 		<h2>Legend</h2>
 		<div class="tsd-legend-group">
 			<ul class="tsd-legend">
-				<li class="tsd-kind-module"><span class="tsd-kind-icon">Module</span></li>
-				<li class="tsd-kind-object-literal"><span class="tsd-kind-icon">Object literal</span></li>
-				<li class="tsd-kind-variable"><span class="tsd-kind-icon">Variable</span></li>
-				<li class="tsd-kind-function"><span class="tsd-kind-icon">Function</span></li>
-				<li class="tsd-kind-function tsd-has-type-parameter"><span class="tsd-kind-icon">Function with type parameter</span></li>
-				<li class="tsd-kind-index-signature"><span class="tsd-kind-icon">Index signature</span></li>
-				<li class="tsd-kind-type-alias"><span class="tsd-kind-icon">Type alias</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-enum"><span class="tsd-kind-icon">Enumeration</span></li>
-				<li class="tsd-kind-enum-member"><span class="tsd-kind-icon">Enumeration member</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-enum"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-enum"><span class="tsd-kind-icon">Method</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-interface"><span class="tsd-kind-icon">Interface</span></li>
-				<li class="tsd-kind-interface tsd-has-type-parameter"><span class="tsd-kind-icon">Interface with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-interface"><span class="tsd-kind-icon">Constructor</span></li>
 				<li class="tsd-kind-property tsd-parent-kind-interface"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-interface"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-interface"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-class"><span class="tsd-kind-icon">Class</span></li>
-				<li class="tsd-kind-class tsd-has-type-parameter"><span class="tsd-kind-icon">Class with type parameter</span></li>
-				<li class="tsd-kind-constructor tsd-parent-kind-class"><span class="tsd-kind-icon">Constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class"><span class="tsd-kind-icon">Property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class"><span class="tsd-kind-icon">Method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class"><span class="tsd-kind-icon">Accessor</span></li>
-				<li class="tsd-kind-index-signature tsd-parent-kind-class"><span class="tsd-kind-icon">Index signature</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-constructor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited constructor</span></li>
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-inherited"><span class="tsd-kind-icon">Inherited accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-protected"><span class="tsd-kind-icon">Protected accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private property</span></li>
-				<li class="tsd-kind-method tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private method</span></li>
-				<li class="tsd-kind-accessor tsd-parent-kind-class tsd-is-private"><span class="tsd-kind-icon">Private accessor</span></li>
-			</ul>
-			<ul class="tsd-legend">
-				<li class="tsd-kind-property tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static property</span></li>
-				<li class="tsd-kind-call-signature tsd-parent-kind-class tsd-is-static"><span class="tsd-kind-icon">Static method</span></li>
 			</ul>
 		</div>
 	</div>
 </footer>
 <div class="container tsd-generator">
-	<p>Generated using <a href="http://typedoc.org/" target="_blank">TypeDoc</a></p>
+	<p>Generated using <a href="https://typedoc.org/" target="_blank">TypeDoc</a></p>
 </div>
 <div class="overlay"></div>
 <script src="../assets/js/main.js"></script>
-<script>if (location.protocol == 'file:') document.write('<script src="../assets/js/search.js"><' + '/script>');</script>
 </body>
 </html>
